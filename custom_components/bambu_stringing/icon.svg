@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#18BCF2"/>
+      <stop offset="100%" stop-color="#0D8EC4"/>
+    </linearGradient>
+    <linearGradient id="bed" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.75"/>
+    </linearGradient>
+    <linearGradient id="head" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FF9800"/>
+      <stop offset="100%" stop-color="#F57C00"/>
+    </linearGradient>
+    <linearGradient id="lens" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background: rounded square, HA blue -->
+  <rect x="8" y="8" width="240" height="240" rx="48" ry="48" fill="url(#bg)"/>
+
+  <!-- Print bed (bottom platform) -->
+  <rect x="48" y="176" width="160" height="16" rx="4" ry="4" fill="url(#bed)"/>
+  <rect x="56" y="192" width="144" height="8" rx="3" ry="3" fill="#FFFFFF" opacity="0.5"/>
+
+  <!-- Printed object on bed: simple tower with layers -->
+  <rect x="104" y="128" width="48" height="48" rx="2" ry="2" fill="#FFFFFF" opacity="0.9"/>
+  <!-- Layer lines on the object -->
+  <line x1="106" y1="140" x2="150" y2="140" stroke="#18BCF2" stroke-width="1.5" opacity="0.6"/>
+  <line x1="106" y1="152" x2="150" y2="152" stroke="#18BCF2" stroke-width="1.5" opacity="0.6"/>
+  <line x1="106" y1="164" x2="150" y2="164" stroke="#18BCF2" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- Stringing threads (thin lines between object and head) -->
+  <path d="M 128 128 Q 110 108 96 96" stroke="#FFFFFF" stroke-width="1" opacity="0.5" fill="none"/>
+  <path d="M 128 128 Q 146 108 160 96" stroke="#FFFFFF" stroke-width="1" opacity="0.5" fill="none"/>
+  <path d="M 128 128 Q 128 104 128 88" stroke="#FFFFFF" stroke-width="1" opacity="0.4" fill="none"/>
+
+  <!-- Print head (nozzle assembly above object) -->
+  <polygon points="112,72 144,72 138,96 118,96" fill="url(#head)"/>
+  <rect x="124" y="96" width="8" height="12" rx="2" ry="2" fill="#E65100"/>
+  <!-- Nozzle tip -->
+  <polygon points="126,108 130,108 128,116" fill="#BF360C"/>
+
+  <!-- Gantry rail above head -->
+  <rect x="88" y="64" width="80" height="8" rx="4" ry="4" fill="#FFFFFF" opacity="0.7"/>
+
+  <!-- Magnifying glass (AI vision / monitoring) - top right -->
+  <circle cx="184" cy="72" r="36" fill="url(#lens)" stroke="#FFFFFF" stroke-width="5"/>
+  <!-- Lens inner ring -->
+  <circle cx="184" cy="72" r="28" fill="none" stroke="#FFFFFF" stroke-width="1.5" opacity="0.4"/>
+  <!-- Handle -->
+  <line x1="208" y1="96" x2="228" y2="116" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round"/>
+  <!-- Scan lines inside lens (AI analysis effect) -->
+  <line x1="164" y1="60" x2="204" y2="60" stroke="#FFFFFF" stroke-width="1.5" opacity="0.5"/>
+  <line x1="164" y1="72" x2="204" y2="72" stroke="#FFFFFF" stroke-width="1.5" opacity="0.5"/>
+  <line x1="164" y1="84" x2="204" y2="84" stroke="#FFFFFF" stroke-width="1.5" opacity="0.5"/>
+  <!-- Detection dot inside lens -->
+  <circle cx="184" cy="72" r="4" fill="#FF5252"/>
+
+  <!-- Small defect indicator (spaghetti/stringing blob) on bed left -->
+  <path d="M 64 176 Q 68 168 76 170 Q 84 168 88 176 Z" fill="#FF5252" opacity="0.8"/>
+  <circle cx="76" cy="172" r="3" fill="#FF5252"/>
+</svg>

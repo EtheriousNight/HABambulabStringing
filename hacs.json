@@ -1,0 +1,6 @@
+{
+  "name": "Bambu Lab Stringing Detection",
+  "content_in_root": false,
+  "render_readme": true,
+  "homeassistant": "2026.3.0"
+}

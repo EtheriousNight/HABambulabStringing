@@ -1,0 +1,166 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "description": "Richtet die Stringing- und Fehlererkennung für einen Drucker ein. Ein Drucker pro Setup-Durchlauf; weitere Drucker später über „Integration hinzufügen“.",
+        "data": {
+          "name": "Druckername",
+          "api_key": "Mistral API-Key",
+          "mistral_model": "Mistral Vision-Modell",
+          "camera_entity": "Kamera-Entity (z. B. von ha-bambulab)",
+          "mjpeg_url": "Alternative: direkte MJPEG-URL des Druckers",
+          "print_state_entity": "Druckstatus-Entity (Gate, z. B. sensor.<drucker>_print_status)",
+          "notify_services": "Ziel für Push-Nachrichten",
+          "bambu_device_id": "ha-bambulab-Gerät (für Pause/Resume/Stop)",
+          "manual_context": "Manueller Druckkontext (optional, z. B. „PLA, 0.2 mm“)"
+        },
+        "data_description": {
+          "api_key": "Wird als „Bearer“-Token an api.mistral.ai gesendet. Kamerabilder verlassen das lokale Netzwerk.",
+          "mistral_model": "z. B. mistral-medium-latest. Bei einem Modellwechsel einfach hier neu eintragen.",
+          "camera_entity": "Bevorzugte Bildquelle: die Kammerkamera aus der ha-bambulab-Integration.",
+          "mjpeg_url": "Nur nötig, wenn keine Kamera-Entity genutzt werden soll (direkter P1S-Stream).",
+          "print_state_entity": "Pflichtfeld. Analyse läuft nur, wenn der Status (gcode_state) in den laufenden States ist (Standard: RUNNING,PAUSE). Ohne Entity werden keine Bilder analysiert (fail-closed, spart API-Kosten).",
+          "notify_services": "Standard „Automatisch“: alle erkannten Companion-Apps werden benachrichtigt. Alternativ hier einen Dienst auswählen.",
+          "bambu_device_id": "Ermöglicht Pause/Resume/Stop über die ha-bambulab-Services und verknüpft die Geräte-Seiten."
+        }
+      }
+    },
+    "error": {
+      "no_frame_source": "Entweder Kamera-Entity oder MJPEG-URL angeben."
+    },
+    "abort": {
+      "already_configured": "Ein Drucker mit diesem Namen ist bereits eingerichtet."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": {
+          "check_interval_sec": "Prüintervall (Sekunden)",
+          "stringing_threshold": "Stringing-Schwelle (0–100)",
+          "stringing_streak": "Stringing-Streak (n aufeinanderfolgende Frames)",
+          "spaghetti_threshold": "Spaghetti-Schwelle (0–100)",
+          "warping_threshold": "Warping-Schwelle (0–100)",
+          "layer_shift_threshold": "Layer-Shift-Schwelle (0–100)",
+          "stringing_cooldown_min": "Cooldown Stringing-Benachrichtigung (Minuten)",
+          "auto_pause": "Automatisch pausieren bei Spaghetti",
+          "api_key": "Mistral API-Key (neu setzen)",
+          "mistral_model": "Mistral Vision-Modell",
+          "snapshot_retention_days": "Snapshot-Aufbewahrung (Tage)",
+          "running_states": "Druckstatus-Werte für „läuft“ (kommagetrennt)",
+          "notify_services": "Ziel für Push-Nachrichten",
+          "deep_link": "Deep-Link der Benachrichtigung (Companion App)",
+          "pause_service": "Pause-Service",
+          "resume_service": "Resume-Service",
+          "stop_service": "Stop-Service",
+          "manual_context": "Manueller Druckkontext"
+        },
+        "data_description": {
+          "check_interval_sec": "20–300 s. Stringing entwickelt sich langsam; 30–60 s reichen.",
+          "stringing_threshold": "40–80. Score, ab dem ein Frame als Stringing zählt.",
+          "stringing_streak": "1–5. Alarm erst nach n aufeinanderfolgenden Frames über der Schwelle.",
+          "spaghetti_threshold": "50–90. Kritischer Alarm sofort bei Überschreiten (einmal pro Druck).",
+          "warping_threshold": "40–80. Warping (abhebende Ränder) wird wie Stringing behandelt: Streak + Cooldown, informative Benachrichtigung.",
+          "layer_shift_threshold": "50–90. Layer-Shift (versetzte Ebenen) ist kritisch wie Spaghetti: sofort, einmal pro Druck, beteiligt an der Autopause.",
+          "stringing_cooldown_min": "5–60. Maximal eine Stringing-Benachrichtigung pro Zeitraum. Gilt auch für Warping.",
+          "auto_pause": "Standard aus (nur benachrichtigen). Bei Spaghetti wird pause_print über ha-bambulab aufgerufen.",
+          "api_key": "Leer lassen, um den bestehenden API-Key beizubehalten. Nur ausfüllen, um ihn zu ändern.",
+          "snapshot_retention_days": "1–90. Ältere Snapshots und Score-Logs werden gelöscht (latest.jpg bleibt).",
+          "running_states": "Standard: RUNNING,PAUSE. Die Werte werden mit dem gcode_state-Attribut bzw. State verglichen (Groß-/Kleinschreibung egal). PAUSE ist enthalten, damit pausierte Drucke weiter überwacht werden.",
+          "pause_service": "Service-Pfad, z. B. bambu_lab.pause_print. Ziel-Gerät ist der oben konfigurierte ha-bambulab-Drucker.",
+          "deep_link": "z. B. homeassistant://navigate/lovelace/0 oder homeassistant://more-info/<entity_id>.",
+          "notify_services": "„Automatisch“ benachrichtigt alle erkannten Companion-Apps; alternativ einen Dienst auswählen."
+        }
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "print_failure": {
+        "name": "Druckfehler"
+      },
+      "stringing_detected": {
+        "name": "Stringing erkannt"
+      },
+      "warping_detected": {
+        "name": "Warping erkannt"
+      },
+      "layer_shift_detected": {
+        "name": "Layer-Shift erkannt"
+      }
+    },
+    "sensor": {
+      "stringing_score": {
+        "name": "Stringing-Score"
+      },
+      "spaghetti_score": {
+        "name": "Spaghetti-Score"
+      },
+      "warping_score": {
+        "name": "Warping-Score"
+      },
+      "layer_shift_score": {
+        "name": "Layer-Shift-Score"
+      },
+      "api_calls": {
+        "name": "API-Aufrufe"
+      },
+      "events": {
+        "name": "Erkannte Ereignisse"
+      },
+      "last_check": {
+        "name": "Letzte Prüfung"
+      }
+    },
+    "button": {
+      "pause": {
+        "name": "Druck pausieren"
+      },
+      "resume": {
+        "name": "Druck fortsetzen"
+      },
+      "stop": {
+        "name": "Druck stoppen"
+      },
+      "check_now": {
+        "name": "Jetzt prüfen"
+      },
+      "reset": {
+        "name": "Erkennung zurücksetzen"
+      }
+    },
+    "switch": {
+      "mute": {
+        "name": "Stumm für diesen Druck"
+      }
+    }
+  },
+  "services": {
+    "check_now": {
+      "name": "Sofort prüfen",
+      "description": "Analysiert sofort einen Frame des ausgewählten Druckers, unabhängig vom Intervall."
+    },
+    "mute_for_print": {
+      "name": "Für aktuellen Druck stummschalten",
+      "description": "Schaltet die Stummschaltung für den laufenden Druck um (keine Push, keine Autopause)."
+    },
+    "reset_detection": {
+      "name": "Erkennung zurücksetzen",
+      "description": "Setzt Streaks, Detektions-Flags, Benachrichtigungs-Arretierungen und Cooldown-Timer zurück. Die Stummschaltung bleibt unverändert."
+    }
+  },
+  "issues": {
+    "restart_required": {
+      "title": "Neustart nach Update erforderlich",
+      "description": "Die Integration wurde auf Version {disk_version} aktualisiert, geladen ist aber noch Version {loaded_version}. Starte Home Assistant neu, damit die neue Version aktiv wird.",
+      "fix_flow": {
+        "step": {
+          "init": {
+            "title": "Home Assistant neu starten",
+            "description": "Version {disk_version} ist installiert, aktiv ist noch Version {loaded_version}. Soll Home Assistant jetzt neu gestartet werden?"
+          }
+        }
+      }
+    }
+  }
+}

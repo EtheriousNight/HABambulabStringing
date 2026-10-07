@@ -1,0 +1,25 @@
+check_now:
+  name: Sofort prüfen
+  description: >-
+    Holt sofort einen Frame vom ausgewählten Drucker und analysiert ihn,
+    unabhängig vom Prüintervall und Druckstatus.
+  target:
+    device:
+      integration: bambu_stringing
+mute_for_print:
+  name: Für aktuellen Druck stummschalten
+  description: >-
+    Schaltet die Stummschaltung für den laufenden Druck des ausgewählten
+    Druckers um (keine Benachrichtigungen, keine automatische Pause).
+  target:
+    device:
+      integration: bambu_stringing
+reset_detection:
+  name: Erkennung zurücksetzen
+  description: >-
+    Setzt den Erkennungsstatus des ausgewählten Druckers zurück: Streaks,
+    Detektions-Flags, Benachrichtigungs-Arretierungen und Cooldown-Timer.
+    Die Stummschaltung bleibt unverändert.
+  target:
+    device:
+      integration: bambu_stringing

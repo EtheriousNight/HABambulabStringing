@@ -1,0 +1,1538 @@
+{
+  "timestamp": "2026-10-07 21:12:14",
+  "recommended_model": "mistral-medium-latest",
+  "models": [
+    {
+      "model": "mistral-large-4",
+      "accuracy_pct": 50.0,
+      "composite_score": 30.0,
+      "avg_latency_ms": 35973.0,
+      "total_cost_usd": 0.1191,
+      "results": [
+        {
+          "image_file": "stringing_1.jpg",
+          "category": "stringing",
+          "latency_ms": 49919.0,
+          "input_tokens": 922,
+          "output_tokens": 3042,
+          "est_cost_usd": 0.006985,
+          "scores": {
+            "stringing_score": 35,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Deutliche Fadenbildung (Stringing) zwischen den Spitzen der Testdrucke, besonders bei höheren Temperaturen. Die Bauteile haften fest auf dem Druckbett ohne Verzug oder Layer-Verschiebungen.",
+          "error": null
+        },
+        {
+          "image_file": "stringing_2.jpg",
+          "category": "stringing",
+          "latency_ms": 41088.0,
+          "input_tokens": 706,
+          "output_tokens": 1938,
+          "est_cost_usd": 0.00453,
+          "scores": {
+            "stringing_score": 95,
+            "spaghetti_score": 5,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Extremes Stringing zwischen den beiden vertikalen Säulen mit dichtem Fadennetz. Die Bauteile haften fest auf dem Druckbett und zeigen keine Verzüge oder Layer-Verschiebungen.",
+          "error": null
+        },
+        {
+          "image_file": "stringing_3.png",
+          "category": "stringing",
+          "latency_ms": 49145.0,
+          "input_tokens": 1470,
+          "output_tokens": 2354,
+          "est_cost_usd": 0.005919,
+          "scores": {
+            "stringing_score": 40,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Beide Türme weisen starke Oberflächenfehler mit Blobs und Fäden auf. Am rechten Turm ist ein deutlicher Stringing-Faden seitlich sichtbar.",
+          "error": null
+        },
+        {
+          "image_file": "stringing_4.jpg",
+          "category": "stringing",
+          "latency_ms": 14665.0,
+          "input_tokens": 922,
+          "output_tokens": 1324,
+          "est_cost_usd": 0.003394,
+          "scores": {
+            "stringing_score": 80,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Starkes Stringing zwischen den drei konischen Strukturen sichtbar. Die Grundplatte liegt flach auf dem Druckbett ohne erkennbare Verzüge oder Haftungsprobleme.",
+          "error": null
+        },
+        {
+          "image_file": "stringing_5.jpg",
+          "category": "stringing",
+          "latency_ms": 34166.0,
+          "input_tokens": 922,
+          "output_tokens": 2000,
+          "est_cost_usd": 0.004807,
+          "scores": {
+            "stringing_score": 80,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Starke Stringing zwischen den vertikalen Streben des Objekts, feine Filamentfäden bilden ein dichtes spinnennetzartiges Muster im Inneren.",
+          "error": null
+        },
+        {
+          "image_file": "stringing_6.jpg",
+          "category": "stringing",
+          "latency_ms": 29314.0,
+          "input_tokens": 748,
+          "output_tokens": 2514,
+          "est_cost_usd": 0.005763,
+          "scores": {
+            "stringing_score": 85,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Extremes Stringing mit dichten feinen Fäden zwischen den Objekten und im Hintergrund. An den Seitenflächen der Kegel sind haarartige, lila Filamentauswüchse (Oozing) sichtbar.",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_1.jpg",
+          "category": "spaghetti",
+          "latency_ms": 55711.0,
+          "input_tokens": 1468,
+          "output_tokens": 2737,
+          "est_cost_usd": 0.006719,
+          "scores": {
+            "stringing_score": 95,
+            "spaghetti_score": 100,
+            "warping_score": 60,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": true
+          },
+          "observations": "Vollständiger Druckfehler mit massivem Spaghetti-Nest. Bauteile haben sich vom Druckbett gelöst und liegen als Filamentknäuel auf der Platte.",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_2.jpg",
+          "category": "spaghetti",
+          "latency_ms": 28574.0,
+          "input_tokens": 1668,
+          "output_tokens": 1787,
+          "est_cost_usd": 0.004869,
+          "scores": {
+            "stringing_score": 30,
+            "spaghetti_score": 95,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": true
+          },
+          "observations": "Der Druck ist vollständig fehlgeschlagen und hat sich in ein chaotisches Spaghetti-Nest verwandelt. Das gelbe Filament liegt lose und unstrukturiert auf der gesamten Druckplatte verteilt.",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_3.jpg",
+          "category": "spaghetti",
+          "latency_ms": 20768.0,
+          "input_tokens": 620,
+          "output_tokens": 1661,
+          "est_cost_usd": 0.003893,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Das Bild zeigt die strukturierte Druckplatte aus schräger Perspektive; ein Druckobjekt ist nicht klar erkennbar. Es sind keine offensichtlichen Druckfehler wie Stringing, Warping oder Spaghetti sichtbar.",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_4.jpg",
+          "category": "spaghetti",
+          "latency_ms": 49448.0,
+          "input_tokens": 2588,
+          "output_tokens": 3689,
+          "est_cost_usd": 0.00947,
+          "scores": {
+            "stringing_score": 95,
+            "spaghetti_score": 85,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Extremes Stringing mit massiver Fadenbildung über das gesamte Druckbett und am Bauteil. Das Objekt steht noch auf der Platte, ist jedoch von einem dichten Spaghetti-Nest umgeben.",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_5.jpg",
+          "category": "spaghetti",
+          "latency_ms": 77902.0,
+          "input_tokens": 2268,
+          "output_tokens": 3047,
+          "est_cost_usd": 0.00791,
+          "scores": {
+            "stringing_score": 85,
+            "spaghetti_score": 95,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": true
+          },
+          "observations": "Massives Spaghetti-Nest durch Druckfehler entstanden, vermutlich durch Ablösung vom Bett oder Düsenverstopfung. Der kleine Benchy rechts scheint fehlerfrei, während das mittlere Objekt auf der Platte ebenfalls Materialanhäufungen aufweist.",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_6.jpg",
+          "category": "spaghetti",
+          "latency_ms": 22845.0,
+          "input_tokens": 1581,
+          "output_tokens": 1954,
+          "est_cost_usd": 0.005159,
+          "scores": {
+            "stringing_score": 35,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Moderates Stringing zwischen den Haarsträhnen und an den Armen erkennbar. Keine Warping-, Layer-Shift- oder Haftungsprobleme sichtbar.",
+          "error": null
+        },
+        {
+          "image_file": "warping_1.webp",
+          "category": "warping",
+          "latency_ms": 29431.0,
+          "input_tokens": 1470,
+          "output_tokens": 1611,
+          "est_cost_usd": 0.004367,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 90,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": true
+          },
+          "observations": "Ausgeprägtes Curling an den Ecken und Kanten mit deutlichem Abheben vom Druckbett. Die Außenränder sind stark nach oben gewölbt und bilden eine schüsselförmige Verformung.",
+          "error": null
+        },
+        {
+          "image_file": "warping_2.jpg",
+          "category": "warping",
+          "latency_ms": 13878.0,
+          "input_tokens": 1458,
+          "output_tokens": 877,
+          "est_cost_usd": 0.002824,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Erste Schicht mit gleichmäßiger Extrusion und guter Haftung auf der strukturierten Platte. Keine sichtbaren Druckfehler oder Verzug.",
+          "error": null
+        },
+        {
+          "image_file": "layer_shift_1.jpg",
+          "category": "layer_shift",
+          "latency_ms": 21873.0,
+          "input_tokens": 748,
+          "output_tokens": 1474,
+          "est_cost_usd": 0.003589,
+          "scores": {
+            "stringing_score": 5,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Sehr sauberes Druckbild ohne erkennbare Fehler. Gute Haftung auf dem Druckbett und gleichmäßige, gut ausgerichtete Layer.",
+          "error": null
+        },
+        {
+          "image_file": "layer_shift_2.png",
+          "category": "layer_shift",
+          "latency_ms": 48428.0,
+          "input_tokens": 1470,
+          "output_tokens": 2716,
+          "est_cost_usd": 0.006676,
+          "scores": {
+            "stringing_score": 40,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Deutliche Stringing zwischen den Strukturen der rosa Figuren und den weißen Würfeln sichtbar. Am Kopf der rechten Figur sind mehrere Oberflächenblobs (Zits) erkennbar.",
+          "error": null
+        },
+        {
+          "image_file": "layer_shift_3.jpg",
+          "category": "layer_shift",
+          "latency_ms": 23380.0,
+          "input_tokens": 1102,
+          "output_tokens": 2139,
+          "est_cost_usd": 0.00522,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 100,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Schwere horizontale Schichtverschiebung (Layer Shift) an beiden Druckteilen erkennbar. Die Druckebenen sind deutlich versetzt zueinander angeordnet und erzeugen sichtbare Stufen.",
+          "error": null
+        },
+        {
+          "image_file": "layer_shift_4.jpg",
+          "category": "layer_shift",
+          "latency_ms": 22428.0,
+          "input_tokens": 1059,
+          "output_tokens": 1933,
+          "est_cost_usd": 0.00476,
+          "scores": {
+            "stringing_score": 5,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Das Bauteil weist ein sauberes Druckbild ohne Verzug, Layer-Verschiebungen oder Ablösungen auf. Am oberen Bereich ist ein kleiner Oberflächenfehler erkennbar.",
+          "error": null
+        },
+        {
+          "image_file": "clean_1.jpg",
+          "category": "clean",
+          "latency_ms": 19942.0,
+          "input_tokens": 1306,
+          "output_tokens": 1788,
+          "est_cost_usd": 0.004625,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Alle 21 Benchy-Boote sind vollständig und sauber gedruckt. Keine erkennbaren Fehler wie Stringing, Warping, Schichtversatz oder Haftungsprobleme sichtbar.",
+          "error": null
+        },
+        {
+          "image_file": "clean_2.webp",
+          "category": "clean",
+          "latency_ms": 45795.0,
+          "input_tokens": 1993,
+          "output_tokens": 2063,
+          "est_cost_usd": 0.005667,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Die Druckteile weisen eine einwandfreie Oberflächenqualität ohne erkennbare Fehler auf. Alle Objekte sitzen fest und gerade auf dem Druckbett.",
+          "error": null
+        },
+        {
+          "image_file": "clean_3.jpg",
+          "category": "clean",
+          "latency_ms": 47973.0,
+          "input_tokens": 1507,
+          "output_tokens": 3225,
+          "est_cost_usd": 0.007765,
+          "scores": {
+            "stringing_score": 35,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Leichtes Stringing an den Innenräumen des Benchys und in den Buchstabenaussparungen des Würfels erkennbar. Alle Bauteile liegen flach auf dem Druckbett ohne erkennbare Verzüge oder Layer-Verschiebungen.",
+          "error": null
+        },
+        {
+          "image_file": "clean_4.jpg",
+          "category": "clean",
+          "latency_ms": 44731.0,
+          "input_tokens": 2076,
+          "output_tokens": 1337,
+          "est_cost_usd": 0.004206,
+          "scores": {
+            "stringing_score": 5,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Der Druck zeigt ein sauberes Benchy-Modell mit gleichmäßigen Layerlinien und guter Haftung auf dem Druckbett. Es sind keine signifikanten Druckfehler wie Stringing, Warping oder Layer-Verschiebungen erkennbar.",
+          "error": null
+        }
+      ]
+    },
+    {
+      "model": "mistral-large-latest",
+      "accuracy_pct": 36.4,
+      "composite_score": 32.2,
+      "avg_latency_ms": 2916.0,
+      "total_cost_usd": 0.0196,
+      "results": [
+        {
+          "image_file": "stringing_1.jpg",
+          "category": "stringing",
+          "latency_ms": 3115.0,
+          "input_tokens": 940,
+          "output_tokens": 146,
+          "est_cost_usd": 0.000689,
+          "scores": {
+            "stringing_score": 5,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Leichte Stringing-Spuren zwischen den Bauteilen, ansonsten saubere Druckergebnisse ohne Verzug oder Layer-Verschiebungen.",
+          "error": null
+        },
+        {
+          "image_file": "stringing_2.jpg",
+          "category": "stringing",
+          "latency_ms": 2436.0,
+          "input_tokens": 724,
+          "output_tokens": 133,
+          "est_cost_usd": 0.000562,
+          "scores": {
+            "stringing_score": 5,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Leichte Stringing-Fäden zwischen den vertikalen Wänden sichtbar, ansonsten sauberer Druck mit guter Schichtung.",
+          "error": null
+        },
+        {
+          "image_file": "stringing_3.png",
+          "category": "stringing",
+          "latency_ms": 2890.0,
+          "input_tokens": 1488,
+          "output_tokens": 136,
+          "est_cost_usd": 0.000948,
+          "scores": {
+            "stringing_score": 5,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Leichte Fadenbildung zwischen den Schichten erkennbar, ansonsten sauberer Druck ohne Verzug oder Verschiebungen.",
+          "error": null
+        },
+        {
+          "image_file": "stringing_4.jpg",
+          "category": "stringing",
+          "latency_ms": 2521.0,
+          "input_tokens": 940,
+          "output_tokens": 121,
+          "est_cost_usd": 0.000651,
+          "scores": {
+            "stringing_score": 5,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Leichte Stringing-Effekte zwischen den vertikalen Streben erkennbar, ansonsten sauberer Druck.",
+          "error": null
+        },
+        {
+          "image_file": "stringing_5.jpg",
+          "category": "stringing",
+          "latency_ms": 2425.0,
+          "input_tokens": 940,
+          "output_tokens": 135,
+          "est_cost_usd": 0.000673,
+          "scores": {
+            "stringing_score": 5,
+            "spaghetti_score": 0,
+            "warping_score": 10,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Leichte Stringing-Effekte an den Überhängen sichtbar, Verzug an den unteren Kanten des Druckteils erkennbar.",
+          "error": null
+        },
+        {
+          "image_file": "stringing_6.jpg",
+          "category": "stringing",
+          "latency_ms": 2750.0,
+          "input_tokens": 766,
+          "output_tokens": 134,
+          "est_cost_usd": 0.000584,
+          "scores": {
+            "stringing_score": 90,
+            "spaghetti_score": 5,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Deutlich sichtbare Stringing-Fäden zwischen den Säulen, ansonsten stabiler Druckverlauf ohne größere Ablösungen.",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_1.jpg",
+          "category": "spaghetti",
+          "latency_ms": 2360.0,
+          "input_tokens": 1486,
+          "output_tokens": 125,
+          "est_cost_usd": 0.000931,
+          "scores": {
+            "stringing_score": 5,
+            "spaghetti_score": 95,
+            "warping_score": 10,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": true
+          },
+          "observations": "Der Druck ist vollständig vom Bett gelöst und hat ein massives Spaghetti-Monster gebildet. Die Struktur ist stark zerstört.",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_2.jpg",
+          "category": "spaghetti",
+          "latency_ms": 2987.0,
+          "input_tokens": 1686,
+          "output_tokens": 139,
+          "est_cost_usd": 0.001051,
+          "scores": {
+            "stringing_score": 85,
+            "spaghetti_score": 90,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": true
+          },
+          "observations": "Deutliche Stringing-Probleme zwischen den Strukturen, Druckteile haben sich teilweise vom Bett gelöst und sind verheddert.",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_3.jpg",
+          "category": "spaghetti",
+          "latency_ms": 2705.0,
+          "input_tokens": 638,
+          "output_tokens": 113,
+          "est_cost_usd": 0.000489,
+          "scores": {
+            "stringing_score": 5,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Leichte Stringing-Fäden zwischen den Drucklinien sichtbar, ansonsten saubere Schichten ohne Verzug.",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_4.jpg",
+          "category": "spaghetti",
+          "latency_ms": 2830.0,
+          "input_tokens": 2606,
+          "output_tokens": 124,
+          "est_cost_usd": 0.001489,
+          "scores": {
+            "stringing_score": 95,
+            "spaghetti_score": 100,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": true
+          },
+          "observations": "Der Druck ist vollständig entartet und hat ein Spaghetti-Muster gebildet. Die Haftung auf dem Druckbett ist komplett verloren gegangen.",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_5.jpg",
+          "category": "spaghetti",
+          "latency_ms": 3626.0,
+          "input_tokens": 2286,
+          "output_tokens": 149,
+          "est_cost_usd": 0.001367,
+          "scores": {
+            "stringing_score": 90,
+            "spaghetti_score": 85,
+            "warping_score": 5,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": true
+          },
+          "observations": "Deutliche Stringing-Probleme und ein massives Spaghetti-Monster, das auf eine Kollision oder Ablösung vom Bett hindeutet. Das Boot zeigt keine sichtbaren Verformungen.",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_6.jpg",
+          "category": "spaghetti",
+          "latency_ms": 2590.0,
+          "input_tokens": 1599,
+          "output_tokens": 119,
+          "est_cost_usd": 0.000978,
+          "scores": {
+            "stringing_score": 5,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Leichte Stringing-Fäden an filigranen Strukturen sichtbar, ansonsten sauberer Druck.",
+          "error": null
+        },
+        {
+          "image_file": "warping_1.webp",
+          "category": "warping",
+          "latency_ms": 2752.0,
+          "input_tokens": 1488,
+          "output_tokens": 137,
+          "est_cost_usd": 0.00095,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 95,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": true
+          },
+          "observations": "Deutlicher Verzug an den Kanten, insbesondere an den überhängenden Bereichen. Die Ecken heben sich stark vom Druckbett ab.",
+          "error": null
+        },
+        {
+          "image_file": "warping_2.jpg",
+          "category": "warping",
+          "latency_ms": 3590.0,
+          "input_tokens": 1476,
+          "output_tokens": 121,
+          "est_cost_usd": 0.000919,
+          "scores": {
+            "stringing_score": 5,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Der Druck zeigt minimale Stringing-Effekte, aber keine größeren Defekte. Die Schichten wirken gleichmäßig und sauber.",
+          "error": null
+        },
+        {
+          "image_file": "layer_shift_1.jpg",
+          "category": "layer_shift",
+          "latency_ms": 2412.0,
+          "input_tokens": 766,
+          "output_tokens": 129,
+          "est_cost_usd": 0.000576,
+          "scores": {
+            "stringing_score": 5,
+            "spaghetti_score": 0,
+            "warping_score": 10,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Leichte Stringing-Effekte an Überhängen, minimale Randablösung an einer Ecke.",
+          "error": null
+        },
+        {
+          "image_file": "layer_shift_2.png",
+          "category": "layer_shift",
+          "latency_ms": 4205.0,
+          "input_tokens": 1488,
+          "output_tokens": 150,
+          "est_cost_usd": 0.000969,
+          "scores": {
+            "stringing_score": 5,
+            "spaghetti_score": 0,
+            "warping_score": 85,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": true
+          },
+          "observations": "Deutlicher Verzug an den Ecken der weißen und rosafarbenen Bauteile, insbesondere an den markierten Stellen. Einige Teile haben sich vom Druckbett gelöst.",
+          "error": null
+        },
+        {
+          "image_file": "layer_shift_3.jpg",
+          "category": "layer_shift",
+          "latency_ms": 2140.0,
+          "input_tokens": 1120,
+          "output_tokens": 114,
+          "est_cost_usd": 0.000731,
+          "scores": {
+            "stringing_score": 5,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 95,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Deutlich sichtbare Layer-Verschiebung in horizontaler Richtung, die Struktur weist stufenartige Versätze auf.",
+          "error": null
+        },
+        {
+          "image_file": "layer_shift_4.jpg",
+          "category": "layer_shift",
+          "latency_ms": 2701.0,
+          "input_tokens": 1077,
+          "output_tokens": 124,
+          "est_cost_usd": 0.000724,
+          "scores": {
+            "stringing_score": 5,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Leichte Stringing-Spuren an den Überhängen, ansonsten sauberer Druck mit guter Schichtung.",
+          "error": null
+        },
+        {
+          "image_file": "clean_1.jpg",
+          "category": "clean",
+          "latency_ms": 2575.0,
+          "input_tokens": 1324,
+          "output_tokens": 127,
+          "est_cost_usd": 0.000852,
+          "scores": {
+            "stringing_score": 5,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Die Drucke zeigen insgesamt eine saubere Oberfläche, jedoch sind leichte Stringing-Spuren zwischen den Bauteilen erkennbar.",
+          "error": null
+        },
+        {
+          "image_file": "clean_2.webp",
+          "category": "clean",
+          "latency_ms": 2783.0,
+          "input_tokens": 2011,
+          "output_tokens": 145,
+          "est_cost_usd": 0.001223,
+          "scores": {
+            "stringing_score": 5,
+            "spaghetti_score": 0,
+            "warping_score": 10,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Leichte Stringing-Spuren zwischen filigranen Strukturen, ansonsten saubere Druckergebnisse. Minimales Warping an einigen Bauteilrändern.",
+          "error": null
+        },
+        {
+          "image_file": "clean_3.jpg",
+          "category": "clean",
+          "latency_ms": 3016.0,
+          "input_tokens": 1525,
+          "output_tokens": 150,
+          "est_cost_usd": 0.000988,
+          "scores": {
+            "stringing_score": 5,
+            "spaghetti_score": 0,
+            "warping_score": 10,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Leichte Stringing-Effekte an Überhängen des Schiffsmodells erkennbar. Minimales Warping an den Ecken des Würfels.",
+          "error": null
+        },
+        {
+          "image_file": "clean_4.jpg",
+          "category": "clean",
+          "latency_ms": 4735.0,
+          "input_tokens": 2094,
+          "output_tokens": 121,
+          "est_cost_usd": 0.001228,
+          "scores": {
+            "stringing_score": 5,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Leichte Stringing-Spuren an den Übergängen der inneren Strukturen, ansonsten sauberer Druck.",
+          "error": null
+        }
+      ]
+    },
+    {
+      "model": "mistral-medium-latest",
+      "accuracy_pct": 59.1,
+      "composite_score": 53.6,
+      "avg_latency_ms": 1361.0,
+      "total_cost_usd": 0.0595,
+      "results": [
+        {
+          "image_file": "stringing_1.jpg",
+          "category": "stringing",
+          "latency_ms": 1013.0,
+          "input_tokens": 940,
+          "output_tokens": 76,
+          "est_cost_usd": 0.00198,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Keine Druckdefekte erkennbar. Alle Teile liegen sauber auf dem Druckbett.",
+          "error": null
+        },
+        {
+          "image_file": "stringing_2.jpg",
+          "category": "stringing",
+          "latency_ms": 878.0,
+          "input_tokens": 724,
+          "output_tokens": 92,
+          "est_cost_usd": 0.001776,
+          "scores": {
+            "stringing_score": 90,
+            "spaghetti_score": 80,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Starkes Stringing und Spaghetti-Effekt zwischen den Stützen. Druckbild stark entartet.",
+          "error": null
+        },
+        {
+          "image_file": "stringing_3.png",
+          "category": "stringing",
+          "latency_ms": 1865.0,
+          "input_tokens": 1488,
+          "output_tokens": 87,
+          "est_cost_usd": 0.002884,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Saubere, gleichmäßige Layer ohne sichtbare Defekte. Druckbild entspricht den Erwartungen.",
+          "error": null
+        },
+        {
+          "image_file": "stringing_4.jpg",
+          "category": "stringing",
+          "latency_ms": 1004.0,
+          "input_tokens": 940,
+          "output_tokens": 85,
+          "est_cost_usd": 0.002047,
+          "scores": {
+            "stringing_score": 90,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Deutliche Stringing-Effekte zwischen den Spitzen. Basis liegt flach auf.",
+          "error": null
+        },
+        {
+          "image_file": "stringing_5.jpg",
+          "category": "stringing",
+          "latency_ms": 837.0,
+          "input_tokens": 940,
+          "output_tokens": 80,
+          "est_cost_usd": 0.00201,
+          "scores": {
+            "stringing_score": 80,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Deutliche Stringing-Effekte zwischen den Strukturen sichtbar.",
+          "error": null
+        },
+        {
+          "image_file": "stringing_6.jpg",
+          "category": "stringing",
+          "latency_ms": 900.0,
+          "input_tokens": 766,
+          "output_tokens": 92,
+          "est_cost_usd": 0.001839,
+          "scores": {
+            "stringing_score": 90,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Starke Stringing-Effekte zwischen den Spitzen der Druckteile. Keine weiteren gravierenden Defekte erkennbar.",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_1.jpg",
+          "category": "spaghetti",
+          "latency_ms": 1214.0,
+          "input_tokens": 1486,
+          "output_tokens": 83,
+          "est_cost_usd": 0.002851,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 100,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": true
+          },
+          "observations": "Komplett entarteter Druck mit Materialklumpen und Nestbildung.",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_2.jpg",
+          "category": "spaghetti",
+          "latency_ms": 1290.0,
+          "input_tokens": 1686,
+          "output_tokens": 83,
+          "est_cost_usd": 0.003151,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 100,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": true
+          },
+          "observations": "Komplett entarteter Druck mit Materialklumpen und Nestbildung.",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_3.jpg",
+          "category": "spaghetti",
+          "latency_ms": 930.0,
+          "input_tokens": 638,
+          "output_tokens": 70,
+          "est_cost_usd": 0.001482,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Kein Druckobjekt sichtbar, nur leere Druckplatte.",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_4.jpg",
+          "category": "spaghetti",
+          "latency_ms": 1976.0,
+          "input_tokens": 2606,
+          "output_tokens": 87,
+          "est_cost_usd": 0.004561,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 100,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": true
+          },
+          "observations": "Komplett entarteter Druck mit Materialklumpen und vom Bett gelösten Teilen.",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_5.jpg",
+          "category": "spaghetti",
+          "latency_ms": 2196.0,
+          "input_tokens": 2286,
+          "output_tokens": 87,
+          "est_cost_usd": 0.004082,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 100,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": true
+          },
+          "observations": "Komplett entarteter Druck mit Materialklumpen und vom Bett gelösten Teilen.",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_6.jpg",
+          "category": "spaghetti",
+          "latency_ms": 1326.0,
+          "input_tokens": 1599,
+          "output_tokens": 99,
+          "est_cost_usd": 0.003141,
+          "scores": {
+            "stringing_score": 10,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Sauberer Druck mit minimalen Stringing-Spuren an den Haaren. Keine sichtbaren größeren Defekte.",
+          "error": null
+        },
+        {
+          "image_file": "warping_1.webp",
+          "category": "warping",
+          "latency_ms": 1875.0,
+          "input_tokens": 1488,
+          "output_tokens": 78,
+          "est_cost_usd": 0.002817,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 80,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Starkes Warping an den hochgezogenen Ecken und Rändern.",
+          "error": null
+        },
+        {
+          "image_file": "warping_2.jpg",
+          "category": "warping",
+          "latency_ms": 1087.0,
+          "input_tokens": 1476,
+          "output_tokens": 83,
+          "est_cost_usd": 0.002837,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Sauberer Druck mit klaren Konturen und gleichmäßiger Schichtbildung.",
+          "error": null
+        },
+        {
+          "image_file": "layer_shift_1.jpg",
+          "category": "layer_shift",
+          "latency_ms": 944.0,
+          "input_tokens": 766,
+          "output_tokens": 81,
+          "est_cost_usd": 0.001757,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Sauberer Druck ohne sichtbare Defekte. Oberflächenstruktur gleichmäßig.",
+          "error": null
+        },
+        {
+          "image_file": "layer_shift_2.png",
+          "category": "layer_shift",
+          "latency_ms": 2401.0,
+          "input_tokens": 1488,
+          "output_tokens": 85,
+          "est_cost_usd": 0.00287,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Saubere Drucke ohne sichtbare Defekte. Layer sind gleichmäßig und präzise.",
+          "error": null
+        },
+        {
+          "image_file": "layer_shift_3.jpg",
+          "category": "layer_shift",
+          "latency_ms": 1112.0,
+          "input_tokens": 1120,
+          "output_tokens": 81,
+          "est_cost_usd": 0.002288,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 90,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Deutliche horizontale Verschiebung der Layer sichtbar. Druckbild zeigt klassische Layer-Shift-Muster.",
+          "error": null
+        },
+        {
+          "image_file": "layer_shift_4.jpg",
+          "category": "layer_shift",
+          "latency_ms": 1171.0,
+          "input_tokens": 1077,
+          "output_tokens": 82,
+          "est_cost_usd": 0.00223,
+          "scores": {
+            "stringing_score": 5,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Sauberer Druck mit minimalen Stringing-Spuren an der Oberseite. Keine sichtbaren schweren Defekte.",
+          "error": null
+        },
+        {
+          "image_file": "clean_1.jpg",
+          "category": "clean",
+          "latency_ms": 1125.0,
+          "input_tokens": 1324,
+          "output_tokens": 87,
+          "est_cost_usd": 0.002638,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Alle Drucke liegen sauber und gleichmäßig auf dem Druckbett. Keine sichtbaren Defekte.",
+          "error": null
+        },
+        {
+          "image_file": "clean_2.webp",
+          "category": "clean",
+          "latency_ms": 1415.0,
+          "input_tokens": 2011,
+          "output_tokens": 78,
+          "est_cost_usd": 0.003602,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Alle Drucke liegen sauber und präzise auf dem Bett. Keine sichtbaren Defekte.",
+          "error": null
+        },
+        {
+          "image_file": "clean_3.jpg",
+          "category": "clean",
+          "latency_ms": 1332.0,
+          "input_tokens": 1525,
+          "output_tokens": 79,
+          "est_cost_usd": 0.00288,
+          "scores": {
+            "stringing_score": 10,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Saubere Oberflächen, keine sichtbaren Druckfehler.",
+          "error": null
+        },
+        {
+          "image_file": "clean_4.jpg",
+          "category": "clean",
+          "latency_ms": 2059.0,
+          "input_tokens": 2094,
+          "output_tokens": 84,
+          "est_cost_usd": 0.003771,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Sauberer Druck ohne sichtbare Defekte. Layer sind gleichmäßig und präzise.",
+          "error": null
+        }
+      ]
+    },
+    {
+      "model": "mistral-small-latest",
+      "accuracy_pct": 36.4,
+      "composite_score": 45.7,
+      "avg_latency_ms": 1484.0,
+      "total_cost_usd": 0.0058,
+      "results": [
+        {
+          "image_file": "stringing_1.jpg",
+          "category": "stringing",
+          "latency_ms": 1034.0,
+          "input_tokens": 940,
+          "output_tokens": 79,
+          "est_cost_usd": 0.000188,
+          "scores": {
+            "stringing_score": 10,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Leichte Stringing-Effekte zwischen den Strukturen sichtbar.",
+          "error": null
+        },
+        {
+          "image_file": "stringing_2.jpg",
+          "category": "stringing",
+          "latency_ms": 1437.0,
+          "input_tokens": 724,
+          "output_tokens": 95,
+          "est_cost_usd": 0.000166,
+          "scores": {
+            "stringing_score": 95,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Deutliche Stringing-Fäden zwischen den Säulen. Keine sichtbaren Verzugserscheinungen oder Schichtversätze.",
+          "error": null
+        },
+        {
+          "image_file": "stringing_3.png",
+          "category": "stringing",
+          "latency_ms": 1532.0,
+          "input_tokens": 1488,
+          "output_tokens": 77,
+          "est_cost_usd": 0.000269,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Keine sichtbaren Defekte am Druckbild erkennbar.",
+          "error": null
+        },
+        {
+          "image_file": "stringing_4.jpg",
+          "category": "stringing",
+          "latency_ms": 1545.0,
+          "input_tokens": 940,
+          "output_tokens": 80,
+          "est_cost_usd": 0.000189,
+          "scores": {
+            "stringing_score": 5,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Leichte Stringing-Effekte an den dünnen Strukturen sichtbar.",
+          "error": null
+        },
+        {
+          "image_file": "stringing_5.jpg",
+          "category": "stringing",
+          "latency_ms": 1368.0,
+          "input_tokens": 940,
+          "output_tokens": 104,
+          "est_cost_usd": 0.000203,
+          "scores": {
+            "stringing_score": 90,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Deutliche Stringing-Effekte an den Speichen und Felgen des Rades sichtbar.",
+          "error": null
+        },
+        {
+          "image_file": "stringing_6.jpg",
+          "category": "stringing",
+          "latency_ms": 879.0,
+          "input_tokens": 766,
+          "output_tokens": 79,
+          "est_cost_usd": 0.000162,
+          "scores": {
+            "stringing_score": 95,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Starkes Stringing zwischen den dünnen Strukturen sichtbar.",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_1.jpg",
+          "category": "spaghetti",
+          "latency_ms": 1605.0,
+          "input_tokens": 1486,
+          "output_tokens": 114,
+          "est_cost_usd": 0.000291,
+          "scores": {
+            "stringing_score": 95,
+            "spaghetti_score": 100,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": true
+          },
+          "observations": "Komplettes Druckversagen durch Materialansammlung und Verstopfung des Extruders.",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_2.jpg",
+          "category": "spaghetti",
+          "latency_ms": 1759.0,
+          "input_tokens": 1686,
+          "output_tokens": 109,
+          "est_cost_usd": 0.000318,
+          "scores": {
+            "stringing_score": 95,
+            "spaghetti_score": 90,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": true
+          },
+          "observations": "Starkes Stringing und Materialklumpen, Teile sind vom Bett gelöst.",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_3.jpg",
+          "category": "spaghetti",
+          "latency_ms": 896.0,
+          "input_tokens": 638,
+          "output_tokens": 75,
+          "est_cost_usd": 0.000141,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Keine sichtbaren Druckfehler erkennbar. Druckbild wirkt sauber und stabil.",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_4.jpg",
+          "category": "spaghetti",
+          "latency_ms": 1884.0,
+          "input_tokens": 2606,
+          "output_tokens": 106,
+          "est_cost_usd": 0.000454,
+          "scores": {
+            "stringing_score": 95,
+            "spaghetti_score": 100,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": true
+          },
+          "observations": "Extremes Stringing und vollständiger Spaghetti-Effekt. Druck ist vollständig entartet.",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_5.jpg",
+          "category": "spaghetti",
+          "latency_ms": 2238.0,
+          "input_tokens": 2286,
+          "output_tokens": 92,
+          "est_cost_usd": 0.000398,
+          "scores": {
+            "stringing_score": 85,
+            "spaghetti_score": 5,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Deutliche Stringing-Fäden zwischen den Strukturen sichtbar. Keine Anzeichen für Warping oder Layer-Shift.",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_6.jpg",
+          "category": "spaghetti",
+          "latency_ms": 1611.0,
+          "input_tokens": 1599,
+          "output_tokens": 108,
+          "est_cost_usd": 0.000305,
+          "scores": {
+            "stringing_score": 90,
+            "spaghetti_score": 5,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Starkes Stringing zwischen den Strukturen, aber keine sichtbaren Verformungen oder Ablösungen.",
+          "error": null
+        },
+        {
+          "image_file": "warping_1.webp",
+          "category": "warping",
+          "latency_ms": 1266.0,
+          "input_tokens": 1488,
+          "output_tokens": 95,
+          "est_cost_usd": 0.00028,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 85,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Deutlicher Verzug an den Rändern des blauen Bauteils, besonders an der Ecke.",
+          "error": null
+        },
+        {
+          "image_file": "warping_2.jpg",
+          "category": "warping",
+          "latency_ms": 1227.0,
+          "input_tokens": 1476,
+          "output_tokens": 105,
+          "est_cost_usd": 0.000284,
+          "scores": {
+            "stringing_score": 90,
+            "spaghetti_score": 5,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Starkes Stringing zwischen den Strukturen, aber keine sichtbaren Verzugserscheinungen oder Ablösungen.",
+          "error": null
+        },
+        {
+          "image_file": "layer_shift_1.jpg",
+          "category": "layer_shift",
+          "latency_ms": 1113.0,
+          "input_tokens": 766,
+          "output_tokens": 105,
+          "est_cost_usd": 0.000178,
+          "scores": {
+            "stringing_score": 90,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Deutliche Stringing-Fäden zwischen den Strukturen, besonders an dünnen Stellen.",
+          "error": null
+        },
+        {
+          "image_file": "layer_shift_2.png",
+          "category": "layer_shift",
+          "latency_ms": 1352.0,
+          "input_tokens": 1488,
+          "output_tokens": 82,
+          "est_cost_usd": 0.000272,
+          "scores": {
+            "stringing_score": 10,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Leichte Stringing-Effekte an den Spitzen der Strukturen sichtbar.",
+          "error": null
+        },
+        {
+          "image_file": "layer_shift_3.jpg",
+          "category": "layer_shift",
+          "latency_ms": 1956.0,
+          "input_tokens": 1120,
+          "output_tokens": 97,
+          "est_cost_usd": 0.000226,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 95,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Deutliche Versätze in den Schichten, besonders an den horizontalen Flächen sichtbar.",
+          "error": null
+        },
+        {
+          "image_file": "layer_shift_4.jpg",
+          "category": "layer_shift",
+          "latency_ms": 2605.0,
+          "input_tokens": 1077,
+          "output_tokens": 77,
+          "est_cost_usd": 0.000208,
+          "scores": {
+            "stringing_score": 5,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Minimale Fäden zwischen den Strukturen sichtbar.",
+          "error": null
+        },
+        {
+          "image_file": "clean_1.jpg",
+          "category": "clean",
+          "latency_ms": 1432.0,
+          "input_tokens": 1324,
+          "output_tokens": 94,
+          "est_cost_usd": 0.000255,
+          "scores": {
+            "stringing_score": 95,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Deutliches Stringing zwischen den Strukturen, besonders an dünnen Elementen.",
+          "error": null
+        },
+        {
+          "image_file": "clean_2.webp",
+          "category": "clean",
+          "latency_ms": 1257.0,
+          "input_tokens": 2011,
+          "output_tokens": 79,
+          "est_cost_usd": 0.000349,
+          "scores": {
+            "stringing_score": 5,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Leichte Stringing-Effekte an dünnen Strukturen sichtbar.",
+          "error": null
+        },
+        {
+          "image_file": "clean_3.jpg",
+          "category": "clean",
+          "latency_ms": 1173.0,
+          "input_tokens": 1525,
+          "output_tokens": 80,
+          "est_cost_usd": 0.000277,
+          "scores": {
+            "stringing_score": 10,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Leichte Stringing-Effekte an dünnen Strukturen sichtbar.",
+          "error": null
+        },
+        {
+          "image_file": "clean_4.jpg",
+          "category": "clean",
+          "latency_ms": 1476.0,
+          "input_tokens": 2094,
+          "output_tokens": 77,
+          "est_cost_usd": 0.00036,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Keine sichtbaren Defekte am Druckbild erkennbar.",
+          "error": null
+        }
+      ]
+    }
+  ]
+}

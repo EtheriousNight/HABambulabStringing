@@ -1,0 +1,95 @@
+{
+  "entity": {
+    "sensor": {
+      "stringing_score": {
+        "default": "mdi:spider-web",
+        "state": {
+          "0": "mdi:check-circle"
+        }
+      },
+      "spaghetti_score": {
+        "default": "mdi:noodles",
+        "state": {
+          "0": "mdi:check-circle"
+        }
+      },
+      "warping_score": {
+        "default": "mdi:vector-difference",
+        "state": {
+          "0": "mdi:check-circle"
+        }
+      },
+      "layer_shift_score": {
+        "default": "mdi:layers-off",
+        "state": {
+          "0": "mdi:check-circle"
+        }
+      },
+      "api_calls": {
+        "default": "mdi:api"
+      },
+      "events": {
+        "default": "mdi:bell-ring"
+      },
+      "last_check": {
+        "default": "mdi:clock-check"
+      }
+    },
+    "binary_sensor": {
+      "print_failure": {
+        "default": "mdi:printer-3d-off",
+        "state": {
+          "on": "mdi:alert-circle",
+          "off": "mdi:check-circle"
+        }
+      },
+      "stringing_detected": {
+        "default": "mdi:spider-web",
+        "state": {
+          "on": "mdi:alert",
+          "off": "mdi:check"
+        }
+      },
+      "warping_detected": {
+        "default": "mdi:vector-difference",
+        "state": {
+          "on": "mdi:alert",
+          "off": "mdi:check"
+        }
+      },
+      "layer_shift_detected": {
+        "default": "mdi:layers-off",
+        "state": {
+          "on": "mdi:alert-octagon",
+          "off": "mdi:check"
+        }
+      }
+    },
+    "button": {
+      "pause": {
+        "default": "mdi:pause"
+      },
+      "resume": {
+        "default": "mdi:play"
+      },
+      "stop": {
+        "default": "mdi:stop"
+      },
+      "check_now": {
+        "default": "mdi:magnify-scan"
+      },
+      "reset": {
+        "default": "mdi:restart"
+      }
+    },
+    "switch": {
+      "mute": {
+        "default": "mdi:bell-off",
+        "state": {
+          "on": "mdi:bell-off",
+          "off": "mdi:bell"
+        }
+      }
+    }
+  }
+}

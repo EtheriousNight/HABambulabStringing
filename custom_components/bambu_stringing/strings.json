@@ -1,0 +1,166 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "description": "Set up stringing and print failure detection for one printer. One printer per setup run; add more printers later via \"Add integration\".",
+        "data": {
+          "name": "Printer name",
+          "api_key": "Mistral API key",
+          "mistral_model": "Mistral vision model",
+          "camera_entity": "Camera entity (e.g. from ha-bambulab)",
+          "mjpeg_url": "Alternative: direct MJPEG URL of the printer",
+          "print_state_entity": "Print state entity (gate, e.g. sensor.<printer>_print_status)",
+          "notify_services": "Push notification target",
+          "bambu_device_id": "ha-bambulab device (for pause/resume/stop)",
+          "manual_context": "Manual print context (optional, e.g. \"PLA, 0.2 mm\")"
+        },
+        "data_description": {
+          "api_key": "Sent as bearer token to api.mistral.ai. Camera images leave your local network.",
+          "mistral_model": "e.g. mistral-medium-latest. Change here when Mistral releases a new vision model.",
+          "camera_entity": "Preferred frame source: the chamber camera from the ha-bambulab integration.",
+          "mjpeg_url": "Only needed if no camera entity is used (direct P1S stream).",
+          "print_state_entity": "Required. Analysis only runs while the state (gcode_state) is in the running states (default: RUNNING,PAUSE). Without an entity no images are analysed (fail-closed, saves API cost).",
+          "notify_services": "Default \"Automatically\": all detected companion apps are notified. Alternatively select a specific service.",
+          "bambu_device_id": "Enables pause/resume/stop via ha-bambulab services and links the device pages."
+        }
+      }
+    },
+    "error": {
+      "no_frame_source": "Provide either a camera entity or an MJPEG URL."
+    },
+    "abort": {
+      "already_configured": "A printer with this name is already set up."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": {
+          "check_interval_sec": "Check interval (seconds)",
+          "stringing_threshold": "Stringing threshold (0-100)",
+          "stringing_streak": "Stringing streak (consecutive frames)",
+          "spaghetti_threshold": "Spaghetti threshold (0-100)",
+          "warping_threshold": "Warping threshold (0-100)",
+          "layer_shift_threshold": "Layer shift threshold (0-100)",
+          "stringing_cooldown_min": "Stringing notification cooldown (minutes)",
+          "auto_pause": "Automatically pause on spaghetti",
+          "api_key": "Mistral API key (set new)",
+          "mistral_model": "Mistral vision model",
+          "snapshot_retention_days": "Snapshot retention (days)",
+          "running_states": "Print state values meaning \"running\" (comma separated)",
+          "notify_services": "Push notification target",
+          "deep_link": "Notification deep link (Companion app)",
+          "pause_service": "Pause service",
+          "resume_service": "Resume service",
+          "stop_service": "Stop service",
+          "manual_context": "Manual print context"
+        },
+        "data_description": {
+          "check_interval_sec": "20-300 s. Stringing develops slowly; 30-60 s is enough.",
+          "stringing_threshold": "40-80. Score from which a frame counts as stringing.",
+          "stringing_streak": "1-5. Alarm only after n consecutive frames above the threshold.",
+          "spaghetti_threshold": "50-90. Critical alarm immediately when exceeded (once per print).",
+          "warping_threshold": "40-80. Warping (lifting edges) is handled like stringing: streak + cooldown, informative notification.",
+          "layer_shift_threshold": "50-90. Layer shift is critical like spaghetti: immediate, once per print, part of auto pause.",
+          "stringing_cooldown_min": "5-60. At most one stringing notification per period. Also applies to warping.",
+          "auto_pause": "Off by default (notify only). On spaghetti, pause_print is called via ha-bambulab.",
+          "api_key": "Leave empty to keep the existing API key. Only fill in to change it.",
+          "snapshot_retention_days": "1-90. Older snapshots and score logs are deleted (latest.jpg is kept).",
+          "running_states": "Default: RUNNING,PAUSE. Compared against the gcode_state attribute or the state (case-insensitive). PAUSE is included so paused prints keep being monitored.",
+          "pause_service": "Service path, e.g. bambu_lab.pause_print. Target device is the configured ha-bambulab printer.",
+          "deep_link": "e.g. homeassistant://navigate/lovelace/0 or homeassistant://more-info/<entity_id>.",
+          "notify_services": "\"Automatically\" notifies all detected companion apps; alternatively select a specific service."
+        }
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "print_failure": {
+        "name": "Print failure"
+      },
+      "stringing_detected": {
+        "name": "Stringing detected"
+      },
+      "warping_detected": {
+        "name": "Warping detected"
+      },
+      "layer_shift_detected": {
+        "name": "Layer shift detected"
+      }
+    },
+    "sensor": {
+      "stringing_score": {
+        "name": "Stringing score"
+      },
+      "spaghetti_score": {
+        "name": "Spaghetti score"
+      },
+      "warping_score": {
+        "name": "Warping score"
+      },
+      "layer_shift_score": {
+        "name": "Layer shift score"
+      },
+      "api_calls": {
+        "name": "API calls"
+      },
+      "events": {
+        "name": "Detected events"
+      },
+      "last_check": {
+        "name": "Last check"
+      }
+    },
+    "button": {
+      "pause": {
+        "name": "Pause print"
+      },
+      "resume": {
+        "name": "Resume print"
+      },
+      "stop": {
+        "name": "Stop print"
+      },
+      "check_now": {
+        "name": "Check now"
+      },
+      "reset": {
+        "name": "Reset detection"
+      }
+    },
+    "switch": {
+      "mute": {
+        "name": "Mute for this print"
+      }
+    }
+  },
+  "services": {
+    "check_now": {
+      "name": "Check now",
+      "description": "Immediately grab and analyze one frame of the selected printer, regardless of interval."
+    },
+    "mute_for_print": {
+      "name": "Mute for current print",
+      "description": "Toggles muting for the running print (no push, no auto pause)."
+    },
+    "reset_detection": {
+      "name": "Reset detection",
+      "description": "Resets streaks, detection flags, notification latches and cooldown timers. Muting is left untouched."
+    }
+  },
+  "issues": {
+    "restart_required": {
+      "title": "Restart required after update",
+      "description": "The integration was updated to version {disk_version}, but version {loaded_version} is still loaded. Restart Home Assistant to activate the new version.",
+      "fix_flow": {
+        "step": {
+          "init": {
+            "title": "Restart Home Assistant",
+            "description": "Version {disk_version} is installed, but version {loaded_version} is still active. Restart Home Assistant now?"
+          }
+        }
+      }
+    }
+  }
+}
