@@ -89,8 +89,7 @@ Nach Testläufen `__pycache__`/`.pytest_cache` löschen (Projekt liegt in Nextcl
   via `sys.modules`/monkeypatch, BEVOR die Integration importiert wird —
   dashboard.py importiert deshalb lazy innerhalb der Funktionen.
 - Smoke-Tests asserten die exakte Dashboard-Struktur (max_columns,
-  grid_options, Badges) — bei Layout-Änderungen Tests UND
-  `verify_real_ha.py`-Checks mit anpassen.
+  grid_options, Badges) — bei Layout-Änderungen Tests mit anpassen.
 
 ## Deployment (User-Aktion)
 

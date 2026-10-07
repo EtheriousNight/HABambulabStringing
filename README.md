@@ -250,7 +250,7 @@ snapshots/p1s_werkstatt/
 ## Tests
 
 ```bash
-# Alle Tests (84 Tests)
+# Alle Tests (86 Tests)
 python3 -m pytest -q
 
 # Einzelne Module
@@ -327,8 +327,9 @@ HABambulabStringing/
 │   ├── run_benchmark.py
 │   ├── images/                          # 20 Testbilder
 │   └── results.json
-├── tests/                               # 84 Tests
+├── tests/                               # 86 Tests
 ├── SPEC.md                              # Spezifikation
+├── RELEASE.md                           # Release-Cycle (GitHub Actions + HACS)
 └── AGENTS.md                            # Entwickler-Doku
 ```
 
