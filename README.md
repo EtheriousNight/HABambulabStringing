@@ -109,7 +109,7 @@ cp -r custom_components/bambu_stringing /config/custom_components/
 3. Drucker konfigurieren:
    - Druckername (z.B. "P1S Werkstatt")
    - Mistral API-Key
-   - Modell (Default: `mistral-large-latest`)
+   - Modell (Default: `mistral-medium-latest`)
    - Kamera-Entity (z.B. `camera.p1s_chamber` von ha-bambulab) **oder** MJPEG-URL
    - Druckstatus-Entity (z.B. `sensor.p1s_print_status` von ha-bambulab) – **Pflichtfeld**
    - ha-bambulab-Gerät (für Pause/Resume/Stop)
@@ -134,7 +134,7 @@ cp -r custom_components/bambu_stringing /config/custom_components/
 | `stringing_cooldown_min` | 15 | 5–60 | Cooldown zwischen Benachrichtigungen (Minuten) |
 | `auto_pause` | aus | an/aus | Automatisch pausieren bei Spaghetti/Layer-Shift |
 | `api_key` | – | – | API-Key ändern (leer = behalten) |
-| `mistral_model` | `mistral-large-latest` | konfigurierbar | Mistral Vision Modell |
+| `mistral_model` | `mistral-medium-latest` | konfigurierbar | Mistral Vision Modell |
 | `snapshot_retention_days` | 14 | 1–90 | Snapshot-Aufbewahrung in Tagen |
 | `running_states` | `RUNNING,PAUSE` | konfigurierbar | Druckstatus-Werte für "läuft" |
 | `notify_services` | automatisch | wählbar | Push-Ziel (Companion Apps) |
@@ -354,6 +354,9 @@ python3 benchmark/run_benchmark.py --apply-default
 find . -type d -name "__pycache__" -exec rm -rf {} +
 find . -type d -name ".pytest_cache" -exec rm -rf {} +
 ```
+
+Der Release-Cycle (Version erhöhen → Push auf `main` → automatisches
+GitHub-Release → HACS/HA-Update) ist in [RELEASE.md](RELEASE.md) dokumentiert.
 
 ### Deployment
 

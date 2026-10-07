@@ -34,7 +34,7 @@ CONF_PAUSE_SERVICE: Final = "pause_service"
 CONF_RESUME_SERVICE: Final = "resume_service"
 CONF_STOP_SERVICE: Final = "stop_service"
 
-DEFAULT_MODEL: Final = "mistral-large-4"
+DEFAULT_MODEL: Final = "mistral-medium-latest"
 DEFAULT_CHECK_INTERVAL: Final = 45
 DEFAULT_STRINGING_THRESHOLD: Final = 55
 DEFAULT_STRINGING_STREAK: Final = 3
