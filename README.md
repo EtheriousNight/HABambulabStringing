@@ -9,6 +9,9 @@ per Mistral Vision API.
 [![HACS](https://img.shields.io/badge/HACS-Custom-orange)](https://hacs.xyz/)
 [![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2026.3%2B-blue)](https://www.home-assistant.io/)
 
+> **Hinweis:** Diese Integration wurde mit KI-Unterstützung (Mistral AI /
+> Mistral Vibe) entwickelt und ist aus einer kurzen, einfachen Idee entstanden.
+
 **Mindestanforderung:** Home Assistant Core **2026.3** oder neuer (in `hacs.json`
 deklariert; u. a. nötig für das Integrations-Icon über `brand/`).
 
@@ -35,27 +38,34 @@ deklariert; u. a. nötig für das Integrations-Icon über `brand/`).
 
 ## Architektur
 
-```
-┌─────────────┐     ┌─────────────┐     ┌─────────────────┐
-│  P1S Kamera │────→│  Frame-     │────→│  Gate           │
-│  (MJPEG/    │     │  Grabber    │     │  (nur bei       │
-│   HA Camera)│     │             │     │   RUNNING/PAUSE)│
-└─────────────┘     └─────────────┘     └────────┬────────┘
-                                                  │
-                    ┌─────────────────────────────┘
-                    ↓
-           ┌─────────────┐     ┌─────────────────┐     ┌─────────────┐
-           │  Mistral    │────→│  Entscheidungs-  │────→│  Push       │
-           │  Vision API │     │  Engine         │     │  Companion  │
-           │  (JSON)     │     │  (Streak/       │     │  App        │
-           └─────────────┘     │   Cooldown)     │     └─────────────┘
-                               └────────┬────────┘
-                                        ↓
-                              ┌─────────────────┐
-                              │  Snapshot-      │
-                              │  Archiv         │
-                              │  + Score-Log    │
-                              └─────────────────┘
+```mermaid
+flowchart LR
+    subgraph Drucker["Bambu Lab Drucker"]
+        CAM["Kamera<br/>(MJPEG-Stream oder HA Camera-Entity)"]
+    end
+
+    subgraph Integration["bambu_stringing (Home Assistant)"]
+        GRAB["Frame-Grabber<br/>core/mjpeg.py"]
+        GATE{"Gate<br/>nur bei RUNNING / PAUSE"}
+        DEC["Entscheidungs-Engine<br/>core/decision.py<br/>Streak, Cooldown, Hysterese"]
+        ARCH["Snapshot-Archiv<br/>core/archive.py"]
+        ENT["Entities<br/>Sensoren, Binary Sensoren,<br/>Buttons, Switch"]
+        PUSH["Push-Benachrichtigung<br/>Companion App<br/>Bild + Aktions-Buttons"]
+        PAUSE["Auto-Pause<br/>bambu_lab.pause_print"]
+    end
+
+    MISTRAL["Mistral Vision API<br/>core/mistral.py<br/>JSON-Scores 0-100"]
+    DISC["Frame verworfen<br/>(kein API-Call)"]
+
+    CAM --> GRAB
+    GRAB --> GATE
+    GATE -->|"Druck läuft"| MISTRAL
+    GATE -->|"kein Druck"| DISC
+    MISTRAL --> DEC
+    DEC -->|"Alarm"| PUSH
+    DEC -->|"auto_pause an"| PAUSE
+    DEC --> ARCH
+    DEC --> ENT
 ```
 
 ### Komponenten
@@ -75,7 +85,7 @@ deklariert; u. a. nötig für das Integrations-Icon über `brand/`).
 
 ## Voraussetzungen
 
-- **Home Assistant** 2024.1 oder neuer
+- **Home Assistant** 2026.3 oder neuer (Mindestversion in `hacs.json` deklariert; u. a. nötig für das Integrations-Icon über `brand/`)
 - **Bambu Lab Drucker** (P1S, X1C, A1, etc.) mit Kamera
 - **ha-bambulab Integration** ([greghesp/ha-bambulab](https://github.com/greghesp/ha-bambulab)) für Druckstatus und Steuerung
 - **Mistral API-Key** ([console.mistral.ai](https://console.mistral.ai/))
@@ -390,5 +400,5 @@ MIT License
 ## Danksagungen
 
 - [ha-bambulab](https://github.com/greghesp/ha-bambulab) – Bambu Lab HA Integration
-- [Mistral AI](https://mistral.ai/) – Vision API
+- [Mistral AI](https://mistral.ai/) – Vision API und KI-gestützte Entwicklung (Mistral Vibe)
 - [Home Assistant](https://www.home-assistant.io/) – Smart Home Plattform
