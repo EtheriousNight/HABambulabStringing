@@ -98,7 +98,7 @@ flowchart LR
 ### HACS (empfohlen)
 
 1. HACS öffnen → Integrationen → "Custom Repositories"
-2. Repository hinzufügen: `https://github.com/rmrosk/HABambulabStringing`
+2. Repository hinzufügen: `https://github.com/EtheriousNight/HABambulabStringing.git`
 3. Kategorie: Integration
 4. "Bambu Lab Stringing Detection" installieren
 5. Home Assistant neu starten

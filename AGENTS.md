@@ -7,7 +7,7 @@ Vision API. Details und Architektur: `SPEC.md`.
 ## Setup
 
 - Python 3.13, `.venv/` enthält echtes Home Assistant 2026.2.3 (für Real-Tests).
-- Git-Repository, Default-Branch `main`. GitHub-Remote: `rmrosk/HABambulabStringing`
+- Git-Repository, Default-Branch `main`. GitHub-Remote: `EtheriousNight/HABambulabStringing`
   (public — HACS braucht das). `.venv/`, `__pycache__/`, `.pytest_cache/` werden
   nicht committed (`.gitignore`).
 - Integration liegt in `custom_components/bambu_stringing/` (Version steht in

@@ -1,13 +1,13 @@
 {
   "domain": "bambu_stringing",
   "name": "Bambu Lab Stringing Detection",
-  "codeowners": ["@rmrosk"],
+  "codeowners": ["@EtheriousNight"],
   "config_flow": true,
   "dependencies": [],
   "after_dependencies": ["camera"],
-  "documentation": "https://github.com/rmrosk/HABambulabStringing",
+  "documentation": "https://github.com/EtheriousNight/HABambulabStringing",
   "iot_class": "cloud_polling",
-  "issue_tracker": "https://github.com/rmrosk/HABambulabStringing/issues",
+  "issue_tracker": "https://github.com/EtheriousNight/HABambulabStringing/issues",
   "requirements": ["pillow>=10.0.0"],
   "version": "0.8.0"
 }
