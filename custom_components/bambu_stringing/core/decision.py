@@ -23,6 +23,10 @@ class EngineConfig:
     stringing_cooldown_sec: int = 15 * 60
     warping_threshold: int = 60
     layer_shift_threshold: int = 70
+    # Prompt v3.0: confidence-based filtering and EMA smoothing
+    min_confidence: float = 0.6
+    smoothing_enabled: bool = True
+    smoothing_alpha: float = 0.3
 
 
 @dataclass
@@ -38,6 +42,7 @@ class Decision:
     layer_shift_detected: bool = False
     print_failure: bool = False
     muted: bool = False
+    discarded: bool = False
 
 
 @dataclass
@@ -49,6 +54,7 @@ class EngineStats:
     warping_events: int = 0
     layer_shift_events: int = 0
     discarded_frames: int = 0
+    low_confidence_frames: int = 0
 
 
 @dataclass
@@ -79,6 +85,9 @@ class DecisionEngine:
         self._layer_shift_below_streak = 0
         self._muted = False
         self.stats = EngineStats()
+        # EMA smoothing state (Prompt v3.0)
+        self._last_smoothed: AnalysisResult | None = None
+        self._frame_count: int = 0
 
     # -- lifecycle -----------------------------------------------------------
 
@@ -107,6 +116,9 @@ class DecisionEngine:
         self._layer_shift_detected = False
         self._layer_shift_fired = False
         self._layer_shift_below_streak = 0
+        # EMA smoothing state zurücksetzen
+        self._last_smoothed = None
+        self._frame_count = 0
 
     def mute_current_print(self, muted: bool = True) -> None:
         """Mute (or unmute) notifications and autopause for this print."""
@@ -134,13 +146,61 @@ class DecisionEngine:
 
     # -- core ----------------------------------------------------------------
 
+    def _smooth_scores(self, result: AnalysisResult) -> AnalysisResult:
+        """Exponential Moving Average über die Scores.
+
+        Reduziert kurzfristige Schwankungen und Ausreißer.
+        neu = alpha * aktuell + (1 - alpha) * alt
+
+        WICHTIG: Spaghetti und Layer-Shift werden NICHT geglättet —
+        kritische Fehler müssen sofort erkannt werden, ohne Verzögerung
+        durch vorherige niedrige Scores.
+        """
+        if not self.config.smoothing_enabled:
+            return result
+
+        self._frame_count += 1
+
+        if self._last_smoothed is None:
+            self._last_smoothed = result
+            return result
+
+        alpha = self.config.smoothing_alpha
+        prev = self._last_smoothed
+
+        smoothed = AnalysisResult(
+            stringing_score=int(round(prev.stringing_score * (1 - alpha) + result.stringing_score * alpha)),
+            # Spaghetti & Layer-Shift: Rohwerte behalten (keine Glättung für kritische Fehler)
+            spaghetti_score=result.spaghetti_score,
+            warping_score=int(round(prev.warping_score * (1 - alpha) + result.warping_score * alpha)),
+            layer_shift_score=result.layer_shift_score,
+            bed_adhesion_failure=result.bed_adhesion_failure,
+            observations=result.observations,
+            other_defects=result.other_defects,
+            confidence=result.confidence,
+            reasoning=result.reasoning,
+        )
+
+        self._last_smoothed = smoothed
+        return smoothed
+
     def process(self, result: AnalysisResult) -> Decision:
         """Evaluate one valid analysis result and return the decisions."""
         cfg = self.config
-        stringing_event = self._process_stringing(result)
-        warping_event = self._process_warping(result)
-        spaghetti_event = self._process_spaghetti(result)
-        layer_shift_event = self._process_layer_shift(result)
+
+        # Konfidenz-Prüfung — Frames mit niedriger Konfidenz verwerfen
+        if result.confidence < cfg.min_confidence:
+            self.stats.discarded_frames += 1
+            self.stats.low_confidence_frames += 1
+            return Decision(discarded=True)
+
+        # Scores glätten (EMA)
+        smoothed = self._smooth_scores(result)
+
+        stringing_event = self._process_stringing(smoothed)
+        warping_event = self._process_warping(smoothed)
+        spaghetti_event = self._process_spaghetti(smoothed)
+        layer_shift_event = self._process_layer_shift(smoothed)
         return Decision(
             stringing_event=stringing_event,
             spaghetti_event=spaghetti_event,
@@ -151,6 +211,7 @@ class DecisionEngine:
             layer_shift_detected=self._layer_shift_detected,
             print_failure=self._print_failure,
             muted=self._muted,
+            discarded=False,
         )
 
     def _process_stringing(self, result: AnalysisResult) -> bool:

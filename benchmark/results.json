@@ -1,38 +1,1377 @@
 {
-  "timestamp": "2026-10-07 21:12:14",
-  "recommended_model": "mistral-medium-latest",
+  "timestamp": "2026-10-24 09:48:05",
+  "concurrency": 8,
+  "recommended_model": "zai-glm-5-3-flash",
+  "recommended_thresholds": {
+    "stringing_threshold": 45,
+    "spaghetti_threshold": 87,
+    "warping_threshold": 75,
+    "layer_shift_threshold": 40,
+    "min_confidence": 0.8,
+    "smoothing_alpha": 0.3,
+    "stringing_streak": 3
+  },
+  "threshold_analysis": {
+    "mistral-large-4": {
+      "stringing": {
+        "recommended_threshold": 50,
+        "strategy": "aggressive",
+        "positive_scores": [
+          55,
+          65,
+          80,
+          80,
+          90,
+          92
+        ],
+        "negative_scores": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          30,
+          95
+        ],
+        "min_positive": 55,
+        "max_negative": 95,
+        "metrics": {
+          "true_positives": 6,
+          "false_negatives": 0,
+          "false_positives": 1,
+          "true_negatives": 15,
+          "sensitivity": 100.0,
+          "specificity": 93.8,
+          "precision": 85.7,
+          "f1_score": 92.3
+        },
+        "alternatives": {
+          "conservative": 90,
+          "balanced": 75,
+          "aggressive": 50
+        }
+      },
+      "spaghetti": {
+        "recommended_threshold": 30,
+        "strategy": "conservative",
+        "positive_scores": [
+          5,
+          95,
+          95,
+          98
+        ],
+        "negative_scores": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          5
+        ],
+        "min_positive": 5,
+        "max_negative": 25,
+        "metrics": {
+          "true_positives": 3,
+          "false_negatives": 1,
+          "false_positives": 0,
+          "true_negatives": 18,
+          "sensitivity": 75.0,
+          "specificity": 100.0,
+          "precision": 100.0,
+          "f1_score": 85.7
+        },
+        "alternatives": {
+          "conservative": 30,
+          "balanced": 30,
+          "aggressive": 30
+        }
+      },
+      "warping": {
+        "recommended_threshold": 75,
+        "strategy": "aggressive",
+        "positive_scores": [
+          80
+        ],
+        "negative_scores": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "min_positive": 80,
+        "max_negative": 25,
+        "metrics": {
+          "true_positives": 1,
+          "false_negatives": 0,
+          "false_positives": 0,
+          "true_negatives": 21,
+          "sensitivity": 100.0,
+          "specificity": 100.0,
+          "precision": 100.0,
+          "f1_score": 100.0
+        },
+        "alternatives": {
+          "conservative": 30,
+          "balanced": 52,
+          "aggressive": 75
+        }
+      },
+      "layer_shift": {
+        "recommended_threshold": 30,
+        "strategy": "conservative",
+        "positive_scores": [
+          0,
+          70
+        ],
+        "negative_scores": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "min_positive": 0,
+        "max_negative": 25,
+        "metrics": {
+          "true_positives": 1,
+          "false_negatives": 1,
+          "false_positives": 0,
+          "true_negatives": 20,
+          "sensitivity": 50.0,
+          "specificity": 100.0,
+          "precision": 100.0,
+          "f1_score": 66.7
+        },
+        "alternatives": {
+          "conservative": 30,
+          "balanced": 30,
+          "aggressive": 30
+        }
+      },
+      "_meta": {
+        "recommended_min_confidence": 0.6,
+        "recommended_smoothing_alpha": 0.3,
+        "recommended_stringing_streak": 3,
+        "avg_confidence_correct": 0.92,
+        "avg_confidence_wrong": 0.9
+      }
+    },
+    "zai-glm-5-3-flash": {
+      "stringing": {
+        "recommended_threshold": 45,
+        "strategy": "aggressive",
+        "positive_scores": [
+          50,
+          60,
+          65,
+          78,
+          90,
+          92
+        ],
+        "negative_scores": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          5,
+          5,
+          5,
+          5,
+          25,
+          60
+        ],
+        "min_positive": 50,
+        "max_negative": 60,
+        "metrics": {
+          "true_positives": 6,
+          "false_negatives": 0,
+          "false_positives": 1,
+          "true_negatives": 15,
+          "sensitivity": 100.0,
+          "specificity": 93.8,
+          "precision": 85.7,
+          "f1_score": 92.3
+        },
+        "alternatives": {
+          "conservative": 65,
+          "balanced": 55,
+          "aggressive": 45
+        }
+      },
+      "spaghetti": {
+        "recommended_threshold": 87,
+        "strategy": "aggressive",
+        "positive_scores": [
+          92,
+          95,
+          95,
+          95
+        ],
+        "negative_scores": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          5,
+          5,
+          5,
+          5
+        ],
+        "min_positive": 92,
+        "max_negative": 25,
+        "metrics": {
+          "true_positives": 4,
+          "false_negatives": 0,
+          "false_positives": 0,
+          "true_negatives": 18,
+          "sensitivity": 100.0,
+          "specificity": 100.0,
+          "precision": 100.0,
+          "f1_score": 100.0
+        },
+        "alternatives": {
+          "conservative": 30,
+          "balanced": 58,
+          "aggressive": 87
+        }
+      },
+      "warping": {
+        "recommended_threshold": 75,
+        "strategy": "aggressive",
+        "positive_scores": [
+          80
+        ],
+        "negative_scores": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          10,
+          20
+        ],
+        "min_positive": 80,
+        "max_negative": 25,
+        "metrics": {
+          "true_positives": 1,
+          "false_negatives": 0,
+          "false_positives": 0,
+          "true_negatives": 21,
+          "sensitivity": 100.0,
+          "specificity": 100.0,
+          "precision": 100.0,
+          "f1_score": 100.0
+        },
+        "alternatives": {
+          "conservative": 30,
+          "balanced": 52,
+          "aggressive": 75
+        }
+      },
+      "layer_shift": {
+        "recommended_threshold": 40,
+        "strategy": "aggressive",
+        "positive_scores": [
+          45,
+          60
+        ],
+        "negative_scores": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "min_positive": 45,
+        "max_negative": 25,
+        "metrics": {
+          "true_positives": 2,
+          "false_negatives": 0,
+          "false_positives": 0,
+          "true_negatives": 20,
+          "sensitivity": 100.0,
+          "specificity": 100.0,
+          "precision": 100.0,
+          "f1_score": 100.0
+        },
+        "alternatives": {
+          "conservative": 30,
+          "balanced": 35,
+          "aggressive": 40
+        }
+      },
+      "_meta": {
+        "recommended_min_confidence": 0.8,
+        "recommended_smoothing_alpha": 0.3,
+        "recommended_stringing_streak": 3,
+        "avg_confidence_correct": 0.86,
+        "avg_confidence_wrong": 0.68
+      }
+    },
+    "mistral-large-latest": {
+      "stringing": {
+        "recommended_threshold": 30,
+        "strategy": "conservative",
+        "positive_scores": [
+          0,
+          0,
+          0,
+          0,
+          85,
+          85
+        ],
+        "negative_scores": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          10
+        ],
+        "min_positive": 0,
+        "max_negative": 25,
+        "metrics": {
+          "true_positives": 2,
+          "false_negatives": 4,
+          "false_positives": 0,
+          "true_negatives": 16,
+          "sensitivity": 33.3,
+          "specificity": 100.0,
+          "precision": 100.0,
+          "f1_score": 50.0
+        },
+        "alternatives": {
+          "conservative": 30,
+          "balanced": 30,
+          "aggressive": 30
+        }
+      },
+      "spaghetti": {
+        "recommended_threshold": 90,
+        "strategy": "aggressive",
+        "positive_scores": [
+          95,
+          95,
+          95,
+          95
+        ],
+        "negative_scores": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "min_positive": 95,
+        "max_negative": 25,
+        "metrics": {
+          "true_positives": 4,
+          "false_negatives": 0,
+          "false_positives": 0,
+          "true_negatives": 18,
+          "sensitivity": 100.0,
+          "specificity": 100.0,
+          "precision": 100.0,
+          "f1_score": 100.0
+        },
+        "alternatives": {
+          "conservative": 30,
+          "balanced": 60,
+          "aggressive": 90
+        }
+      },
+      "warping": {
+        "recommended_threshold": 70,
+        "strategy": "aggressive",
+        "positive_scores": [
+          75
+        ],
+        "negative_scores": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          15,
+          15,
+          15,
+          30
+        ],
+        "min_positive": 75,
+        "max_negative": 30,
+        "metrics": {
+          "true_positives": 1,
+          "false_negatives": 0,
+          "false_positives": 0,
+          "true_negatives": 21,
+          "sensitivity": 100.0,
+          "specificity": 100.0,
+          "precision": 100.0,
+          "f1_score": 100.0
+        },
+        "alternatives": {
+          "conservative": 35,
+          "balanced": 52,
+          "aggressive": 70
+        }
+      },
+      "layer_shift": {
+        "recommended_threshold": 75,
+        "strategy": "conservative",
+        "positive_scores": [
+          0,
+          75
+        ],
+        "negative_scores": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          70
+        ],
+        "min_positive": 0,
+        "max_negative": 70,
+        "metrics": {
+          "true_positives": 1,
+          "false_negatives": 1,
+          "false_positives": 0,
+          "true_negatives": 20,
+          "sensitivity": 50.0,
+          "specificity": 100.0,
+          "precision": 100.0,
+          "f1_score": 66.7
+        },
+        "alternatives": {
+          "conservative": 75,
+          "balanced": 35,
+          "aggressive": 30
+        }
+      },
+      "_meta": {
+        "recommended_min_confidence": 0.6,
+        "recommended_smoothing_alpha": 0.3,
+        "recommended_stringing_streak": 3,
+        "avg_confidence_correct": 0.97,
+        "avg_confidence_wrong": 0.95
+      }
+    },
+    "mistral-medium-latest": {
+      "stringing": {
+        "recommended_threshold": 30,
+        "strategy": "conservative",
+        "positive_scores": [
+          0,
+          0,
+          85,
+          90,
+          90,
+          90
+        ],
+        "negative_scores": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "min_positive": 0,
+        "max_negative": 25,
+        "metrics": {
+          "true_positives": 4,
+          "false_negatives": 2,
+          "false_positives": 0,
+          "true_negatives": 16,
+          "sensitivity": 66.7,
+          "specificity": 100.0,
+          "precision": 100.0,
+          "f1_score": 80.0
+        },
+        "alternatives": {
+          "conservative": 30,
+          "balanced": 30,
+          "aggressive": 30
+        }
+      },
+      "spaghetti": {
+        "recommended_threshold": 90,
+        "strategy": "aggressive",
+        "positive_scores": [
+          95,
+          95,
+          95,
+          95
+        ],
+        "negative_scores": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "min_positive": 95,
+        "max_negative": 25,
+        "metrics": {
+          "true_positives": 4,
+          "false_negatives": 0,
+          "false_positives": 0,
+          "true_negatives": 18,
+          "sensitivity": 100.0,
+          "specificity": 100.0,
+          "precision": 100.0,
+          "f1_score": 100.0
+        },
+        "alternatives": {
+          "conservative": 30,
+          "balanced": 60,
+          "aggressive": 90
+        }
+      },
+      "warping": {
+        "recommended_threshold": 65,
+        "strategy": "aggressive",
+        "positive_scores": [
+          70
+        ],
+        "negative_scores": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "min_positive": 70,
+        "max_negative": 25,
+        "metrics": {
+          "true_positives": 1,
+          "false_negatives": 0,
+          "false_positives": 0,
+          "true_negatives": 21,
+          "sensitivity": 100.0,
+          "specificity": 100.0,
+          "precision": 100.0,
+          "f1_score": 100.0
+        },
+        "alternatives": {
+          "conservative": 30,
+          "balanced": 47,
+          "aggressive": 65
+        }
+      },
+      "layer_shift": {
+        "recommended_threshold": 30,
+        "strategy": "conservative",
+        "positive_scores": [
+          0,
+          70
+        ],
+        "negative_scores": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "min_positive": 0,
+        "max_negative": 25,
+        "metrics": {
+          "true_positives": 1,
+          "false_negatives": 1,
+          "false_positives": 0,
+          "true_negatives": 20,
+          "sensitivity": 50.0,
+          "specificity": 100.0,
+          "precision": 100.0,
+          "f1_score": 66.7
+        },
+        "alternatives": {
+          "conservative": 30,
+          "balanced": 30,
+          "aggressive": 30
+        }
+      },
+      "_meta": {
+        "recommended_min_confidence": 0.6,
+        "recommended_smoothing_alpha": 0.3,
+        "recommended_stringing_streak": 3,
+        "avg_confidence_correct": 1.0,
+        "avg_confidence_wrong": 1.0
+      }
+    },
+    "mistral-small-latest": {
+      "stringing": {
+        "recommended_threshold": 90,
+        "strategy": "conservative",
+        "positive_scores": [
+          0,
+          0,
+          0,
+          0,
+          95,
+          95
+        ],
+        "negative_scores": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          95,
+          95,
+          95,
+          95
+        ],
+        "min_positive": 0,
+        "max_negative": 95,
+        "metrics": {
+          "true_positives": 2,
+          "false_negatives": 4,
+          "false_positives": 4,
+          "true_negatives": 12,
+          "sensitivity": 33.3,
+          "specificity": 75.0,
+          "precision": 33.3,
+          "f1_score": 33.3
+        },
+        "alternatives": {
+          "conservative": 90,
+          "balanced": 47,
+          "aggressive": 30
+        }
+      },
+      "spaghetti": {
+        "recommended_threshold": 30,
+        "strategy": "conservative",
+        "positive_scores": [
+          0,
+          0,
+          95,
+          98
+        ],
+        "negative_scores": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "min_positive": 0,
+        "max_negative": 25,
+        "metrics": {
+          "true_positives": 2,
+          "false_negatives": 2,
+          "false_positives": 0,
+          "true_negatives": 18,
+          "sensitivity": 50.0,
+          "specificity": 100.0,
+          "precision": 100.0,
+          "f1_score": 66.7
+        },
+        "alternatives": {
+          "conservative": 30,
+          "balanced": 30,
+          "aggressive": 30
+        }
+      },
+      "warping": {
+        "recommended_threshold": 70,
+        "strategy": "aggressive",
+        "positive_scores": [
+          75
+        ],
+        "negative_scores": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "min_positive": 75,
+        "max_negative": 25,
+        "metrics": {
+          "true_positives": 1,
+          "false_negatives": 0,
+          "false_positives": 0,
+          "true_negatives": 21,
+          "sensitivity": 100.0,
+          "specificity": 100.0,
+          "precision": 100.0,
+          "f1_score": 100.0
+        },
+        "alternatives": {
+          "conservative": 30,
+          "balanced": 50,
+          "aggressive": 70
+        }
+      },
+      "layer_shift": {
+        "recommended_threshold": 30,
+        "strategy": "conservative",
+        "positive_scores": [
+          0,
+          75
+        ],
+        "negative_scores": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "min_positive": 0,
+        "max_negative": 25,
+        "metrics": {
+          "true_positives": 1,
+          "false_negatives": 1,
+          "false_positives": 0,
+          "true_negatives": 20,
+          "sensitivity": 50.0,
+          "specificity": 100.0,
+          "precision": 100.0,
+          "f1_score": 66.7
+        },
+        "alternatives": {
+          "conservative": 30,
+          "balanced": 30,
+          "aggressive": 30
+        }
+      },
+      "_meta": {
+        "recommended_min_confidence": 0.6,
+        "recommended_smoothing_alpha": 0.3,
+        "recommended_stringing_streak": 3,
+        "avg_confidence_correct": 0.99,
+        "avg_confidence_wrong": 0.99
+      }
+    }
+  },
+  "recommendations": {
+    "best_accuracy": {
+      "model": "mistral-medium-latest",
+      "accuracy_pct": 86.4,
+      "accuracy_corrected_pct": 86.4,
+      "value_score": 88.2,
+      "production_score": 89.3,
+      "reliability_score": 77.6,
+      "critical_defect_score": 80.0,
+      "critical_bonus": 0.0,
+      "composite_score": 88.8,
+      "avg_latency_ms": 1735.0,
+      "total_cost_usd": 0.1061,
+      "cost_per_scan_cents": 0.482,
+      "accuracy_per_dollar": 813.6,
+      "total_scans": 22,
+      "category_accuracy": {
+        "stringing": 66.7,
+        "spaghetti": 100.0,
+        "clean": 100.0,
+        "warping": 100.0,
+        "layer_shift": 50.0
+      },
+      "category_accuracy_corrected": {
+        "stringing": 66.7,
+        "spaghetti": 100.0,
+        "clean": 100.0,
+        "warping": 100.0,
+        "layer_shift": 50.0
+      }
+    },
+    "best_accuracy_corrected": {
+      "model": "mistral-medium-latest",
+      "accuracy_pct": 86.4,
+      "accuracy_corrected_pct": 86.4,
+      "value_score": 88.2,
+      "production_score": 89.3,
+      "reliability_score": 77.6,
+      "critical_defect_score": 80.0,
+      "critical_bonus": 0.0,
+      "composite_score": 88.8,
+      "avg_latency_ms": 1735.0,
+      "total_cost_usd": 0.1061,
+      "cost_per_scan_cents": 0.482,
+      "accuracy_per_dollar": 813.6,
+      "total_scans": 22,
+      "category_accuracy": {
+        "stringing": 66.7,
+        "spaghetti": 100.0,
+        "clean": 100.0,
+        "warping": 100.0,
+        "layer_shift": 50.0
+      },
+      "category_accuracy_corrected": {
+        "stringing": 66.7,
+        "spaghetti": 100.0,
+        "clean": 100.0,
+        "warping": 100.0,
+        "layer_shift": 50.0
+      }
+    },
+    "best_reliability": {
+      "model": "mistral-medium-latest",
+      "accuracy_pct": 86.4,
+      "accuracy_corrected_pct": 86.4,
+      "value_score": 88.2,
+      "production_score": 89.3,
+      "reliability_score": 77.6,
+      "critical_defect_score": 80.0,
+      "critical_bonus": 0.0,
+      "composite_score": 88.8,
+      "avg_latency_ms": 1735.0,
+      "total_cost_usd": 0.1061,
+      "cost_per_scan_cents": 0.482,
+      "accuracy_per_dollar": 813.6,
+      "total_scans": 22,
+      "category_accuracy": {
+        "stringing": 66.7,
+        "spaghetti": 100.0,
+        "clean": 100.0,
+        "warping": 100.0,
+        "layer_shift": 50.0
+      },
+      "category_accuracy_corrected": {
+        "stringing": 66.7,
+        "spaghetti": 100.0,
+        "clean": 100.0,
+        "warping": 100.0,
+        "layer_shift": 50.0
+      }
+    },
+    "best_value": {
+      "model": "mistral-medium-latest",
+      "accuracy_pct": 86.4,
+      "accuracy_corrected_pct": 86.4,
+      "value_score": 88.2,
+      "production_score": 89.3,
+      "reliability_score": 77.6,
+      "critical_defect_score": 80.0,
+      "critical_bonus": 0.0,
+      "composite_score": 88.8,
+      "avg_latency_ms": 1735.0,
+      "total_cost_usd": 0.1061,
+      "cost_per_scan_cents": 0.482,
+      "accuracy_per_dollar": 813.6,
+      "total_scans": 22,
+      "category_accuracy": {
+        "stringing": 66.7,
+        "spaghetti": 100.0,
+        "clean": 100.0,
+        "warping": 100.0,
+        "layer_shift": 50.0
+      },
+      "category_accuracy_corrected": {
+        "stringing": 66.7,
+        "spaghetti": 100.0,
+        "clean": 100.0,
+        "warping": 100.0,
+        "layer_shift": 50.0
+      }
+    },
+    "best_production": {
+      "model": "mistral-medium-latest",
+      "accuracy_pct": 86.4,
+      "accuracy_corrected_pct": 86.4,
+      "value_score": 88.2,
+      "production_score": 89.3,
+      "reliability_score": 77.6,
+      "critical_defect_score": 80.0,
+      "critical_bonus": 0.0,
+      "composite_score": 88.8,
+      "avg_latency_ms": 1735.0,
+      "total_cost_usd": 0.1061,
+      "cost_per_scan_cents": 0.482,
+      "accuracy_per_dollar": 813.6,
+      "total_scans": 22,
+      "category_accuracy": {
+        "stringing": 66.7,
+        "spaghetti": 100.0,
+        "clean": 100.0,
+        "warping": 100.0,
+        "layer_shift": 50.0
+      },
+      "category_accuracy_corrected": {
+        "stringing": 66.7,
+        "spaghetti": 100.0,
+        "clean": 100.0,
+        "warping": 100.0,
+        "layer_shift": 50.0
+      }
+    },
+    "best_speed": {
+      "model": "mistral-small-latest",
+      "avg_latency_ms": 1617.0
+    },
+    "cheapest": {
+      "model": "mistral-small-latest",
+      "total_cost_usd": 0.0105,
+      "cost_per_scan_cents": 0.048
+    },
+    "best_accuracy_per_dollar": {
+      "model": "mistral-small-latest",
+      "accuracy_per_dollar": 5566.9
+    }
+  },
   "models": [
     {
       "model": "mistral-large-4",
-      "accuracy_pct": 50.0,
-      "composite_score": 30.0,
-      "avg_latency_ms": 35973.0,
-      "total_cost_usd": 0.1191,
+      "accuracy_pct": 79.3,
+      "accuracy_corrected_pct": 69.5,
+      "value_score": 68.4,
+      "production_score": 62.6,
+      "reliability_score": 68.6,
+      "critical_defect_score": 90.0,
+      "critical_bonus": 0.0,
+      "composite_score": 65.5,
+      "avg_latency_ms": 21658.0,
+      "total_cost_usd": 0.271,
+      "cost_per_scan_cents": 1.232,
+      "accuracy_per_dollar": 292.7,
+      "total_scans": 22,
+      "category_accuracy": {
+        "stringing": 100.0,
+        "spaghetti": 75.0,
+        "clean": 88.9,
+        "warping": 100.0,
+        "layer_shift": 50.0
+      },
+      "category_accuracy_corrected": {
+        "stringing": 100.0,
+        "spaghetti": 75.0,
+        "clean": 55.6,
+        "warping": 100.0,
+        "layer_shift": 50.0
+      },
       "results": [
         {
           "image_file": "stringing_1.jpg",
           "category": "stringing",
-          "latency_ms": 49919.0,
-          "input_tokens": 922,
-          "output_tokens": 3042,
-          "est_cost_usd": 0.006985,
+          "latency_ms": 17582.0,
+          "input_tokens": 2030,
+          "output_tokens": 1936,
+          "est_cost_usd": 0.010853,
           "scores": {
-            "stringing_score": 35,
+            "stringing_score": 55,
             "spaghetti_score": 0,
             "warping_score": 0,
             "layer_shift_score": 0,
             "bed_adhesion_failure": false
           },
-          "observations": "Deutliche Fadenbildung (Stringing) zwischen den Spitzen der Testdrucke, besonders bei höheren Temperaturen. Die Bauteile haften fest auf dem Druckbett ohne Verzug oder Layer-Verschiebungen.",
+          "observations": "Temperatur-Kalibrierungstürme (185-215°C) mit sichtbarem Stringing zwischen den Spitzen, besonders bei 215°C und 200°C. Keine Ablösung oder Verzug am Druckbett erkennbar.",
+          "confidence": 0.9,
+          "reasoning": "Alle Türme stehen fest auf dem Bett, deutliche feine Filamentfäden zwischen den Strukturen sichtbar → Stringing",
           "error": null
         },
         {
           "image_file": "stringing_2.jpg",
           "category": "stringing",
-          "latency_ms": 41088.0,
-          "input_tokens": 706,
-          "output_tokens": 1938,
-          "est_cost_usd": 0.00453,
+          "latency_ms": 19160.0,
+          "input_tokens": 1814,
+          "output_tokens": 1713,
+          "est_cost_usd": 0.009627,
+          "scores": {
+            "stringing_score": 92,
+            "spaghetti_score": 5,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Zwei weiße zylindrische Türme auf rechteckiger Grundplatte. Zwischen den Türmen dichtes, chaotisches Netz aus feinen Filamentfäden. Keine Ablösung oder Warping erkennbar.",
+          "confidence": 0.95,
+          "reasoning": "Teil steht fest auf dem Bett, zwischen den beiden Türmen extrem dichtes Fadennetz sichtbar → extremes Stringing, kein Spaghetti",
+          "error": null
+        },
+        {
+          "image_file": "stringing_3.png",
+          "category": "stringing",
+          "latency_ms": 22223.0,
+          "input_tokens": 2578,
+          "output_tokens": 2295,
+          "est_cost_usd": 0.013099,
+          "scores": {
+            "stringing_score": 65,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Zwei hohe zylindrische Türme auf einer Grundplatte. Deutliches Stringing auf den Oberflächen der Türme, besonders am linken Turm, sowie ein herabhängender Faden am rechten Turm.",
+          "confidence": 0.9,
+          "reasoning": "Beide Türme stehen fest auf dem Bett, deutliche Filamentfäden auf den Turmoberflächen sichtbar → Stringing",
+          "error": null
+        },
+        {
+          "image_file": "stringing_4.jpg",
+          "category": "stringing",
+          "latency_ms": 24639.0,
+          "input_tokens": 2030,
+          "output_tokens": 2844,
+          "est_cost_usd": 0.014649,
+          "scores": {
+            "stringing_score": 80,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Drei konische Türme auf runder Grundplatte mit erheblicher Spinnweben-Bildung zwischen den Strukturen. Keine Ablösung oder Verzug erkennbar.",
+          "confidence": 0.95,
+          "reasoning": "Teil steht fest auf dem Bett, dichtes Fadennetz zwischen den drei Türmen sichtbar → starkes Stringing",
+          "error": null
+        },
+        {
+          "image_file": "stringing_5.jpg",
+          "category": "stringing",
+          "latency_ms": 22922.0,
+          "input_tokens": 2030,
+          "output_tokens": 2502,
+          "est_cost_usd": 0.013219,
+          "scores": {
+            "stringing_score": 90,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Schwarze kugelförmige Gitterstruktur steht aufrecht auf dem Druckbett. Der gesamte Innenraum ist mit einem dichten Netz aus feinen, grauen Filamentfäden überzogen, während die Außenstruktur intakt bleibt.",
+          "confidence": 0.95,
+          "reasoning": "Teil steht fest auf dem Bett, aber der Innenraum der Kugelstruktur ist mit extrem dichten Filamentfäden gefüllt → extremes Stringing, kein Spaghetti",
+          "error": null
+        },
+        {
+          "image_file": "stringing_6.jpg",
+          "category": "stringing",
+          "latency_ms": 26947.0,
+          "input_tokens": 1856,
+          "output_tokens": 2097,
+          "est_cost_usd": 0.01129,
+          "scores": {
+            "stringing_score": 80,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Zwei konische Türme mit stark ausgeprägten Filamentfäden (lila an den Seiten, weiß im Hintergrund). Die Teile haften fest am Druckbett, keine Ablösung oder Stufen erkennbar.",
+          "confidence": 0.9,
+          "reasoning": "Teil steht fest auf dem Bett, massive lila Fäden an den Turmseiten und weiße Fäden im Hintergrund sichtbar → starkes Stringing",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_1.jpg",
+          "category": "spaghetti",
+          "latency_ms": 17091.0,
+          "input_tokens": 2576,
+          "output_tokens": 1645,
+          "est_cost_usd": 0.010379,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 95,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": true
+          },
+          "observations": "Extremes Spaghetti-Fehlerbild mit verheddertem Filament auf dem gesamten Druckbett, Druckteile vollständig abgelöst und zu einem Klumpen verklumpt.",
+          "confidence": 0.95,
+          "reasoning": "Schritt 1: Teil steht nicht fest auf dem Bett, chaotisches Materialnest/Spaghetti sichtbar → Sprung zu Schritt 5",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_2.jpg",
+          "category": "spaghetti",
+          "latency_ms": 20967.0,
+          "input_tokens": 2776,
+          "output_tokens": 1860,
+          "est_cost_usd": 0.01155,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 98,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": true
+          },
+          "observations": "Gelbes Filament liegt als verheddertes Nest auf dem Druckbett, kein stehendes Teil erkennbar. Der Druckkopf extrudiert weiterhin in die Luft.",
+          "confidence": 1.0,
+          "reasoning": "Teil vollständig vom Bett gelöst, chaotisches Filamentnest ohne erkennbare Struktur → Spaghetti-Fehler",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_3.jpg",
+          "category": "clean",
+          "latency_ms": 19997.0,
+          "input_tokens": 1728,
+          "output_tokens": 2378,
+          "est_cost_usd": 0.01229,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Das Druckbett erscheint leer, der weiße Druckkopf ist im oberen Bereich sichtbar. Keine Strukturen, Fäden, Ablösungen oder Spaghetti erkennbar.",
+          "confidence": 0.3,
+          "reasoning": "Kein Druckteil auf dem Bett sichtbar, nur Druckkopf und leeres Bett erkennbar → keine Defekte beurteilbar",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_4.jpg",
+          "category": "spaghetti",
+          "latency_ms": 20524.0,
+          "input_tokens": 3696,
+          "output_tokens": 1696,
+          "est_cost_usd": 0.012116,
           "scores": {
             "stringing_score": 95,
             "spaghetti_score": 5,
@@ -40,952 +1379,56 @@
             "layer_shift_score": 0,
             "bed_adhesion_failure": false
           },
-          "observations": "Extremes Stringing zwischen den beiden vertikalen Säulen mit dichtem Fadennetz. Die Bauteile haften fest auf dem Druckbett und zeigen keine Verzüge oder Layer-Verschiebungen.",
-          "error": null
-        },
-        {
-          "image_file": "stringing_3.png",
-          "category": "stringing",
-          "latency_ms": 49145.0,
-          "input_tokens": 1470,
-          "output_tokens": 2354,
-          "est_cost_usd": 0.005919,
-          "scores": {
-            "stringing_score": 40,
-            "spaghetti_score": 0,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Beide Türme weisen starke Oberflächenfehler mit Blobs und Fäden auf. Am rechten Turm ist ein deutlicher Stringing-Faden seitlich sichtbar.",
-          "error": null
-        },
-        {
-          "image_file": "stringing_4.jpg",
-          "category": "stringing",
-          "latency_ms": 14665.0,
-          "input_tokens": 922,
-          "output_tokens": 1324,
-          "est_cost_usd": 0.003394,
-          "scores": {
-            "stringing_score": 80,
-            "spaghetti_score": 0,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Starkes Stringing zwischen den drei konischen Strukturen sichtbar. Die Grundplatte liegt flach auf dem Druckbett ohne erkennbare Verzüge oder Haftungsprobleme.",
-          "error": null
-        },
-        {
-          "image_file": "stringing_5.jpg",
-          "category": "stringing",
-          "latency_ms": 34166.0,
-          "input_tokens": 922,
-          "output_tokens": 2000,
-          "est_cost_usd": 0.004807,
-          "scores": {
-            "stringing_score": 80,
-            "spaghetti_score": 0,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Starke Stringing zwischen den vertikalen Streben des Objekts, feine Filamentfäden bilden ein dichtes spinnennetzartiges Muster im Inneren.",
-          "error": null
-        },
-        {
-          "image_file": "stringing_6.jpg",
-          "category": "stringing",
-          "latency_ms": 29314.0,
-          "input_tokens": 748,
-          "output_tokens": 2514,
-          "est_cost_usd": 0.005763,
-          "scores": {
-            "stringing_score": 85,
-            "spaghetti_score": 0,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Extremes Stringing mit dichten feinen Fäden zwischen den Objekten und im Hintergrund. An den Seitenflächen der Kegel sind haarartige, lila Filamentauswüchse (Oozing) sichtbar.",
-          "error": null
-        },
-        {
-          "image_file": "spaghetti_1.jpg",
-          "category": "spaghetti",
-          "latency_ms": 55711.0,
-          "input_tokens": 1468,
-          "output_tokens": 2737,
-          "est_cost_usd": 0.006719,
-          "scores": {
-            "stringing_score": 95,
-            "spaghetti_score": 100,
-            "warping_score": 60,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": true
-          },
-          "observations": "Vollständiger Druckfehler mit massivem Spaghetti-Nest. Bauteile haben sich vom Druckbett gelöst und liegen als Filamentknäuel auf der Platte.",
-          "error": null
-        },
-        {
-          "image_file": "spaghetti_2.jpg",
-          "category": "spaghetti",
-          "latency_ms": 28574.0,
-          "input_tokens": 1668,
-          "output_tokens": 1787,
-          "est_cost_usd": 0.004869,
-          "scores": {
-            "stringing_score": 30,
-            "spaghetti_score": 95,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": true
-          },
-          "observations": "Der Druck ist vollständig fehlgeschlagen und hat sich in ein chaotisches Spaghetti-Nest verwandelt. Das gelbe Filament liegt lose und unstrukturiert auf der gesamten Druckplatte verteilt.",
-          "error": null
-        },
-        {
-          "image_file": "spaghetti_3.jpg",
-          "category": "spaghetti",
-          "latency_ms": 20768.0,
-          "input_tokens": 620,
-          "output_tokens": 1661,
-          "est_cost_usd": 0.003893,
-          "scores": {
-            "stringing_score": 0,
-            "spaghetti_score": 0,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Das Bild zeigt die strukturierte Druckplatte aus schräger Perspektive; ein Druckobjekt ist nicht klar erkennbar. Es sind keine offensichtlichen Druckfehler wie Stringing, Warping oder Spaghetti sichtbar.",
-          "error": null
-        },
-        {
-          "image_file": "spaghetti_4.jpg",
-          "category": "spaghetti",
-          "latency_ms": 49448.0,
-          "input_tokens": 2588,
-          "output_tokens": 3689,
-          "est_cost_usd": 0.00947,
-          "scores": {
-            "stringing_score": 95,
-            "spaghetti_score": 85,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Extremes Stringing mit massiver Fadenbildung über das gesamte Druckbett und am Bauteil. Das Objekt steht noch auf der Platte, ist jedoch von einem dichten Spaghetti-Nest umgeben.",
+          "observations": "Zylindrisches Objekt mit strukturierter Oberfläche steht intakt auf der Platte, ist jedoch von einem dichten Netz aus schwarzen Filamentfäden umgeben, die das gesamte Bett bedecken und herabhängen.",
+          "confidence": 0.95,
+          "reasoning": "Teil steht fest auf dem Bett, aber extrem dichtes, chaotisches Filamentnetz über das gesamte Druckbett und um das Objekt herum → extremes Stringing, kein Spaghetti",
           "error": null
         },
         {
           "image_file": "spaghetti_5.jpg",
           "category": "spaghetti",
-          "latency_ms": 77902.0,
-          "input_tokens": 2268,
-          "output_tokens": 3047,
-          "est_cost_usd": 0.00791,
+          "latency_ms": 27774.0,
+          "input_tokens": 3376,
+          "output_tokens": 2328,
+          "est_cost_usd": 0.014322,
           "scores": {
-            "stringing_score": 85,
+            "stringing_score": 0,
             "spaghetti_score": 95,
             "warping_score": 0,
             "layer_shift_score": 0,
             "bed_adhesion_failure": true
           },
-          "observations": "Massives Spaghetti-Nest durch Druckfehler entstanden, vermutlich durch Ablösung vom Bett oder Düsenverstopfung. Der kleine Benchy rechts scheint fehlerfrei, während das mittlere Objekt auf der Platte ebenfalls Materialanhäufungen aufweist.",
+          "observations": "Links großes Spaghetti-Nest (abgelöstes Filament), in der Mitte ein fehlgeschlagener Druck auf ovaler Grundplatte (Raft), rechts ein intaktes Benchy-Modell. Deutliche Haftungsprobleme am linken Objekt erkennbar.",
+          "confidence": 0.95,
+          "reasoning": "Links im Bild massives, chaotisches Materialnest aus verheddertem blauem Filament sichtbar, Teil hat sich vollständig vom Bett gelöst → klassischer Spaghetti-Fehler",
           "error": null
         },
         {
           "image_file": "spaghetti_6.jpg",
-          "category": "spaghetti",
-          "latency_ms": 22845.0,
-          "input_tokens": 1581,
-          "output_tokens": 1954,
-          "est_cost_usd": 0.005159,
+          "category": "clean",
+          "latency_ms": 37158.0,
+          "input_tokens": 2689,
+          "output_tokens": 3399,
+          "est_cost_usd": 0.017865,
           "scores": {
-            "stringing_score": 35,
+            "stringing_score": 0,
             "spaghetti_score": 0,
             "warping_score": 0,
             "layer_shift_score": 0,
             "bed_adhesion_failure": false
           },
-          "observations": "Moderates Stringing zwischen den Haarsträhnen und an den Armen erkennbar. Keine Warping-, Layer-Shift- oder Haftungsprobleme sichtbar.",
+          "observations": "Weiße Anime-Figur mit fließenden Haaren auf rundem Sockel, gleichmäßige Schichtlinien, fest haftend. Die dünnen Haarsträhnen sind Teil des Modells und stellen keinen Druckfehler dar.",
+          "confidence": 0.9,
+          "reasoning": "Teil steht fest auf dem runden Sockel, keine Ablösung erkennbar; die feinen Haarsträhnen sind gewolltes Design-Feature und nicht als Stringing zu bewerten; keine horizontalen Stufen (Layer Shift) oder abhebenden Ränder (Warping) sichtbar",
           "error": null
         },
         {
           "image_file": "warping_1.webp",
           "category": "warping",
-          "latency_ms": 29431.0,
-          "input_tokens": 1470,
-          "output_tokens": 1611,
-          "est_cost_usd": 0.004367,
-          "scores": {
-            "stringing_score": 0,
-            "spaghetti_score": 0,
-            "warping_score": 90,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": true
-          },
-          "observations": "Ausgeprägtes Curling an den Ecken und Kanten mit deutlichem Abheben vom Druckbett. Die Außenränder sind stark nach oben gewölbt und bilden eine schüsselförmige Verformung.",
-          "error": null
-        },
-        {
-          "image_file": "warping_2.jpg",
-          "category": "warping",
-          "latency_ms": 13878.0,
-          "input_tokens": 1458,
-          "output_tokens": 877,
-          "est_cost_usd": 0.002824,
-          "scores": {
-            "stringing_score": 0,
-            "spaghetti_score": 0,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Erste Schicht mit gleichmäßiger Extrusion und guter Haftung auf der strukturierten Platte. Keine sichtbaren Druckfehler oder Verzug.",
-          "error": null
-        },
-        {
-          "image_file": "layer_shift_1.jpg",
-          "category": "layer_shift",
-          "latency_ms": 21873.0,
-          "input_tokens": 748,
-          "output_tokens": 1474,
-          "est_cost_usd": 0.003589,
-          "scores": {
-            "stringing_score": 5,
-            "spaghetti_score": 0,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Sehr sauberes Druckbild ohne erkennbare Fehler. Gute Haftung auf dem Druckbett und gleichmäßige, gut ausgerichtete Layer.",
-          "error": null
-        },
-        {
-          "image_file": "layer_shift_2.png",
-          "category": "layer_shift",
-          "latency_ms": 48428.0,
-          "input_tokens": 1470,
-          "output_tokens": 2716,
-          "est_cost_usd": 0.006676,
-          "scores": {
-            "stringing_score": 40,
-            "spaghetti_score": 0,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Deutliche Stringing zwischen den Strukturen der rosa Figuren und den weißen Würfeln sichtbar. Am Kopf der rechten Figur sind mehrere Oberflächenblobs (Zits) erkennbar.",
-          "error": null
-        },
-        {
-          "image_file": "layer_shift_3.jpg",
-          "category": "layer_shift",
-          "latency_ms": 23380.0,
-          "input_tokens": 1102,
-          "output_tokens": 2139,
-          "est_cost_usd": 0.00522,
-          "scores": {
-            "stringing_score": 0,
-            "spaghetti_score": 0,
-            "warping_score": 0,
-            "layer_shift_score": 100,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Schwere horizontale Schichtverschiebung (Layer Shift) an beiden Druckteilen erkennbar. Die Druckebenen sind deutlich versetzt zueinander angeordnet und erzeugen sichtbare Stufen.",
-          "error": null
-        },
-        {
-          "image_file": "layer_shift_4.jpg",
-          "category": "layer_shift",
-          "latency_ms": 22428.0,
-          "input_tokens": 1059,
-          "output_tokens": 1933,
-          "est_cost_usd": 0.00476,
-          "scores": {
-            "stringing_score": 5,
-            "spaghetti_score": 0,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Das Bauteil weist ein sauberes Druckbild ohne Verzug, Layer-Verschiebungen oder Ablösungen auf. Am oberen Bereich ist ein kleiner Oberflächenfehler erkennbar.",
-          "error": null
-        },
-        {
-          "image_file": "clean_1.jpg",
-          "category": "clean",
-          "latency_ms": 19942.0,
-          "input_tokens": 1306,
-          "output_tokens": 1788,
-          "est_cost_usd": 0.004625,
-          "scores": {
-            "stringing_score": 0,
-            "spaghetti_score": 0,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Alle 21 Benchy-Boote sind vollständig und sauber gedruckt. Keine erkennbaren Fehler wie Stringing, Warping, Schichtversatz oder Haftungsprobleme sichtbar.",
-          "error": null
-        },
-        {
-          "image_file": "clean_2.webp",
-          "category": "clean",
-          "latency_ms": 45795.0,
-          "input_tokens": 1993,
-          "output_tokens": 2063,
-          "est_cost_usd": 0.005667,
-          "scores": {
-            "stringing_score": 0,
-            "spaghetti_score": 0,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Die Druckteile weisen eine einwandfreie Oberflächenqualität ohne erkennbare Fehler auf. Alle Objekte sitzen fest und gerade auf dem Druckbett.",
-          "error": null
-        },
-        {
-          "image_file": "clean_3.jpg",
-          "category": "clean",
-          "latency_ms": 47973.0,
-          "input_tokens": 1507,
-          "output_tokens": 3225,
-          "est_cost_usd": 0.007765,
-          "scores": {
-            "stringing_score": 35,
-            "spaghetti_score": 0,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Leichtes Stringing an den Innenräumen des Benchys und in den Buchstabenaussparungen des Würfels erkennbar. Alle Bauteile liegen flach auf dem Druckbett ohne erkennbare Verzüge oder Layer-Verschiebungen.",
-          "error": null
-        },
-        {
-          "image_file": "clean_4.jpg",
-          "category": "clean",
-          "latency_ms": 44731.0,
-          "input_tokens": 2076,
-          "output_tokens": 1337,
-          "est_cost_usd": 0.004206,
-          "scores": {
-            "stringing_score": 5,
-            "spaghetti_score": 0,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Der Druck zeigt ein sauberes Benchy-Modell mit gleichmäßigen Layerlinien und guter Haftung auf dem Druckbett. Es sind keine signifikanten Druckfehler wie Stringing, Warping oder Layer-Verschiebungen erkennbar.",
-          "error": null
-        }
-      ]
-    },
-    {
-      "model": "mistral-large-latest",
-      "accuracy_pct": 36.4,
-      "composite_score": 32.2,
-      "avg_latency_ms": 2916.0,
-      "total_cost_usd": 0.0196,
-      "results": [
-        {
-          "image_file": "stringing_1.jpg",
-          "category": "stringing",
-          "latency_ms": 3115.0,
-          "input_tokens": 940,
-          "output_tokens": 146,
-          "est_cost_usd": 0.000689,
-          "scores": {
-            "stringing_score": 5,
-            "spaghetti_score": 0,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Leichte Stringing-Spuren zwischen den Bauteilen, ansonsten saubere Druckergebnisse ohne Verzug oder Layer-Verschiebungen.",
-          "error": null
-        },
-        {
-          "image_file": "stringing_2.jpg",
-          "category": "stringing",
-          "latency_ms": 2436.0,
-          "input_tokens": 724,
-          "output_tokens": 133,
-          "est_cost_usd": 0.000562,
-          "scores": {
-            "stringing_score": 5,
-            "spaghetti_score": 0,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Leichte Stringing-Fäden zwischen den vertikalen Wänden sichtbar, ansonsten sauberer Druck mit guter Schichtung.",
-          "error": null
-        },
-        {
-          "image_file": "stringing_3.png",
-          "category": "stringing",
-          "latency_ms": 2890.0,
-          "input_tokens": 1488,
-          "output_tokens": 136,
-          "est_cost_usd": 0.000948,
-          "scores": {
-            "stringing_score": 5,
-            "spaghetti_score": 0,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Leichte Fadenbildung zwischen den Schichten erkennbar, ansonsten sauberer Druck ohne Verzug oder Verschiebungen.",
-          "error": null
-        },
-        {
-          "image_file": "stringing_4.jpg",
-          "category": "stringing",
-          "latency_ms": 2521.0,
-          "input_tokens": 940,
-          "output_tokens": 121,
-          "est_cost_usd": 0.000651,
-          "scores": {
-            "stringing_score": 5,
-            "spaghetti_score": 0,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Leichte Stringing-Effekte zwischen den vertikalen Streben erkennbar, ansonsten sauberer Druck.",
-          "error": null
-        },
-        {
-          "image_file": "stringing_5.jpg",
-          "category": "stringing",
-          "latency_ms": 2425.0,
-          "input_tokens": 940,
-          "output_tokens": 135,
-          "est_cost_usd": 0.000673,
-          "scores": {
-            "stringing_score": 5,
-            "spaghetti_score": 0,
-            "warping_score": 10,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Leichte Stringing-Effekte an den Überhängen sichtbar, Verzug an den unteren Kanten des Druckteils erkennbar.",
-          "error": null
-        },
-        {
-          "image_file": "stringing_6.jpg",
-          "category": "stringing",
-          "latency_ms": 2750.0,
-          "input_tokens": 766,
-          "output_tokens": 134,
-          "est_cost_usd": 0.000584,
-          "scores": {
-            "stringing_score": 90,
-            "spaghetti_score": 5,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Deutlich sichtbare Stringing-Fäden zwischen den Säulen, ansonsten stabiler Druckverlauf ohne größere Ablösungen.",
-          "error": null
-        },
-        {
-          "image_file": "spaghetti_1.jpg",
-          "category": "spaghetti",
-          "latency_ms": 2360.0,
-          "input_tokens": 1486,
-          "output_tokens": 125,
-          "est_cost_usd": 0.000931,
-          "scores": {
-            "stringing_score": 5,
-            "spaghetti_score": 95,
-            "warping_score": 10,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": true
-          },
-          "observations": "Der Druck ist vollständig vom Bett gelöst und hat ein massives Spaghetti-Monster gebildet. Die Struktur ist stark zerstört.",
-          "error": null
-        },
-        {
-          "image_file": "spaghetti_2.jpg",
-          "category": "spaghetti",
-          "latency_ms": 2987.0,
-          "input_tokens": 1686,
-          "output_tokens": 139,
-          "est_cost_usd": 0.001051,
-          "scores": {
-            "stringing_score": 85,
-            "spaghetti_score": 90,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": true
-          },
-          "observations": "Deutliche Stringing-Probleme zwischen den Strukturen, Druckteile haben sich teilweise vom Bett gelöst und sind verheddert.",
-          "error": null
-        },
-        {
-          "image_file": "spaghetti_3.jpg",
-          "category": "spaghetti",
-          "latency_ms": 2705.0,
-          "input_tokens": 638,
-          "output_tokens": 113,
-          "est_cost_usd": 0.000489,
-          "scores": {
-            "stringing_score": 5,
-            "spaghetti_score": 0,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Leichte Stringing-Fäden zwischen den Drucklinien sichtbar, ansonsten saubere Schichten ohne Verzug.",
-          "error": null
-        },
-        {
-          "image_file": "spaghetti_4.jpg",
-          "category": "spaghetti",
-          "latency_ms": 2830.0,
-          "input_tokens": 2606,
-          "output_tokens": 124,
-          "est_cost_usd": 0.001489,
-          "scores": {
-            "stringing_score": 95,
-            "spaghetti_score": 100,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": true
-          },
-          "observations": "Der Druck ist vollständig entartet und hat ein Spaghetti-Muster gebildet. Die Haftung auf dem Druckbett ist komplett verloren gegangen.",
-          "error": null
-        },
-        {
-          "image_file": "spaghetti_5.jpg",
-          "category": "spaghetti",
-          "latency_ms": 3626.0,
-          "input_tokens": 2286,
-          "output_tokens": 149,
-          "est_cost_usd": 0.001367,
-          "scores": {
-            "stringing_score": 90,
-            "spaghetti_score": 85,
-            "warping_score": 5,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": true
-          },
-          "observations": "Deutliche Stringing-Probleme und ein massives Spaghetti-Monster, das auf eine Kollision oder Ablösung vom Bett hindeutet. Das Boot zeigt keine sichtbaren Verformungen.",
-          "error": null
-        },
-        {
-          "image_file": "spaghetti_6.jpg",
-          "category": "spaghetti",
-          "latency_ms": 2590.0,
-          "input_tokens": 1599,
-          "output_tokens": 119,
-          "est_cost_usd": 0.000978,
-          "scores": {
-            "stringing_score": 5,
-            "spaghetti_score": 0,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Leichte Stringing-Fäden an filigranen Strukturen sichtbar, ansonsten sauberer Druck.",
-          "error": null
-        },
-        {
-          "image_file": "warping_1.webp",
-          "category": "warping",
-          "latency_ms": 2752.0,
-          "input_tokens": 1488,
-          "output_tokens": 137,
-          "est_cost_usd": 0.00095,
-          "scores": {
-            "stringing_score": 0,
-            "spaghetti_score": 0,
-            "warping_score": 95,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": true
-          },
-          "observations": "Deutlicher Verzug an den Kanten, insbesondere an den überhängenden Bereichen. Die Ecken heben sich stark vom Druckbett ab.",
-          "error": null
-        },
-        {
-          "image_file": "warping_2.jpg",
-          "category": "warping",
-          "latency_ms": 3590.0,
-          "input_tokens": 1476,
-          "output_tokens": 121,
-          "est_cost_usd": 0.000919,
-          "scores": {
-            "stringing_score": 5,
-            "spaghetti_score": 0,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Der Druck zeigt minimale Stringing-Effekte, aber keine größeren Defekte. Die Schichten wirken gleichmäßig und sauber.",
-          "error": null
-        },
-        {
-          "image_file": "layer_shift_1.jpg",
-          "category": "layer_shift",
-          "latency_ms": 2412.0,
-          "input_tokens": 766,
-          "output_tokens": 129,
-          "est_cost_usd": 0.000576,
-          "scores": {
-            "stringing_score": 5,
-            "spaghetti_score": 0,
-            "warping_score": 10,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Leichte Stringing-Effekte an Überhängen, minimale Randablösung an einer Ecke.",
-          "error": null
-        },
-        {
-          "image_file": "layer_shift_2.png",
-          "category": "layer_shift",
-          "latency_ms": 4205.0,
-          "input_tokens": 1488,
-          "output_tokens": 150,
-          "est_cost_usd": 0.000969,
-          "scores": {
-            "stringing_score": 5,
-            "spaghetti_score": 0,
-            "warping_score": 85,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": true
-          },
-          "observations": "Deutlicher Verzug an den Ecken der weißen und rosafarbenen Bauteile, insbesondere an den markierten Stellen. Einige Teile haben sich vom Druckbett gelöst.",
-          "error": null
-        },
-        {
-          "image_file": "layer_shift_3.jpg",
-          "category": "layer_shift",
-          "latency_ms": 2140.0,
-          "input_tokens": 1120,
-          "output_tokens": 114,
-          "est_cost_usd": 0.000731,
-          "scores": {
-            "stringing_score": 5,
-            "spaghetti_score": 0,
-            "warping_score": 0,
-            "layer_shift_score": 95,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Deutlich sichtbare Layer-Verschiebung in horizontaler Richtung, die Struktur weist stufenartige Versätze auf.",
-          "error": null
-        },
-        {
-          "image_file": "layer_shift_4.jpg",
-          "category": "layer_shift",
-          "latency_ms": 2701.0,
-          "input_tokens": 1077,
-          "output_tokens": 124,
-          "est_cost_usd": 0.000724,
-          "scores": {
-            "stringing_score": 5,
-            "spaghetti_score": 0,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Leichte Stringing-Spuren an den Überhängen, ansonsten sauberer Druck mit guter Schichtung.",
-          "error": null
-        },
-        {
-          "image_file": "clean_1.jpg",
-          "category": "clean",
-          "latency_ms": 2575.0,
-          "input_tokens": 1324,
-          "output_tokens": 127,
-          "est_cost_usd": 0.000852,
-          "scores": {
-            "stringing_score": 5,
-            "spaghetti_score": 0,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Die Drucke zeigen insgesamt eine saubere Oberfläche, jedoch sind leichte Stringing-Spuren zwischen den Bauteilen erkennbar.",
-          "error": null
-        },
-        {
-          "image_file": "clean_2.webp",
-          "category": "clean",
-          "latency_ms": 2783.0,
-          "input_tokens": 2011,
-          "output_tokens": 145,
-          "est_cost_usd": 0.001223,
-          "scores": {
-            "stringing_score": 5,
-            "spaghetti_score": 0,
-            "warping_score": 10,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Leichte Stringing-Spuren zwischen filigranen Strukturen, ansonsten saubere Druckergebnisse. Minimales Warping an einigen Bauteilrändern.",
-          "error": null
-        },
-        {
-          "image_file": "clean_3.jpg",
-          "category": "clean",
-          "latency_ms": 3016.0,
-          "input_tokens": 1525,
-          "output_tokens": 150,
-          "est_cost_usd": 0.000988,
-          "scores": {
-            "stringing_score": 5,
-            "spaghetti_score": 0,
-            "warping_score": 10,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Leichte Stringing-Effekte an Überhängen des Schiffsmodells erkennbar. Minimales Warping an den Ecken des Würfels.",
-          "error": null
-        },
-        {
-          "image_file": "clean_4.jpg",
-          "category": "clean",
-          "latency_ms": 4735.0,
-          "input_tokens": 2094,
-          "output_tokens": 121,
-          "est_cost_usd": 0.001228,
-          "scores": {
-            "stringing_score": 5,
-            "spaghetti_score": 0,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Leichte Stringing-Spuren an den Übergängen der inneren Strukturen, ansonsten sauberer Druck.",
-          "error": null
-        }
-      ]
-    },
-    {
-      "model": "mistral-medium-latest",
-      "accuracy_pct": 59.1,
-      "composite_score": 53.6,
-      "avg_latency_ms": 1361.0,
-      "total_cost_usd": 0.0595,
-      "results": [
-        {
-          "image_file": "stringing_1.jpg",
-          "category": "stringing",
-          "latency_ms": 1013.0,
-          "input_tokens": 940,
-          "output_tokens": 76,
-          "est_cost_usd": 0.00198,
-          "scores": {
-            "stringing_score": 0,
-            "spaghetti_score": 0,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Keine Druckdefekte erkennbar. Alle Teile liegen sauber auf dem Druckbett.",
-          "error": null
-        },
-        {
-          "image_file": "stringing_2.jpg",
-          "category": "stringing",
-          "latency_ms": 878.0,
-          "input_tokens": 724,
-          "output_tokens": 92,
-          "est_cost_usd": 0.001776,
-          "scores": {
-            "stringing_score": 90,
-            "spaghetti_score": 80,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Starkes Stringing und Spaghetti-Effekt zwischen den Stützen. Druckbild stark entartet.",
-          "error": null
-        },
-        {
-          "image_file": "stringing_3.png",
-          "category": "stringing",
-          "latency_ms": 1865.0,
-          "input_tokens": 1488,
-          "output_tokens": 87,
-          "est_cost_usd": 0.002884,
-          "scores": {
-            "stringing_score": 0,
-            "spaghetti_score": 0,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Saubere, gleichmäßige Layer ohne sichtbare Defekte. Druckbild entspricht den Erwartungen.",
-          "error": null
-        },
-        {
-          "image_file": "stringing_4.jpg",
-          "category": "stringing",
-          "latency_ms": 1004.0,
-          "input_tokens": 940,
-          "output_tokens": 85,
-          "est_cost_usd": 0.002047,
-          "scores": {
-            "stringing_score": 90,
-            "spaghetti_score": 0,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Deutliche Stringing-Effekte zwischen den Spitzen. Basis liegt flach auf.",
-          "error": null
-        },
-        {
-          "image_file": "stringing_5.jpg",
-          "category": "stringing",
-          "latency_ms": 837.0,
-          "input_tokens": 940,
-          "output_tokens": 80,
-          "est_cost_usd": 0.00201,
-          "scores": {
-            "stringing_score": 80,
-            "spaghetti_score": 0,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Deutliche Stringing-Effekte zwischen den Strukturen sichtbar.",
-          "error": null
-        },
-        {
-          "image_file": "stringing_6.jpg",
-          "category": "stringing",
-          "latency_ms": 900.0,
-          "input_tokens": 766,
-          "output_tokens": 92,
-          "est_cost_usd": 0.001839,
-          "scores": {
-            "stringing_score": 90,
-            "spaghetti_score": 0,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Starke Stringing-Effekte zwischen den Spitzen der Druckteile. Keine weiteren gravierenden Defekte erkennbar.",
-          "error": null
-        },
-        {
-          "image_file": "spaghetti_1.jpg",
-          "category": "spaghetti",
-          "latency_ms": 1214.0,
-          "input_tokens": 1486,
-          "output_tokens": 83,
-          "est_cost_usd": 0.002851,
-          "scores": {
-            "stringing_score": 0,
-            "spaghetti_score": 100,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": true
-          },
-          "observations": "Komplett entarteter Druck mit Materialklumpen und Nestbildung.",
-          "error": null
-        },
-        {
-          "image_file": "spaghetti_2.jpg",
-          "category": "spaghetti",
-          "latency_ms": 1290.0,
-          "input_tokens": 1686,
-          "output_tokens": 83,
-          "est_cost_usd": 0.003151,
-          "scores": {
-            "stringing_score": 0,
-            "spaghetti_score": 100,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": true
-          },
-          "observations": "Komplett entarteter Druck mit Materialklumpen und Nestbildung.",
-          "error": null
-        },
-        {
-          "image_file": "spaghetti_3.jpg",
-          "category": "spaghetti",
-          "latency_ms": 930.0,
-          "input_tokens": 638,
-          "output_tokens": 70,
-          "est_cost_usd": 0.001482,
-          "scores": {
-            "stringing_score": 0,
-            "spaghetti_score": 0,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Kein Druckobjekt sichtbar, nur leere Druckplatte.",
-          "error": null
-        },
-        {
-          "image_file": "spaghetti_4.jpg",
-          "category": "spaghetti",
-          "latency_ms": 1976.0,
-          "input_tokens": 2606,
-          "output_tokens": 87,
-          "est_cost_usd": 0.004561,
-          "scores": {
-            "stringing_score": 0,
-            "spaghetti_score": 100,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": true
-          },
-          "observations": "Komplett entarteter Druck mit Materialklumpen und vom Bett gelösten Teilen.",
-          "error": null
-        },
-        {
-          "image_file": "spaghetti_5.jpg",
-          "category": "spaghetti",
-          "latency_ms": 2196.0,
-          "input_tokens": 2286,
-          "output_tokens": 87,
-          "est_cost_usd": 0.004082,
-          "scores": {
-            "stringing_score": 0,
-            "spaghetti_score": 100,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": true
-          },
-          "observations": "Komplett entarteter Druck mit Materialklumpen und vom Bett gelösten Teilen.",
-          "error": null
-        },
-        {
-          "image_file": "spaghetti_6.jpg",
-          "category": "spaghetti",
-          "latency_ms": 1326.0,
-          "input_tokens": 1599,
-          "output_tokens": 99,
-          "est_cost_usd": 0.003141,
-          "scores": {
-            "stringing_score": 10,
-            "spaghetti_score": 0,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Sauberer Druck mit minimalen Stringing-Spuren an den Haaren. Keine sichtbaren größeren Defekte.",
-          "error": null
-        },
-        {
-          "image_file": "warping_1.webp",
-          "category": "warping",
-          "latency_ms": 1875.0,
-          "input_tokens": 1488,
-          "output_tokens": 78,
-          "est_cost_usd": 0.002817,
+          "latency_ms": 26921.0,
+          "input_tokens": 2578,
+          "output_tokens": 2403,
+          "est_cost_usd": 0.013551,
           "scores": {
             "stringing_score": 0,
             "spaghetti_score": 0,
@@ -993,16 +1436,18 @@
             "layer_shift_score": 0,
             "bed_adhesion_failure": false
           },
-          "observations": "Starkes Warping an den hochgezogenen Ecken und Rändern.",
+          "observations": "Flaches Bauteil mit stark aufgewölbten Kanten, rote Grundschicht an den Rändern sichtbar. Oberfläche zeigt saubere Schichtlinien ohne Fäden oder Stufen.",
+          "confidence": 1.0,
+          "reasoning": "Schritt 3: Ränder und Ecken heben sich deutlich vom Druckbett ab → Warping/Curling",
           "error": null
         },
         {
           "image_file": "warping_2.jpg",
-          "category": "warping",
-          "latency_ms": 1087.0,
-          "input_tokens": 1476,
-          "output_tokens": 83,
-          "est_cost_usd": 0.002837,
+          "category": "clean",
+          "latency_ms": 18645.0,
+          "input_tokens": 2566,
+          "output_tokens": 1641,
+          "est_cost_usd": 0.010349,
           "scores": {
             "stringing_score": 0,
             "spaghetti_score": 0,
@@ -1010,16 +1455,18 @@
             "layer_shift_score": 0,
             "bed_adhesion_failure": false
           },
-          "observations": "Sauberer Druck mit klaren Konturen und gleichmäßiger Schichtbildung.",
+          "observations": "Erste Schicht eines dreieckigen Objekts mit geometrischem Sternenmuster liegt plan auf dem texturierten Druckbett. Keine Anzeichen von Stringing, Warping oder Layer Shift.",
+          "confidence": 0.95,
+          "reasoning": "Teil haftet fest am Bett, geometrisches Muster ist gewolltes Design (keine Fäden), keine Ablösung oder Stufen sichtbar → sauberer Druck",
           "error": null
         },
         {
           "image_file": "layer_shift_1.jpg",
-          "category": "layer_shift",
-          "latency_ms": 944.0,
-          "input_tokens": 766,
-          "output_tokens": 81,
-          "est_cost_usd": 0.001757,
+          "category": "clean",
+          "latency_ms": 13351.0,
+          "input_tokens": 1856,
+          "output_tokens": 1220,
+          "est_cost_usd": 0.007624,
           "scores": {
             "stringing_score": 0,
             "spaghetti_score": 0,
@@ -1027,16 +1474,18 @@
             "layer_shift_score": 0,
             "bed_adhesion_failure": false
           },
-          "observations": "Sauberer Druck ohne sichtbare Defekte. Oberflächenstruktur gleichmäßig.",
+          "observations": "Sauberer Druck einer Hundefigur mit glatter, glänzender Oberfläche und gleichmäßigen Schichtlinien. Keine sichtbaren Defekte erkennbar.",
+          "confidence": 1.0,
+          "reasoning": "Teil steht fest auf dem Bett, keine Fäden, keine Ablösung, keine Stufen sichtbar → makelloser Druck",
           "error": null
         },
         {
           "image_file": "layer_shift_2.png",
           "category": "layer_shift",
-          "latency_ms": 2401.0,
-          "input_tokens": 1488,
-          "output_tokens": 85,
-          "est_cost_usd": 0.00287,
+          "latency_ms": 36113.0,
+          "input_tokens": 2578,
+          "output_tokens": 4564,
+          "est_cost_usd": 0.022584,
           "scores": {
             "stringing_score": 0,
             "spaghetti_score": 0,
@@ -1044,33 +1493,373 @@
             "layer_shift_score": 0,
             "bed_adhesion_failure": false
           },
-          "observations": "Saubere Drucke ohne sichtbare Defekte. Layer sind gleichmäßig und präzise.",
+          "observations": "Weiße Blöcke und rosa Figuren haften stabil am Druckbett. Die sichtbaren horizontalen Linien sind typische Schichtlinien des FDM-Verfahrens, keine Spinnweben oder Fäden. Keine Ablösung, kein Verzug oder Stufenbildung erkennbar.",
+          "confidence": 0.85,
+          "reasoning": "Alle Teile stehen fest auf dem Bett, keine feinen Filamentfäden zwischen den Strukturen sichtbar, nur normale horizontale Schichtlinien → kein Stringing",
           "error": null
         },
         {
           "image_file": "layer_shift_3.jpg",
           "category": "layer_shift",
-          "latency_ms": 1112.0,
-          "input_tokens": 1120,
-          "output_tokens": 81,
-          "est_cost_usd": 0.002288,
+          "latency_ms": 15533.0,
+          "input_tokens": 2210,
+          "output_tokens": 1758,
+          "est_cost_usd": 0.010354,
           "scores": {
             "stringing_score": 0,
             "spaghetti_score": 0,
             "warping_score": 0,
-            "layer_shift_score": 90,
+            "layer_shift_score": 70,
             "bed_adhesion_failure": false
           },
-          "observations": "Deutliche horizontale Verschiebung der Layer sichtbar. Druckbild zeigt klassische Layer-Shift-Muster.",
+          "observations": "Klare stufenartige Struktur durch horizontal versetzte Druckschichten auf der Oberfläche erkennbar. Objekt ist fest und nicht vom Bett gelöst.",
+          "confidence": 0.95,
+          "reasoning": "Teil steht fest und ist intakt, keine Fäden oder Ablösung, aber deutliche horizontale Stufen/Terrassen durch verschobene Schichten sichtbar → Layer Shift",
           "error": null
         },
         {
           "image_file": "layer_shift_4.jpg",
-          "category": "layer_shift",
-          "latency_ms": 1171.0,
-          "input_tokens": 1077,
-          "output_tokens": 82,
-          "est_cost_usd": 0.00223,
+          "category": "clean",
+          "latency_ms": 16858.0,
+          "input_tokens": 2167,
+          "output_tokens": 1995,
+          "est_cost_usd": 0.011286,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Lila 3D-Benchy steht fest auf der Unterlage. Gleichmäßige, parallele Schichtlinien ohne erkennbare Defekte oder Verzug.",
+          "confidence": 0.95,
+          "reasoning": "Teil steht fest, keine Fäden zwischen Strukturen, keine Ablösung der Ränder, keine stufenartigen Schichtverschiebungen sichtbar → sauberer Druck",
+          "error": null
+        },
+        {
+          "image_file": "clean_1.jpg",
+          "category": "clean",
+          "latency_ms": 15872.0,
+          "input_tokens": 2414,
+          "output_tokens": 1498,
+          "est_cost_usd": 0.009545,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "21 gelbe 3D-Benchy-Boote in drei Reihen angeordnet, alle haften fest am Druckbett. Gleichmäßige Schichtlinien und saubere Oberflächen ohne erkennbare Fehler.",
+          "confidence": 0.95,
+          "reasoning": "Alle 21 Teile stehen fest auf dem Bett, keine Fäden zwischen den Strukturen, keine Ablösung oder Stufen sichtbar → makelloser Druck",
+          "error": null
+        },
+        {
+          "image_file": "clean_2.webp",
+          "category": "clean",
+          "latency_ms": 20171.0,
+          "input_tokens": 3101,
+          "output_tokens": 1871,
+          "est_cost_usd": 0.012038,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Mehrere farbige 3D-Benchy-Boote stehen ordentlich in einer Reihe auf dem Druckbett. Die Oberflächen zeigen gleichmäßige, saubere Schichtlinien ohne sichtbare Defekte.",
+          "confidence": 1.0,
+          "reasoning": "Alle Teile stehen fest auf dem Bett (Schritt 1), keine Fäden zwischen Strukturen (Schritt 2), keine abhebenden Ränder (Schritt 3), keine horizontalen Stufen (Schritt 4) → makelloser Druck",
+          "error": null
+        },
+        {
+          "image_file": "clean_3.jpg",
+          "category": "clean",
+          "latency_ms": 22530.0,
+          "input_tokens": 2615,
+          "output_tokens": 2191,
+          "est_cost_usd": 0.012715,
+          "scores": {
+            "stringing_score": 30,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Drei Objekte (Benchy, Kalibrierwürfel, Figur) haften fest auf der Druckplatte. Am Benchy sind leichte Fäden/Spinnweben an den Überhängen erkennbar.",
+          "confidence": 0.9,
+          "reasoning": "Teile stehen fest auf dem Bett, feine Filamentfäden am linken Bug des Benchys sichtbar → Stringing",
+          "error": null
+        },
+        {
+          "image_file": "clean_4.jpg",
+          "category": "clean",
+          "latency_ms": 13509.0,
+          "input_tokens": 3184,
+          "output_tokens": 1286,
+          "est_cost_usd": 0.009706,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Rotes 3D-Benchy steht fest auf dem Druckbett. Gleichmäßige Schichtlinien, saubere Oberflächen und Kanten ohne sichtbare Defekte.",
+          "confidence": 1.0,
+          "reasoning": "Teil steht fest auf dem Bett, keine Fäden zwischen Strukturen, keine abhebenden Ränder, keine Stufen in den Schichten → makelloser Druck",
+          "error": null
+        }
+      ]
+    },
+    {
+      "model": "zai-glm-5-3-flash",
+      "accuracy_pct": 77.9,
+      "accuracy_corrected_pct": 64.3,
+      "value_score": 79.4,
+      "production_score": 81.2,
+      "reliability_score": 76.3,
+      "critical_defect_score": 100.0,
+      "critical_bonus": 15.0,
+      "composite_score": 80.3,
+      "avg_latency_ms": 7332.0,
+      "total_cost_usd": 0.0215,
+      "cost_per_scan_cents": 0.098,
+      "accuracy_per_dollar": 3627.0,
+      "total_scans": 22,
+      "category_accuracy": {
+        "stringing": 100.0,
+        "spaghetti": 100.0,
+        "clean": 88.9,
+        "warping": 100.0,
+        "layer_shift": 50.0
+      },
+      "category_accuracy_corrected": {
+        "stringing": 100.0,
+        "spaghetti": 100.0,
+        "clean": 44.4,
+        "warping": 100.0,
+        "layer_shift": 50.0
+      },
+      "results": [
+        {
+          "image_file": "stringing_1.jpg",
+          "category": "stringing",
+          "latency_ms": 5293.0,
+          "input_tokens": 2108,
+          "output_tokens": 1024,
+          "est_cost_usd": 0.000828,
+          "scores": {
+            "stringing_score": 50,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Mehrere konische Kalibrier-Türme (185-215°C, grün und rot) mit feinen, durchsichtigen Fäden zwischen den Spitzen, besonders an 215, 200, 190 und 185. Alle Teile haften fest, keine Ablösung, keine Stufen, keine abhebenden Ränder.",
+          "confidence": 0.85,
+          "reasoning": "Alle Temperatur-Türme stehen fest und intakt auf ihren Basen, zwischen den Kegelspitzen sind deutliche feine Filamentfäden/Spinnweben sichtbar → Stringing, kein Spaghetti.",
+          "error": null
+        },
+        {
+          "image_file": "stringing_2.jpg",
+          "category": "stringing",
+          "latency_ms": 3738.0,
+          "input_tokens": 1899,
+          "output_tokens": 708,
+          "est_cost_usd": 0.000639,
+          "scores": {
+            "stringing_score": 92,
+            "spaghetti_score": 5,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Zwei weiße Zylindertürme auf einer flachen Grundplatte, beide fest haftend und gerade. Der Zwischenraum zwischen den Türmen ist vollständig mit feinen Filamentfäden/Spinnweben überzogen, teils diagonal gespannt und herabhängend.",
+          "confidence": 0.9,
+          "reasoning": "Beide Türme stehen fest und intakt auf der Grundplatte, der gesamte Zwischenraum ist mit einem dichten chaotischen Netz aus Filamentfäden überzogen → extremes Stringing, kein Spaghetti.",
+          "error": null
+        },
+        {
+          "image_file": "stringing_3.png",
+          "category": "stringing",
+          "latency_ms": 6099.0,
+          "input_tokens": 2648,
+          "output_tokens": 739,
+          "est_cost_usd": 0.000767,
+          "scores": {
+            "stringing_score": 60,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Zwei zylindrische Türme auf rechteckiger Grundplatte, beide fest haftend und aufrecht. Feine Fäden umwickeln beide Türme, rechts vom rechten Turm ist eine zickzackförmige Spinnwebe sichtbar, zusätzlich Fäden an der Basis und an der Plattenkante.",
+          "confidence": 0.9,
+          "reasoning": "Beide Türme stehen fest und intakt auf der Grundplatte, daher kein Spaghetti, aber deutliche Filamentfäden/Spinnweben an beiden Zylindern und rechts daneben sichtbar → Stringing.",
+          "error": null
+        },
+        {
+          "image_file": "stringing_4.jpg",
+          "category": "stringing",
+          "latency_ms": 3601.0,
+          "input_tokens": 2108,
+          "output_tokens": 661,
+          "est_cost_usd": 0.000647,
+          "scores": {
+            "stringing_score": 78,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Drei konische Türme auf runder Grundplatte stehen stabil und intakt auf dem Druckbett. Zwischen den Spitzen der Kegel spannt ein dichtes, spinnwebartiges Netz aus feinen Filamentfäden mit herabhängenden Strängen.",
+          "confidence": 0.92,
+          "reasoning": "Alle drei Kegel stehen fest auf der Basisplatte, zwischen den Spitzen spannt jedoch ein dichtes Netz aus Filamentfäden → deutliches Stringing, kein Spaghetti.",
+          "error": null
+        },
+        {
+          "image_file": "stringing_5.jpg",
+          "category": "stringing",
+          "latency_ms": 4367.0,
+          "input_tokens": 2108,
+          "output_tokens": 982,
+          "est_cost_usd": 0.000807,
+          "scores": {
+            "stringing_score": 65,
+            "spaghetti_score": 5,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Die käfigartige Kugel steht stabil auf der Druckplatte, die Struktur mit ihren Stegen ist intakt und nicht vom Bett gelöst. Im Inneren zwischen den Stegen haben sich ausgedehnte, feine Filamentfäden/Spinnweben angesammelt.",
+          "confidence": 0.85,
+          "reasoning": "Teil steht fest und intakt auf dem Bett, im Inneren des Käfigs sind zahlreiche spinnwebartige Filamentfäden sichtbar → deutliches Stringing, kein Spaghetti",
+          "error": null
+        },
+        {
+          "image_file": "stringing_6.jpg",
+          "category": "stringing",
+          "latency_ms": 3791.0,
+          "input_tokens": 1937,
+          "output_tokens": 672,
+          "est_cost_usd": 0.000627,
+          "scores": {
+            "stringing_score": 90,
+            "spaghetti_score": 5,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Zwei hohe Konustürme stehen stabil auf der Druckplatte. Zwischen und um die Türme spannen sich zahllose feine Filamentfäden, zusätzlich haften violette Fadenreste/Klümpchen an den Turmflächen (vermutlich Farbwechsel-Reste).",
+          "confidence": 0.9,
+          "reasoning": "Beide konischen Türme stehen fest und intakt auf dem Bett, der Zwischenraum ist jedoch von einem dichten Netz feiner Filamentfäden überzogen → extremes Stringing, kein Spaghetti.",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_1.jpg",
+          "category": "spaghetti",
+          "latency_ms": 3722.0,
+          "input_tokens": 2648,
+          "output_tokens": 575,
+          "est_cost_usd": 0.000685,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 95,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": true
+          },
+          "observations": "Auf dem Druckbett liegt ein ausgedehntes, verheddertes Filamentnest (weißes Spaghetti-Chaos). Nur flache Grundplatten-/First-Layer-Reste sind noch am Bett haftend erkennbar, die eigentliche Druckstruktur ist kollabiert.",
+          "confidence": 0.9,
+          "reasoning": "Schritt 1 fehlgeschlagen: Das Teil ist nicht mehr als Struktur erkennbar – ein chaotisches Filamentnest liegt auf dem Bett, nur flache Reste haften noch → klassischer Spaghetti-Fail mit Ablösung.",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_2.jpg",
+          "category": "spaghetti",
+          "latency_ms": 3333.0,
+          "input_tokens": 2843,
+          "output_tokens": 607,
+          "est_cost_usd": 0.00073,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 95,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": true
+          },
+          "observations": "Auf der Druckplatte liegt ein chaotisches, verheddertes Nest aus orangefilament ohne erkennbare Druckstruktur. Ein einzelner Filamentfaden hängt noch vom Druckkopf herab, das Teil hat sich vollständig vom Bett gelöst.",
+          "confidence": 0.95,
+          "reasoning": "Schritt 1 fehlgeschlagen: Kein stehendes Teil erkennbar, stattdessen ein chaotisches Filamentnest auf dem Bett → klassischer Spaghetti-Fail mit Ablösung.",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_3.jpg",
+          "category": "clean",
+          "latency_ms": 4303.0,
+          "input_tokens": 1816,
+          "output_tokens": 857,
+          "est_cost_usd": 0.000701,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 5,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Das Kammerbild ist unscharf (Bewegungsunschärfe am Druckkopf), das texturierte Druckbett wirkt leer. Es sind keine Filamentfäden, kein Spaghetti-Nest und keine abgelösten Teile sichtbar.",
+          "confidence": 0.4,
+          "reasoning": "Die Druckbettfläche erscheint leer, ohne sichtbares Teil, Materialnest oder Fäden – keine Defekte erkennbar, daher niedrige Scores.",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_4.jpg",
+          "category": "spaghetti",
+          "latency_ms": 32539.0,
+          "input_tokens": 3740,
+          "output_tokens": 7536,
+          "est_cost_usd": 0.004329,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 92,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": true
+          },
+          "observations": "Ein zylindrisches Teil mit Rautentextur steht noch auf dem Bett, sein oberer Abschluss ist jedoch ein chaotisches Filamentnest. Das gesamte Druckbett und der Rand sind mit Spaghetti-Knäueln überzogen, die teilweise darüber hinausragen.",
+          "confidence": 0.85,
+          "reasoning": "Schritt 1: Das gesamte Druckbett ist von einem kompletten, verhedderten Filamentnest mit Knoten überzogen und der Druck oberhalb des Zylinders entartet – klassischer Spaghetti-Fail trotz stehender Reststruktur.",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_5.jpg",
+          "category": "spaghetti",
+          "latency_ms": 12236.0,
+          "input_tokens": 9685,
+          "output_tokens": 770,
+          "est_cost_usd": 0.001838,
+          "scores": {
+            "stringing_score": 25,
+            "spaghetti_score": 95,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": true
+          },
+          "observations": "Ein ausgedehntes, verheddertes Nest aus blauem Filament dominiert das Bild – klassischer Spaghetti-Fail mit Ablösung vom Druckbett. Der kleine Benchy rechts ist intakt, auf der ovalen Grundplatte liegt jedoch ein Klumpen aus verfahrenem Material.",
+          "confidence": 0.9,
+          "reasoning": "Schritt 1 schlägt fehl: Ein großes chaotisches Filamentnest (Spaghetti) neben einem intakten Benchy zeigt kompletten Druckabbruch durch Ablösung vom Bett.",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_6.jpg",
+          "category": "clean",
+          "latency_ms": 4278.0,
+          "input_tokens": 2748,
+          "output_tokens": 655,
+          "est_cost_usd": 0.00074,
           "scores": {
             "stringing_score": 5,
             "spaghetti_score": 0,
@@ -1078,16 +1867,132 @@
             "layer_shift_score": 0,
             "bed_adhesion_failure": false
           },
-          "observations": "Sauberer Druck mit minimalen Stringing-Spuren an der Oberseite. Keine sichtbaren schweren Defekte.",
+          "observations": "Weiße Anime-Figur mit runder Basis steht stabil auf dem Druckbett, alle Strukturen (Haare, Finger, Mantel) sind intakt und geometrisch korrekt. Die dünnen Haarsträhnen und Finger sind Design-Features, keine Druckfehler.",
+          "confidence": 0.85,
+          "reasoning": "Die Figur steht fest und intakt auf ihrer runden Basis, keine Fäden, Ablösung oder Stufen sichtbar → sauberer Druck (Schritt 1-4 alle unauffällig).",
+          "error": null
+        },
+        {
+          "image_file": "warping_1.webp",
+          "category": "warping",
+          "latency_ms": 5349.0,
+          "input_tokens": 2648,
+          "output_tokens": 965,
+          "est_cost_usd": 0.00088,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 80,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": true
+          },
+          "observations": "Die Vorderkanten und Ecken des flachen Teils curlen stark nach oben und haben Kontakt zum Bett verloren; die orangefarbenen First-Layer sind sichtbar freigelegt. Keine Fäden, kein Materialnest und keine Stufen erkennbar.",
+          "confidence": 0.9,
+          "reasoning": "Teil liegt auf dem Bett, aber Ecken und Ränder heben sich extrem stark ab → klassisches Warping/Curling",
+          "error": null
+        },
+        {
+          "image_file": "warping_2.jpg",
+          "category": "clean",
+          "latency_ms": 3557.0,
+          "input_tokens": 2637,
+          "output_tokens": 566,
+          "est_cost_usd": 0.000679,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Ein flaches, goldenes Teil mit geometrischem Relief liegt vollständig plan auf der PEI-Druckplatte, der Druckkopf ist oben im Bild sichtbar. Keine Filamentfäden, kein Materialnest und keine Versätze erkennbar; glänzende Reflexionen sind Beleuchtungseffekte.",
+          "confidence": 0.85,
+          "reasoning": "Das flache geometrische Teil liegt eben und fest auf dem Druckbett, ohne Fäden, Ablösung, abhebende Ränder oder Stufen → sauberer Druck.",
+          "error": null
+        },
+        {
+          "image_file": "layer_shift_1.jpg",
+          "category": "clean",
+          "latency_ms": 4370.0,
+          "input_tokens": 1937,
+          "output_tokens": 912,
+          "est_cost_usd": 0.000747,
+          "scores": {
+            "stringing_score": 60,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Die Figur ist vollständig und ohne Ablösung oder Versatz gedruckt, die Silhouette ist korrekt. Die gesamte Oberfläche ist jedoch stark aufgeraut mit feinen Fäden und fasriger Textur, besonders an Kopf, Rücken und den hinteren Strukturen.",
+          "confidence": 0.75,
+          "reasoning": "Die Hundefigur steht fest und intakt auf dem Bett, zeigt aber über die gesamte Oberfläche ausgeprägte faserige/filamentartige Oberflächenartefakte (haarige Struktur, feine Fäden), die auf starkes Stringing bzw. feuchtes Filament hindeuten.",
+          "error": null
+        },
+        {
+          "image_file": "layer_shift_2.png",
+          "category": "layer_shift",
+          "latency_ms": 8859.0,
+          "input_tokens": 2648,
+          "output_tokens": 1737,
+          "est_cost_usd": 0.001266,
+          "scores": {
+            "stringing_score": 5,
+            "spaghetti_score": 0,
+            "warping_score": 20,
+            "layer_shift_score": 45,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Die pinken Figuren stehen stabil und intakt auf der Platte, zeigen aber starke horizontale Bandbildung an Kopf und Körper sowie einen verformten, verschmolzen wirkenden Arm. Das weiße Bauteil und das flache pinkene Teil weisen Unregelmäßigkeiten im unteren Bereich auf.",
+          "confidence": 0.6,
+          "reasoning": "Alle Teile stehen fest auf dem Bett ohne Fäden oder Materialnest, jedoch zeigen die Figuren deutliche horizontale Schichtbänder/Stufen und einen verformten Arm → Layer-Shift/Qualitätsdefekte dominieren.",
+          "error": null
+        },
+        {
+          "image_file": "layer_shift_3.jpg",
+          "category": "layer_shift",
+          "latency_ms": 4712.0,
+          "input_tokens": 2288,
+          "output_tokens": 964,
+          "est_cost_usd": 0.000825,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 60,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Zwei Objekte (Büsten) mit deutlich sichtbaren horizontalen Schichtversätzen und unregelmäßigen Bändern im oberen Bereich. Keine Filamentfäden, kein Materialnest und keine Ablösung vom Bett erkennbar.",
+          "confidence": 0.75,
+          "reasoning": "Teile sind intakt und formstabil, aber es sind deutliche horizontale Schichtversätze/Bänder sichtbar → Layer Shift",
+          "error": null
+        },
+        {
+          "image_file": "layer_shift_4.jpg",
+          "category": "clean",
+          "latency_ms": 4624.0,
+          "input_tokens": 2244,
+          "output_tokens": 849,
+          "est_cost_usd": 0.000761,
+          "scores": {
+            "stringing_score": 5,
+            "spaghetti_score": 0,
+            "warping_score": 10,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Das lila Benchy-Boot steht stabil auf der Druckplatte, Schichtlinien und Kabine sind intakt ohne Fäden oder Stufen. Am unteren Rumpfrand ist eine leichte unregelmäßige Kante sichtbar, die auf minimalen Elefantenfuß oder erste-Layer-Unsauberkeit hindeutet.",
+          "confidence": 0.85,
+          "reasoning": "Schritt 1: Das Benchy-Boot steht fest und intakt auf dem Bett, daher keine Spaghetti-Wertung; lediglich leichte Randunebenheiten an der Rumpfbasis deuten auf minimales Warping/Elefantenfuß hin.",
           "error": null
         },
         {
           "image_file": "clean_1.jpg",
           "category": "clean",
-          "latency_ms": 1125.0,
-          "input_tokens": 1324,
-          "output_tokens": 87,
-          "est_cost_usd": 0.002638,
+          "latency_ms": 2857.0,
+          "input_tokens": 2489,
+          "output_tokens": 524,
+          "est_cost_usd": 0.000635,
           "scores": {
             "stringing_score": 0,
             "spaghetti_score": 0,
@@ -1095,16 +2000,18 @@
             "layer_shift_score": 0,
             "bed_adhesion_failure": false
           },
-          "observations": "Alle Drucke liegen sauber und gleichmäßig auf dem Druckbett. Keine sichtbaren Defekte.",
+          "observations": "21 gelbe 3DBenchy-Boote stehen gleichmäßig und aufrecht in Reihen auf der Druckplatte. Schichtlinien sind sauber, keine Filamentfäden, keine abhebenden Ränder und keine horizontalen Versätze erkennbar.",
+          "confidence": 0.95,
+          "reasoning": "Alle 21 Benchy-Boote stehen fest und intakt auf dem Bett, keine Fäden, Ablösungen oder Stufen sichtbar → sauberer Druck (Schritt 1-4 ohne Befund).",
           "error": null
         },
         {
           "image_file": "clean_2.webp",
           "category": "clean",
-          "latency_ms": 1415.0,
-          "input_tokens": 2011,
-          "output_tokens": 78,
-          "est_cost_usd": 0.003602,
+          "latency_ms": 3989.0,
+          "input_tokens": 3170,
+          "output_tokens": 491,
+          "est_cost_usd": 0.000721,
           "scores": {
             "stringing_score": 0,
             "spaghetti_score": 0,
@@ -1112,16 +2019,449 @@
             "layer_shift_score": 0,
             "bed_adhesion_failure": false
           },
-          "observations": "Alle Drucke liegen sauber und präzise auf dem Bett. Keine sichtbaren Defekte.",
+          "observations": "Zahlreiche 3D-Benchy-Boote in verschiedenen Farben stehen ordentlich im Kreis angeordnet auf der Druckplatte. Gleichmäßige Schichtlinien, keine Filamentfäden, keine abhebenden Ränder und keine horizontalen Versätze erkennbar.",
+          "confidence": 0.9,
+          "reasoning": "Alle Benchy-Boote stehen fest und intakt auf der Oberfläche, keine Fäden, Ablösungen oder Stufen sichtbar → sauberer Druck (Schritt 1-4 alle negativ).",
           "error": null
         },
         {
           "image_file": "clean_3.jpg",
           "category": "clean",
-          "latency_ms": 1332.0,
-          "input_tokens": 1525,
-          "output_tokens": 79,
-          "est_cost_usd": 0.00288,
+          "latency_ms": 4926.0,
+          "input_tokens": 2684,
+          "output_tokens": 694,
+          "est_cost_usd": 0.00075,
+          "scores": {
+            "stringing_score": 5,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Benchy-Boot, Y-Kalibrierwürfel und kleine Figur stehen stabil und intakt auf der Druckplatte. Schichtlinien sind gleichmäßig, keine Spinnweben, kein Warping und kein Layer Shift erkennbar.",
+          "confidence": 0.85,
+          "reasoning": "Alle drei Teile (Benchy, Kalibrierwürfel, Figur) stehen fest auf dem Bett ohne Ablösung, Fäden, abgehobene Ränder oder Stufen → sauberer Druck.",
+          "error": null
+        },
+        {
+          "image_file": "clean_4.jpg",
+          "category": "clean",
+          "latency_ms": 30764.0,
+          "input_tokens": 4304,
+          "output_tokens": 472,
+          "est_cost_usd": 0.000882,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Rotes Benchly-Boot steht stabil auf der Druckplatte, Schichtlinien gleichmäßig und sauber. Keine Filamentfäden, keine Ablösung, kein Warping und kein Layer Shift erkennbar.",
+          "confidence": 0.92,
+          "reasoning": "Schritt 1: Der Benchly steht fest und intakt auf dem Bett; Schritte 2-4 ergaben keine Fäden, kein Abheben der Ränder und keine Stufen → sauberer Druck.",
+          "error": null
+        }
+      ]
+    },
+    {
+      "model": "mistral-large-latest",
+      "accuracy_pct": 74.8,
+      "accuracy_corrected_pct": 61.5,
+      "value_score": 79.8,
+      "production_score": 83.4,
+      "reliability_score": 69.3,
+      "critical_defect_score": 70.0,
+      "critical_bonus": 0.0,
+      "composite_score": 81.6,
+      "avg_latency_ms": 3322.0,
+      "total_cost_usd": 0.0345,
+      "cost_per_scan_cents": 0.157,
+      "accuracy_per_dollar": 2165.8,
+      "total_scans": 22,
+      "category_accuracy": {
+        "stringing": 33.3,
+        "spaghetti": 100.0,
+        "clean": 100.0,
+        "warping": 100.0,
+        "layer_shift": 50.0
+      },
+      "category_accuracy_corrected": {
+        "stringing": 50.0,
+        "spaghetti": 100.0,
+        "clean": 55.6,
+        "warping": 100.0,
+        "layer_shift": 50.0
+      },
+      "results": [
+        {
+          "image_file": "stringing_1.jpg",
+          "category": "stringing",
+          "latency_ms": 2759.0,
+          "input_tokens": 2164,
+          "output_tokens": 152,
+          "est_cost_usd": 0.00131,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Mehrere konische Temperatur-Kalibrierungstürme in Grün und Rot stehen fest auf dem Druckbett. Keine sichtbaren Defekte wie Fäden, Warping oder Layer Shift.",
+          "confidence": 0.95,
+          "reasoning": "Teile stehen fest auf dem Bett, keine Fäden, Ablösungen oder Schichtversätze sichtbar → makelloser Druck",
+          "error": null
+        },
+        {
+          "image_file": "stringing_2.jpg",
+          "category": "stringing",
+          "latency_ms": 2266.0,
+          "input_tokens": 1948,
+          "output_tokens": 138,
+          "est_cost_usd": 0.001181,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Das Objekt haftet stabil auf dem Druckbett. Die Schichten sind gleichmäßig und ohne sichtbare Defekte.",
+          "confidence": 0.95,
+          "reasoning": "Teil steht fest auf dem Bett, keine Fäden, keine abgelösten Ränder oder Schichtversätze sichtbar → makelloser Druck.",
+          "error": null
+        },
+        {
+          "image_file": "stringing_3.png",
+          "category": "stringing",
+          "latency_ms": 4204.0,
+          "input_tokens": 2712,
+          "output_tokens": 179,
+          "est_cost_usd": 0.001625,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 70,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Beide zylindrischen Teile haften fest am Druckbett. Die Schichten sind jedoch horizontal gegeneinander versetzt, was zu einer stufenartigen Struktur führt.",
+          "confidence": 0.95,
+          "reasoning": "Teile stehen fest auf dem Bett, aber deutliche horizontale Stufen/Terrassen in den Schichten sichtbar → Layer Shift",
+          "error": null
+        },
+        {
+          "image_file": "stringing_4.jpg",
+          "category": "stringing",
+          "latency_ms": 3005.0,
+          "input_tokens": 2164,
+          "output_tokens": 187,
+          "est_cost_usd": 0.001362,
+          "scores": {
+            "stringing_score": 85,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Das gedruckte Objekt haftet stabil auf der Druckplatte. Zwischen den vertikalen Säulen und Öffnungen sind zahlreiche feine Filamentfäden erkennbar.",
+          "confidence": 0.98,
+          "reasoning": "Teil steht fest auf dem Bett, aber extrem viele feine Filamentfäden zwischen den Säulen und Strukturen sichtbar → schweres Stringing",
+          "error": null
+        },
+        {
+          "image_file": "stringing_5.jpg",
+          "category": "stringing",
+          "latency_ms": 3317.0,
+          "input_tokens": 2164,
+          "output_tokens": 176,
+          "est_cost_usd": 0.001346,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 15,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Das gedruckte Objekt haftet stabil auf dem Druckbett. An den äußeren Ecken sind minimale Anzeichen von Warping erkennbar.",
+          "confidence": 0.95,
+          "reasoning": "Teil steht fest auf dem Bett, leichte Randablösung an den Ecken sichtbar → minimales Warping",
+          "error": null
+        },
+        {
+          "image_file": "stringing_6.jpg",
+          "category": "stringing",
+          "latency_ms": 3016.0,
+          "input_tokens": 1990,
+          "output_tokens": 195,
+          "est_cost_usd": 0.001288,
+          "scores": {
+            "stringing_score": 85,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Zwei hohe, zylindrische Türme haften fest auf dem Druckbett. Zwischen und an den Türmen sind zahlreiche, dichte Filamentfäden erkennbar.",
+          "confidence": 0.98,
+          "reasoning": "Teile stehen fest auf dem Bett, aber extrem viele feine Filamentfäden zwischen und an den Türmen sichtbar → schweres Stringing",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_1.jpg",
+          "category": "spaghetti",
+          "latency_ms": 3853.0,
+          "input_tokens": 2710,
+          "output_tokens": 203,
+          "est_cost_usd": 0.001659,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 95,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": true
+          },
+          "observations": "Das gedruckte Objekt ist nicht mehr als zusammenhängende Struktur erkennbar und liegt als verheddertes Filamentknäuel auf dem Druckbett. Es gibt keine stehenden oder intakten Teile.",
+          "confidence": 1.0,
+          "reasoning": "Teil ist vollständig vom Bett gelöst und bildet ein chaotisches Filamentnest → Spaghetti-Fall (Schritt 1: NEIN, Sprung zu Schritt 5)",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_2.jpg",
+          "category": "spaghetti",
+          "latency_ms": 3574.0,
+          "input_tokens": 2910,
+          "output_tokens": 203,
+          "est_cost_usd": 0.001759,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 95,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": true
+          },
+          "observations": "Das gedruckte Objekt ist komplett vom Druckbett abgelöst und zu einem verhedderten Filamentklumpen deformiert. Keine erkennbare Struktur oder Haftung am Bett.",
+          "confidence": 0.98,
+          "reasoning": "Teil ist vollständig vom Bett gelöst und bildet ein chaotisches Filamentnest → Spaghetti-Fall (Schritt 1: NEIN, Teil steht nicht fest)",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_3.jpg",
+          "category": "clean",
+          "latency_ms": 2473.0,
+          "input_tokens": 1862,
+          "output_tokens": 157,
+          "est_cost_usd": 0.001167,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Das Bild zeigt nur das leere Druckbett ohne erkennbare Druckteile oder Filamentreste. Es sind keine Defekte wie Stringing, Warping oder Layer Shift sichtbar.",
+          "confidence": 0.9,
+          "reasoning": "Kein stehendes Teil erkennbar, aber auch keine Ablösung, Fäden oder Defekte sichtbar → Schritt 1 und 2 nicht anwendbar, alle Scores bleiben bei 0.",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_4.jpg",
+          "category": "spaghetti",
+          "latency_ms": 3390.0,
+          "input_tokens": 3830,
+          "output_tokens": 191,
+          "est_cost_usd": 0.002201,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 95,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": true
+          },
+          "observations": "Das gedruckte Objekt hat sich komplett vom Druckbett gelöst und ist zu einem unstrukturierten Filamentknäuel verformt. Es sind keine stehenden oder intakten Strukturen erkennbar.",
+          "confidence": 0.98,
+          "reasoning": "Teil ist vollständig vom Bett gelöst und bildet ein chaotisches Filamentnest → Spaghetti-Fall",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_5.jpg",
+          "category": "spaghetti",
+          "latency_ms": 4520.0,
+          "input_tokens": 3510,
+          "output_tokens": 193,
+          "est_cost_usd": 0.002044,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 95,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": true
+          },
+          "observations": "Das blaue Objekt links ist komplett vom Druckbett abgelöst und zu einem unstrukturierten Filamentklumpen verformt. Das Boot und die Grundplatte rechts stehen noch, sind aber nicht betroffen.",
+          "confidence": 1.0,
+          "reasoning": "Teil ist vollständig vom Bett gelöst und bildet ein chaotisches Filamentnest → Spaghetti",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_6.jpg",
+          "category": "clean",
+          "latency_ms": 3843.0,
+          "input_tokens": 2823,
+          "output_tokens": 144,
+          "est_cost_usd": 0.001628,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Das Modell haftet stabil auf der Druckplatte. Es sind keine Filamentfäden, abgelösten Ränder oder Schichtfehler erkennbar.",
+          "confidence": 0.95,
+          "reasoning": "Teil steht fest auf dem Bett, keine sichtbaren Fäden, Ablösungen oder Schichtversätze → makelloser Druck",
+          "error": null
+        },
+        {
+          "image_file": "warping_1.webp",
+          "category": "warping",
+          "latency_ms": 3253.0,
+          "input_tokens": 2712,
+          "output_tokens": 191,
+          "est_cost_usd": 0.001643,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 75,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Die Kanten des Teils, insbesondere die dünnen, überhängenden Bereiche, heben sich deutlich vom Druckbett ab. Keine Fäden oder Schichtversätze erkennbar.",
+          "confidence": 0.98,
+          "reasoning": "Teil steht fest auf dem Bett, aber deutliche Randablösung (Curling/Warping) an den überhängenden Kanten sichtbar → Warping",
+          "error": null
+        },
+        {
+          "image_file": "warping_2.jpg",
+          "category": "clean",
+          "latency_ms": 3124.0,
+          "input_tokens": 2700,
+          "output_tokens": 154,
+          "est_cost_usd": 0.001581,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Das gedruckte Objekt (gitterartige Struktur) haftet fest auf dem Druckbett und zeigt gleichmäßige Schichten. Keine sichtbaren Defekte wie Stringing, Warping oder Layer Shift.",
+          "confidence": 0.95,
+          "reasoning": "Teil steht fest auf dem Bett, keine Fäden, Ablösungen oder Schichtversätze sichtbar → makelloser Druck",
+          "error": null
+        },
+        {
+          "image_file": "layer_shift_1.jpg",
+          "category": "clean",
+          "latency_ms": 3255.0,
+          "input_tokens": 1990,
+          "output_tokens": 182,
+          "est_cost_usd": 0.001268,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 15,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Das Modell haftet stabil auf dem Druckbett. An den äußeren Kanten sind minimale Anzeichen von Warping erkennbar, aber keine strukturellen Defekte.",
+          "confidence": 0.95,
+          "reasoning": "Teil steht fest auf dem Bett, minimale Anzeichen von Warping an den Rändern (leichtes Abheben der Ecken), keine Fäden oder Schichtversätze sichtbar.",
+          "error": null
+        },
+        {
+          "image_file": "layer_shift_2.png",
+          "category": "layer_shift",
+          "latency_ms": 3855.0,
+          "input_tokens": 2712,
+          "output_tokens": 199,
+          "est_cost_usd": 0.001654,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 30,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Die Schachfiguren (Turm und Bauer) haften fest am Druckbett. An den markierten Kanten ist ein leichtes Abheben der unteren Schichten erkennbar.",
+          "confidence": 0.95,
+          "reasoning": "Teile stehen fest auf dem Bett, aber an den markierten Stellen heben sich Ränder leicht ab (Warping), keine Fäden oder Layer-Shifts sichtbar.",
+          "error": null
+        },
+        {
+          "image_file": "layer_shift_3.jpg",
+          "category": "layer_shift",
+          "latency_ms": 3120.0,
+          "input_tokens": 2344,
+          "output_tokens": 191,
+          "est_cost_usd": 0.001458,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 75,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Die Schichten des gedruckten Teils sind horizontal gegeneinander versetzt, was zu einer stufenartigen Struktur führt. Das Teil steht fest auf dem Druckbett.",
+          "confidence": 0.95,
+          "reasoning": "Deutliche horizontale Stufen/Terrassen in den Schichten sichtbar → Layer Shift (SCHRITT 4)",
+          "error": null
+        },
+        {
+          "image_file": "layer_shift_4.jpg",
+          "category": "clean",
+          "latency_ms": 2343.0,
+          "input_tokens": 2301,
+          "output_tokens": 137,
+          "est_cost_usd": 0.001356,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Das Objekt haftet stabil auf dem Druckbett. Schichtlinien sind gleichmäßig und sauber ausgeführt.",
+          "confidence": 0.98,
+          "reasoning": "Teil steht fest auf dem Druckbett, keine sichtbaren Fäden, Ablösungen, Warping oder Layer Shifts → makelloser Druck",
+          "error": null
+        },
+        {
+          "image_file": "clean_1.jpg",
+          "category": "clean",
+          "latency_ms": 2696.0,
+          "input_tokens": 2548,
+          "output_tokens": 155,
+          "est_cost_usd": 0.001507,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Alle 21 3DBenchy-Boote haften fest auf dem Druckbett und zeigen gleichmäßige Schichtlinien. Keine sichtbaren Defekte wie Fäden, Warping oder Layer Shifts.",
+          "confidence": 1.0,
+          "reasoning": "Teile stehen fest auf dem Bett, keine Fäden, Ablösungen oder Schichtversätze sichtbar → makelloser Druck",
+          "error": null
+        },
+        {
+          "image_file": "clean_2.webp",
+          "category": "clean",
+          "latency_ms": 4045.0,
+          "input_tokens": 3235,
+          "output_tokens": 219,
+          "est_cost_usd": 0.001946,
           "scores": {
             "stringing_score": 10,
             "spaghetti_score": 0,
@@ -1129,16 +2469,37 @@
             "layer_shift_score": 0,
             "bed_adhesion_failure": false
           },
-          "observations": "Saubere Oberflächen, keine sichtbaren Druckfehler.",
+          "observations": "Alle Teile haften fest auf dem Druckbett. Es sind keine Filamentfäden, Ablösungen oder Schichtversätze sichtbar.",
+          "confidence": 0.95,
+          "reasoning": "Teile stehen fest auf dem Bett, keine sichtbaren Filamentfäden oder Spinnweben zwischen den Strukturen, keine Ablösung oder Warping erkennbar → makelloser Druck mit minimalen kosmetischen Unregelmäßigkeiten.",
+          "error": null
+        },
+        {
+          "image_file": "clean_3.jpg",
+          "category": "clean",
+          "latency_ms": 3885.0,
+          "input_tokens": 2749,
+          "output_tokens": 203,
+          "est_cost_usd": 0.001679,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 15,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Alle Objekte haften stabil auf dem Druckbett. Am Boot sind leichte Anzeichen von Warping an den Rändern sichtbar, jedoch keine kritische Ablösung.",
+          "confidence": 0.95,
+          "reasoning": "Teile stehen fest auf dem Bett, keine Fäden oder Spinnweben sichtbar, minimale Randablösung am Boot (Warping) erkennbar",
           "error": null
         },
         {
           "image_file": "clean_4.jpg",
           "category": "clean",
-          "latency_ms": 2059.0,
-          "input_tokens": 2094,
-          "output_tokens": 84,
-          "est_cost_usd": 0.003771,
+          "latency_ms": 3289.0,
+          "input_tokens": 3318,
+          "output_tokens": 149,
+          "est_cost_usd": 0.001883,
           "scores": {
             "stringing_score": 0,
             "spaghetti_score": 0,
@@ -1146,110 +2507,595 @@
             "layer_shift_score": 0,
             "bed_adhesion_failure": false
           },
-          "observations": "Sauberer Druck ohne sichtbare Defekte. Layer sind gleichmäßig und präzise.",
+          "observations": "Das Bauteil haftet stabil auf dem Druckbett. Es sind keine Filamentfäden, abgelösten Ränder oder Schichtfehler erkennbar.",
+          "confidence": 0.98,
+          "reasoning": "Teil steht fest auf dem Druckbett, keine sichtbaren Fäden, Ablösungen oder Schichtversätze → makelloser Druck",
+          "error": null
+        }
+      ]
+    },
+    {
+      "model": "mistral-medium-latest",
+      "accuracy_pct": 86.4,
+      "accuracy_corrected_pct": 86.4,
+      "value_score": 88.2,
+      "production_score": 89.3,
+      "reliability_score": 77.6,
+      "critical_defect_score": 80.0,
+      "critical_bonus": 0.0,
+      "composite_score": 88.8,
+      "avg_latency_ms": 1735.0,
+      "total_cost_usd": 0.1061,
+      "cost_per_scan_cents": 0.482,
+      "accuracy_per_dollar": 813.6,
+      "total_scans": 22,
+      "category_accuracy": {
+        "stringing": 66.7,
+        "spaghetti": 100.0,
+        "clean": 100.0,
+        "warping": 100.0,
+        "layer_shift": 50.0
+      },
+      "category_accuracy_corrected": {
+        "stringing": 66.7,
+        "spaghetti": 100.0,
+        "clean": 100.0,
+        "warping": 100.0,
+        "layer_shift": 50.0
+      },
+      "results": [
+        {
+          "image_file": "stringing_1.jpg",
+          "category": "stringing",
+          "latency_ms": 1357.0,
+          "input_tokens": 2164,
+          "output_tokens": 132,
+          "est_cost_usd": 0.004236,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Mehrere grüne und eine rote Temperatur-Turm-Struktur haften fest auf dem Bett. Keine Fäden, Stufen oder Ablösungen erkennbar.",
+          "confidence": 1.0,
+          "reasoning": "Alle Teile stehen fest auf dem Druckbett, keine Defekte sichtbar.",
+          "error": null
+        },
+        {
+          "image_file": "stringing_2.jpg",
+          "category": "stringing",
+          "latency_ms": 1183.0,
+          "input_tokens": 1948,
+          "output_tokens": 125,
+          "est_cost_usd": 0.00386,
+          "scores": {
+            "stringing_score": 90,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Zwei Säulen haften fest auf dem Bett, Zwischenraum mit dichtem Filamentfadennetz überzogen.",
+          "confidence": 1.0,
+          "reasoning": "Teil steht fest, extreme Fäden zwischen den Säulen sichtbar → Stringing",
+          "error": null
+        },
+        {
+          "image_file": "stringing_3.png",
+          "category": "stringing",
+          "latency_ms": 2477.0,
+          "input_tokens": 2712,
+          "output_tokens": 137,
+          "est_cost_usd": 0.005096,
+          "scores": {
+            "stringing_score": 90,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Zwei zylindrische Türme haften fest am Bett. Dichtes Netz aus feinen Filamentfäden zwischen und um die Türme.",
+          "confidence": 1.0,
+          "reasoning": "Teile stehen fest, extreme Filamentfäden zwischen und um die Türme sichtbar → Stringing",
+          "error": null
+        },
+        {
+          "image_file": "stringing_4.jpg",
+          "category": "stringing",
+          "latency_ms": 1598.0,
+          "input_tokens": 2164,
+          "output_tokens": 130,
+          "est_cost_usd": 0.004221,
+          "scores": {
+            "stringing_score": 85,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Dichte, chaotische Filamentfäden zwischen den drei konischen Türmen. Alle Türme haften fest auf der Grundplatte.",
+          "confidence": 1.0,
+          "reasoning": "Teil steht fest, extreme Fäden zwischen den Spitzen sichtbar → Stringing",
+          "error": null
+        },
+        {
+          "image_file": "stringing_5.jpg",
+          "category": "stringing",
+          "latency_ms": 1179.0,
+          "input_tokens": 2164,
+          "output_tokens": 115,
+          "est_cost_usd": 0.004109,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Sauberer Druck mit gleichmäßigen Schichten, keine Fäden oder Ablösungen.",
+          "confidence": 1.0,
+          "reasoning": "Teil steht fest auf dem Bett, keine Defekte erkennbar",
+          "error": null
+        },
+        {
+          "image_file": "stringing_6.jpg",
+          "category": "stringing",
+          "latency_ms": 1426.0,
+          "input_tokens": 1990,
+          "output_tokens": 132,
+          "est_cost_usd": 0.003975,
+          "scores": {
+            "stringing_score": 90,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Zwei konische Türme haften fest am Bett, dichte Spinnweben aus Filamentfäden verbinden die Strukturen.",
+          "confidence": 1.0,
+          "reasoning": "Teile stehen fest, extreme Filamentfäden zwischen den Türmen sichtbar → Stringing",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_1.jpg",
+          "category": "spaghetti",
+          "latency_ms": 2497.0,
+          "input_tokens": 2710,
+          "output_tokens": 126,
+          "est_cost_usd": 0.00501,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 95,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": true
+          },
+          "observations": "Komplett abgelöste Druckteile mit verheddertem Filamentnest auf der Druckplatte.",
+          "confidence": 1.0,
+          "reasoning": "Teile sind vollständig vom Bett gelöst, chaotisches Filamentnest sichtbar → Spaghetti",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_2.jpg",
+          "category": "spaghetti",
+          "latency_ms": 2062.0,
+          "input_tokens": 2910,
+          "output_tokens": 126,
+          "est_cost_usd": 0.00531,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 95,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": true
+          },
+          "observations": "Komplett abgelöste, verhedderte Filamentstruktur ohne erkennbare Form auf dem Druckbett.",
+          "confidence": 1.0,
+          "reasoning": "Teil vollständig vom Bett gelöst, chaotisches Filamentnest sichtbar → Spaghetti",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_3.jpg",
+          "category": "clean",
+          "latency_ms": 1163.0,
+          "input_tokens": 1862,
+          "output_tokens": 110,
+          "est_cost_usd": 0.003618,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Leeres Druckbett, kein gedrucktes Teil erkennbar. Druckkopf in Position.",
+          "confidence": 1.0,
+          "reasoning": "Kein Druckteil sichtbar, nur leeres Druckbett und Druckkopf → keine Defekte",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_4.jpg",
+          "category": "spaghetti",
+          "latency_ms": 1917.0,
+          "input_tokens": 3830,
+          "output_tokens": 117,
+          "est_cost_usd": 0.006622,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 95,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": true
+          },
+          "observations": "Komplettes Materialnest ohne erkennbare Struktur, kein stehendes Teil.",
+          "confidence": 1.0,
+          "reasoning": "Teil ist vom Bett gelöst, chaotisches Filamentnest sichtbar → Spaghetti",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_5.jpg",
+          "category": "spaghetti",
+          "latency_ms": 2746.0,
+          "input_tokens": 3510,
+          "output_tokens": 122,
+          "est_cost_usd": 0.00618,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 95,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": true
+          },
+          "observations": "Chaotisches Nest aus verheddertem Filament, kein stehendes Teil erkennbar.",
+          "confidence": 1.0,
+          "reasoning": "Teile sind vom Bett gelöst, chaotisches Filamentnest sichtbar → Spaghetti",
+          "error": null
+        },
+        {
+          "image_file": "spaghetti_6.jpg",
+          "category": "clean",
+          "latency_ms": 1791.0,
+          "input_tokens": 2823,
+          "output_tokens": 116,
+          "est_cost_usd": 0.005104,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Figur steht stabil auf der Basis, keine Fäden, Stufen oder Ablösungen erkennbar.",
+          "confidence": 1.0,
+          "reasoning": "Teil steht fest auf dem Bett, keine Defekte sichtbar",
+          "error": null
+        },
+        {
+          "image_file": "warping_1.webp",
+          "category": "warping",
+          "latency_ms": 1736.0,
+          "input_tokens": 2712,
+          "output_tokens": 122,
+          "est_cost_usd": 0.004983,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 70,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Deutliche Aufwölbung der Ecken und Ränder, Teil steht aber fest auf dem Bett.",
+          "confidence": 1.0,
+          "reasoning": "Ecken und Ränder heben sich deutlich vom Druckbett ab → Warping",
+          "error": null
+        },
+        {
+          "image_file": "warping_2.jpg",
+          "category": "clean",
+          "latency_ms": 1350.0,
+          "input_tokens": 2700,
+          "output_tokens": 111,
+          "est_cost_usd": 0.004882,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Erster Layer wird gedruckt, gleichmäßige Schichtlinien sichtbar.",
+          "confidence": 1.0,
+          "reasoning": "Teil steht fest auf dem Bett, keine Defekte erkennbar",
+          "error": null
+        },
+        {
+          "image_file": "layer_shift_1.jpg",
+          "category": "clean",
+          "latency_ms": 1106.0,
+          "input_tokens": 1990,
+          "output_tokens": 111,
+          "est_cost_usd": 0.003818,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Sauberer Druck mit gleichmäßigen Schichtlinien, keine Ablösung oder Fäden.",
+          "confidence": 1.0,
+          "reasoning": "Teil steht fest, keine Defekte sichtbar",
+          "error": null
+        },
+        {
+          "image_file": "layer_shift_2.png",
+          "category": "layer_shift",
+          "latency_ms": 2186.0,
+          "input_tokens": 2712,
+          "output_tokens": 126,
+          "est_cost_usd": 0.005013,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Mehrere sauber gedruckte Teile (Figuren, Würfel, Kugel) ohne Fäden, Ablösung oder Stufen.",
+          "confidence": 1.0,
+          "reasoning": "Alle Teile stehen fest auf dem Druckbett, keine Defekte sichtbar.",
+          "error": null
+        },
+        {
+          "image_file": "layer_shift_3.jpg",
+          "category": "layer_shift",
+          "latency_ms": 1464.0,
+          "input_tokens": 2344,
+          "output_tokens": 113,
+          "est_cost_usd": 0.004364,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 70,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Teil steht fest auf dem Bett, Schichten sind seitlich versetzt.",
+          "confidence": 1.0,
+          "reasoning": "Deutliche horizontale Stufen/Terrassen sichtbar → Layer Shift",
+          "error": null
+        },
+        {
+          "image_file": "layer_shift_4.jpg",
+          "category": "clean",
+          "latency_ms": 1505.0,
+          "input_tokens": 2301,
+          "output_tokens": 117,
+          "est_cost_usd": 0.004329,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Sauberer Druck eines 3D-Benchy-Boots mit gleichmäßigen Schichtlinien.",
+          "confidence": 1.0,
+          "reasoning": "Teil steht fest, keine Defekte sichtbar → alle Scores 0",
+          "error": null
+        },
+        {
+          "image_file": "clean_1.jpg",
+          "category": "clean",
+          "latency_ms": 1409.0,
+          "input_tokens": 2548,
+          "output_tokens": 125,
+          "est_cost_usd": 0.004759,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "21 saubere 3DBenchy-Boote, gleichmäßige Schichtlinien, keine Fäden oder Ablösungen.",
+          "confidence": 1.0,
+          "reasoning": "Alle Teile stehen fest auf dem Druckbett, keine Defekte sichtbar.",
+          "error": null
+        },
+        {
+          "image_file": "clean_2.webp",
+          "category": "clean",
+          "latency_ms": 1868.0,
+          "input_tokens": 3235,
+          "output_tokens": 125,
+          "est_cost_usd": 0.00579,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Mehrere sauber gedruckte Boote in verschiedenen Farben, gleichmäßige Schichtlinien, keine Ablösung oder Fäden.",
+          "confidence": 1.0,
+          "reasoning": "Alle Teile stehen fest auf dem Druckbett, keine Defekte sichtbar.",
+          "error": null
+        },
+        {
+          "image_file": "clean_3.jpg",
+          "category": "clean",
+          "latency_ms": 1571.0,
+          "input_tokens": 2749,
+          "output_tokens": 123,
+          "est_cost_usd": 0.005046,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Drei sauber gedruckte Teile (Boot, Würfel, Figur) ohne Fäden, Ablösung oder Stufen.",
+          "confidence": 1.0,
+          "reasoning": "Alle Teile stehen fest auf dem Druckbett, keine Defekte sichtbar.",
+          "error": null
+        },
+        {
+          "image_file": "clean_4.jpg",
+          "category": "clean",
+          "latency_ms": 2574.0,
+          "input_tokens": 3318,
+          "output_tokens": 113,
+          "est_cost_usd": 0.005824,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Sauberer Druck eines Bootes mit gleichmäßigen Schichtlinien und intakter Struktur.",
+          "confidence": 1.0,
+          "reasoning": "Teil steht fest auf dem Bett, keine Defekte sichtbar",
           "error": null
         }
       ]
     },
     {
       "model": "mistral-small-latest",
-      "accuracy_pct": 36.4,
-      "composite_score": 45.7,
-      "avg_latency_ms": 1484.0,
-      "total_cost_usd": 0.0058,
+      "accuracy_pct": 58.4,
+      "accuracy_corrected_pct": 63.0,
+      "value_score": 69.7,
+      "production_score": 77.4,
+      "reliability_score": 61.3,
+      "critical_defect_score": 60.0,
+      "critical_bonus": 0.0,
+      "composite_score": 73.5,
+      "avg_latency_ms": 1617.0,
+      "total_cost_usd": 0.0105,
+      "cost_per_scan_cents": 0.048,
+      "accuracy_per_dollar": 5566.9,
+      "total_scans": 22,
+      "category_accuracy": {
+        "stringing": 33.3,
+        "spaghetti": 50.0,
+        "clean": 77.8,
+        "warping": 100.0,
+        "layer_shift": 50.0
+      },
+      "category_accuracy_corrected": {
+        "stringing": 66.7,
+        "spaghetti": 50.0,
+        "clean": 66.7,
+        "warping": 100.0,
+        "layer_shift": 50.0
+      },
       "results": [
         {
           "image_file": "stringing_1.jpg",
           "category": "stringing",
-          "latency_ms": 1034.0,
-          "input_tokens": 940,
-          "output_tokens": 79,
-          "est_cost_usd": 0.000188,
+          "latency_ms": 1311.0,
+          "input_tokens": 2164,
+          "output_tokens": 163,
+          "est_cost_usd": 0.000422,
           "scores": {
-            "stringing_score": 10,
+            "stringing_score": 0,
             "spaghetti_score": 0,
             "warping_score": 0,
             "layer_shift_score": 0,
             "bed_adhesion_failure": false
           },
-          "observations": "Leichte Stringing-Effekte zwischen den Strukturen sichtbar.",
+          "observations": "Mehrere grüne 3D-gedruckte Teile mit Temperaturangaben (190-215°C) und Backzeiten (4h40-6h) sind ordentlich auf dem Druckbett platziert. Keine Defekte sichtbar.",
+          "confidence": 1.0,
+          "reasoning": "Alle Teile stehen fest auf dem Druckbett, keine sichtbaren Fäden, Stufen oder Ablösungen erkennbar.",
           "error": null
         },
         {
           "image_file": "stringing_2.jpg",
           "category": "stringing",
-          "latency_ms": 1437.0,
-          "input_tokens": 724,
-          "output_tokens": 95,
-          "est_cost_usd": 0.000166,
+          "latency_ms": 1115.0,
+          "input_tokens": 1948,
+          "output_tokens": 138,
+          "est_cost_usd": 0.000375,
           "scores": {
-            "stringing_score": 95,
+            "stringing_score": 0,
             "spaghetti_score": 0,
             "warping_score": 0,
             "layer_shift_score": 0,
             "bed_adhesion_failure": false
           },
-          "observations": "Deutliche Stringing-Fäden zwischen den Säulen. Keine sichtbaren Verzugserscheinungen oder Schichtversätze.",
+          "observations": "Zwei zylindrische Strukturen stehen senkrecht auf dem Druckbett. Keine Filamentfäden, Warping oder Layer Shift sichtbar.",
+          "confidence": 1.0,
+          "reasoning": "Teil steht fest auf dem Bett, keine sichtbaren Fäden, Stufen oder Ablösungen erkennbar.",
           "error": null
         },
         {
           "image_file": "stringing_3.png",
           "category": "stringing",
-          "latency_ms": 1532.0,
-          "input_tokens": 1488,
-          "output_tokens": 77,
-          "est_cost_usd": 0.000269,
+          "latency_ms": 1794.0,
+          "input_tokens": 2712,
+          "output_tokens": 143,
+          "est_cost_usd": 0.000493,
           "scores": {
-            "stringing_score": 0,
+            "stringing_score": 95,
             "spaghetti_score": 0,
             "warping_score": 0,
             "layer_shift_score": 0,
             "bed_adhesion_failure": false
           },
-          "observations": "Keine sichtbaren Defekte am Druckbild erkennbar.",
+          "observations": "Zwei zylindrische Säulen haften fest auf dem Druckbett. Der Zwischenraum ist mit einem dichten Netz aus Filamentfäden überzogen.",
+          "confidence": 1.0,
+          "reasoning": "Teile stehen fest auf dem Bett, aber extrem dichte Filamentfäden zwischen den Säulen sichtbar → Stringing",
           "error": null
         },
         {
           "image_file": "stringing_4.jpg",
           "category": "stringing",
-          "latency_ms": 1545.0,
-          "input_tokens": 940,
-          "output_tokens": 80,
-          "est_cost_usd": 0.000189,
+          "latency_ms": 1219.0,
+          "input_tokens": 2164,
+          "output_tokens": 143,
+          "est_cost_usd": 0.00041,
           "scores": {
-            "stringing_score": 5,
+            "stringing_score": 0,
             "spaghetti_score": 0,
             "warping_score": 0,
             "layer_shift_score": 0,
             "bed_adhesion_failure": false
           },
-          "observations": "Leichte Stringing-Effekte an den dünnen Strukturen sichtbar.",
+          "observations": "Das gedruckte Teil (vermutlich ein Schuhmodell) haftet stabil auf dem Druckbett. Keine Anzeichen von Stringing, Warping oder Layer Shift.",
+          "confidence": 0.95,
+          "reasoning": "Teil steht fest auf dem Bett, keine sichtbaren Fäden, Ränder oder Stufen erkennbar.",
           "error": null
         },
         {
           "image_file": "stringing_5.jpg",
           "category": "stringing",
-          "latency_ms": 1368.0,
-          "input_tokens": 940,
-          "output_tokens": 104,
-          "est_cost_usd": 0.000203,
+          "latency_ms": 1617.0,
+          "input_tokens": 2164,
+          "output_tokens": 148,
+          "est_cost_usd": 0.000413,
           "scores": {
-            "stringing_score": 90,
+            "stringing_score": 0,
             "spaghetti_score": 0,
             "warping_score": 0,
             "layer_shift_score": 0,
             "bed_adhesion_failure": false
           },
-          "observations": "Deutliche Stringing-Effekte an den Speichen und Felgen des Rades sichtbar.",
+          "observations": "Das Bild zeigt den Druckkopf und die Umgebung, aber kein gedrucktes Teil oder Druckbett. Keine Defekte erkennbar.",
+          "confidence": 0.95,
+          "reasoning": "Kein stehendes Teil im Bild, daher keine Bewertung möglich — Fokus liegt auf Druckkopf und Umgebung.",
           "error": null
         },
         {
           "image_file": "stringing_6.jpg",
           "category": "stringing",
-          "latency_ms": 879.0,
-          "input_tokens": 766,
-          "output_tokens": 79,
-          "est_cost_usd": 0.000162,
+          "latency_ms": 1672.0,
+          "input_tokens": 1990,
+          "output_tokens": 142,
+          "est_cost_usd": 0.000384,
           "scores": {
             "stringing_score": 95,
             "spaghetti_score": 0,
@@ -1257,50 +3103,56 @@
             "layer_shift_score": 0,
             "bed_adhesion_failure": false
           },
-          "observations": "Starkes Stringing zwischen den dünnen Strukturen sichtbar.",
+          "observations": "Zwei hohe, zylindrische Türme haften fest auf dem Bett. Der gesamte Zwischenraum ist mit einem dichten Netz aus feinen Filamentfäden überzogen.",
+          "confidence": 1.0,
+          "reasoning": "Teil steht fest, extrem dichte Filamentfäden zwischen den Türmen sichtbar → Stringing",
           "error": null
         },
         {
           "image_file": "spaghetti_1.jpg",
           "category": "spaghetti",
-          "latency_ms": 1605.0,
-          "input_tokens": 1486,
-          "output_tokens": 114,
-          "est_cost_usd": 0.000291,
+          "latency_ms": 1502.0,
+          "input_tokens": 2710,
+          "output_tokens": 134,
+          "est_cost_usd": 0.000487,
           "scores": {
-            "stringing_score": 95,
-            "spaghetti_score": 100,
+            "stringing_score": 0,
+            "spaghetti_score": 95,
             "warping_score": 0,
             "layer_shift_score": 0,
             "bed_adhesion_failure": true
           },
-          "observations": "Komplettes Druckversagen durch Materialansammlung und Verstopfung des Extruders.",
+          "observations": "Chaotisches Filamentnest auf dem Druckbett, keine erkennbaren stehenden Strukturen.",
+          "confidence": 1.0,
+          "reasoning": "Komplettes Materialnest ohne stehende Teile → Spaghetti-Fall",
           "error": null
         },
         {
           "image_file": "spaghetti_2.jpg",
           "category": "spaghetti",
-          "latency_ms": 1759.0,
-          "input_tokens": 1686,
-          "output_tokens": 109,
-          "est_cost_usd": 0.000318,
+          "latency_ms": 1834.0,
+          "input_tokens": 2910,
+          "output_tokens": 166,
+          "est_cost_usd": 0.000536,
           "scores": {
             "stringing_score": 95,
-            "spaghetti_score": 90,
+            "spaghetti_score": 0,
             "warping_score": 0,
             "layer_shift_score": 0,
-            "bed_adhesion_failure": true
+            "bed_adhesion_failure": false
           },
-          "observations": "Starkes Stringing und Materialklumpen, Teile sind vom Bett gelöst.",
+          "observations": "Zwei zylindrische Türme mit komplexer Gitterstruktur stehen fest auf dem Bett. Der gesamte Zwischenraum ist mit chaotischen, dichten Filamentfäden überzogen.",
+          "confidence": 1.0,
+          "reasoning": "Teil steht fest, extrem dichtes Netz aus Filamentfäden zwischen den Strukturen sichtbar → Stringing",
           "error": null
         },
         {
           "image_file": "spaghetti_3.jpg",
-          "category": "spaghetti",
-          "latency_ms": 896.0,
-          "input_tokens": 638,
-          "output_tokens": 75,
-          "est_cost_usd": 0.000141,
+          "category": "clean",
+          "latency_ms": 1033.0,
+          "input_tokens": 1862,
+          "output_tokens": 131,
+          "est_cost_usd": 0.000358,
           "scores": {
             "stringing_score": 0,
             "spaghetti_score": 0,
@@ -1308,169 +3160,37 @@
             "layer_shift_score": 0,
             "bed_adhesion_failure": false
           },
-          "observations": "Keine sichtbaren Druckfehler erkennbar. Druckbild wirkt sauber und stabil.",
+          "observations": "Leere Druckkammer ohne Druckteil oder Materialreste. Keine Anzeichen von Stringing, Spaghetti, Warping oder Layer Shift.",
+          "confidence": 0.95,
+          "reasoning": "Kein sichtbares Teil oder Defekt im Bild erkennbar → alle Scores 0",
           "error": null
         },
         {
           "image_file": "spaghetti_4.jpg",
           "category": "spaghetti",
-          "latency_ms": 1884.0,
-          "input_tokens": 2606,
-          "output_tokens": 106,
-          "est_cost_usd": 0.000454,
+          "latency_ms": 1920.0,
+          "input_tokens": 3830,
+          "output_tokens": 132,
+          "est_cost_usd": 0.000654,
           "scores": {
-            "stringing_score": 95,
-            "spaghetti_score": 100,
+            "stringing_score": 0,
+            "spaghetti_score": 98,
             "warping_score": 0,
             "layer_shift_score": 0,
             "bed_adhesion_failure": true
           },
-          "observations": "Extremes Stringing und vollständiger Spaghetti-Effekt. Druck ist vollständig entartet.",
+          "observations": "Chaotisches Filamentnest auf dem Druckbett, keine erkennbare Struktur oder stehendes Teil.",
+          "confidence": 1.0,
+          "reasoning": "Komplettes Materialnest ohne stehendes Teil → Spaghetti",
           "error": null
         },
         {
           "image_file": "spaghetti_5.jpg",
           "category": "spaghetti",
-          "latency_ms": 2238.0,
-          "input_tokens": 2286,
-          "output_tokens": 92,
-          "est_cost_usd": 0.000398,
-          "scores": {
-            "stringing_score": 85,
-            "spaghetti_score": 5,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Deutliche Stringing-Fäden zwischen den Strukturen sichtbar. Keine Anzeichen für Warping oder Layer-Shift.",
-          "error": null
-        },
-        {
-          "image_file": "spaghetti_6.jpg",
-          "category": "spaghetti",
-          "latency_ms": 1611.0,
-          "input_tokens": 1599,
-          "output_tokens": 108,
-          "est_cost_usd": 0.000305,
-          "scores": {
-            "stringing_score": 90,
-            "spaghetti_score": 5,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Starkes Stringing zwischen den Strukturen, aber keine sichtbaren Verformungen oder Ablösungen.",
-          "error": null
-        },
-        {
-          "image_file": "warping_1.webp",
-          "category": "warping",
-          "latency_ms": 1266.0,
-          "input_tokens": 1488,
-          "output_tokens": 95,
-          "est_cost_usd": 0.00028,
-          "scores": {
-            "stringing_score": 0,
-            "spaghetti_score": 0,
-            "warping_score": 85,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Deutlicher Verzug an den Rändern des blauen Bauteils, besonders an der Ecke.",
-          "error": null
-        },
-        {
-          "image_file": "warping_2.jpg",
-          "category": "warping",
-          "latency_ms": 1227.0,
-          "input_tokens": 1476,
-          "output_tokens": 105,
-          "est_cost_usd": 0.000284,
-          "scores": {
-            "stringing_score": 90,
-            "spaghetti_score": 5,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Starkes Stringing zwischen den Strukturen, aber keine sichtbaren Verzugserscheinungen oder Ablösungen.",
-          "error": null
-        },
-        {
-          "image_file": "layer_shift_1.jpg",
-          "category": "layer_shift",
-          "latency_ms": 1113.0,
-          "input_tokens": 766,
-          "output_tokens": 105,
-          "est_cost_usd": 0.000178,
-          "scores": {
-            "stringing_score": 90,
-            "spaghetti_score": 0,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Deutliche Stringing-Fäden zwischen den Strukturen, besonders an dünnen Stellen.",
-          "error": null
-        },
-        {
-          "image_file": "layer_shift_2.png",
-          "category": "layer_shift",
-          "latency_ms": 1352.0,
-          "input_tokens": 1488,
-          "output_tokens": 82,
-          "est_cost_usd": 0.000272,
-          "scores": {
-            "stringing_score": 10,
-            "spaghetti_score": 0,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Leichte Stringing-Effekte an den Spitzen der Strukturen sichtbar.",
-          "error": null
-        },
-        {
-          "image_file": "layer_shift_3.jpg",
-          "category": "layer_shift",
-          "latency_ms": 1956.0,
-          "input_tokens": 1120,
-          "output_tokens": 97,
-          "est_cost_usd": 0.000226,
-          "scores": {
-            "stringing_score": 0,
-            "spaghetti_score": 0,
-            "warping_score": 0,
-            "layer_shift_score": 95,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Deutliche Versätze in den Schichten, besonders an den horizontalen Flächen sichtbar.",
-          "error": null
-        },
-        {
-          "image_file": "layer_shift_4.jpg",
-          "category": "layer_shift",
-          "latency_ms": 2605.0,
-          "input_tokens": 1077,
-          "output_tokens": 77,
-          "est_cost_usd": 0.000208,
-          "scores": {
-            "stringing_score": 5,
-            "spaghetti_score": 0,
-            "warping_score": 0,
-            "layer_shift_score": 0,
-            "bed_adhesion_failure": false
-          },
-          "observations": "Minimale Fäden zwischen den Strukturen sichtbar.",
-          "error": null
-        },
-        {
-          "image_file": "clean_1.jpg",
-          "category": "clean",
-          "latency_ms": 1432.0,
-          "input_tokens": 1324,
-          "output_tokens": 94,
-          "est_cost_usd": 0.000255,
+          "latency_ms": 3149.0,
+          "input_tokens": 3510,
+          "output_tokens": 150,
+          "est_cost_usd": 0.000616,
           "scores": {
             "stringing_score": 95,
             "spaghetti_score": 0,
@@ -1478,50 +3198,75 @@
             "layer_shift_score": 0,
             "bed_adhesion_failure": false
           },
-          "observations": "Deutliches Stringing zwischen den Strukturen, besonders an dünnen Elementen.",
+          "observations": "Zylindrische Struktur steht aufrecht und haftet fest am Bett. Der gesamte Zwischenraum ist mit einem dichten Netz aus feinen Filamentfäden überzogen.",
+          "confidence": 1.0,
+          "reasoning": "Teil steht fest auf dem Bett, aber extrem dichte Filamentfäden/Spinnweben zwischen und um die Struktur sichtbar → Stringing",
           "error": null
         },
         {
-          "image_file": "clean_2.webp",
+          "image_file": "spaghetti_6.jpg",
           "category": "clean",
-          "latency_ms": 1257.0,
-          "input_tokens": 2011,
-          "output_tokens": 79,
-          "est_cost_usd": 0.000349,
+          "latency_ms": 1391.0,
+          "input_tokens": 2823,
+          "output_tokens": 154,
+          "est_cost_usd": 0.000516,
           "scores": {
-            "stringing_score": 5,
+            "stringing_score": 95,
             "spaghetti_score": 0,
             "warping_score": 0,
             "layer_shift_score": 0,
             "bed_adhesion_failure": false
           },
-          "observations": "Leichte Stringing-Effekte an dünnen Strukturen sichtbar.",
+          "observations": "Zwei zylindrische Türme mit komplexer Struktur stehen aufrecht auf dem Bett. Der gesamte Zwischenraum ist mit einem dichten Netz aus feinen Filamentfäden überzogen.",
+          "confidence": 1.0,
+          "reasoning": "Teil steht fest, extrem dichte Filamentfäden zwischen den Strukturen sichtbar → Stringing",
           "error": null
         },
         {
-          "image_file": "clean_3.jpg",
-          "category": "clean",
-          "latency_ms": 1173.0,
-          "input_tokens": 1525,
-          "output_tokens": 80,
-          "est_cost_usd": 0.000277,
+          "image_file": "warping_1.webp",
+          "category": "warping",
+          "latency_ms": 1496.0,
+          "input_tokens": 2712,
+          "output_tokens": 148,
+          "est_cost_usd": 0.000496,
           "scores": {
-            "stringing_score": 10,
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 75,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Rote und blaue Schichten heben sich deutlich von der Druckplatte ab. Keine Fäden oder Stufen erkennbar.",
+          "confidence": 0.95,
+          "reasoning": "Teil steht fest, aber deutliche Abhebung der Ränder vom Druckbett sichtbar → Warping",
+          "error": null
+        },
+        {
+          "image_file": "warping_2.jpg",
+          "category": "clean",
+          "latency_ms": 1617.0,
+          "input_tokens": 2700,
+          "output_tokens": 141,
+          "est_cost_usd": 0.00049,
+          "scores": {
+            "stringing_score": 95,
             "spaghetti_score": 0,
             "warping_score": 0,
             "layer_shift_score": 0,
             "bed_adhesion_failure": false
           },
-          "observations": "Leichte Stringing-Effekte an dünnen Strukturen sichtbar.",
+          "observations": "Zwei zylindrische Türme haften fest auf dem Bett. Der gesamte Zwischenraum ist mit einem chaotischen Netz aus feinen Filamentfäden überzogen.",
+          "confidence": 1.0,
+          "reasoning": "Teil steht fest, extrem dichte Filamentfäden zwischen den Strukturen sichtbar → Stringing",
           "error": null
         },
         {
-          "image_file": "clean_4.jpg",
+          "image_file": "layer_shift_1.jpg",
           "category": "clean",
-          "latency_ms": 1476.0,
-          "input_tokens": 2094,
-          "output_tokens": 77,
-          "est_cost_usd": 0.00036,
+          "latency_ms": 1350.0,
+          "input_tokens": 1990,
+          "output_tokens": 131,
+          "est_cost_usd": 0.000377,
           "scores": {
             "stringing_score": 0,
             "spaghetti_score": 0,
@@ -1529,7 +3274,142 @@
             "layer_shift_score": 0,
             "bed_adhesion_failure": false
           },
-          "observations": "Keine sichtbaren Defekte am Druckbild erkennbar.",
+          "observations": "Kugelförmiges Modell mit glatter Oberfläche, gleichmäßige Schichtlinien, keine Defekte erkennbar.",
+          "confidence": 1.0,
+          "reasoning": "Teil steht fest auf dem Bett, keine Fäden, keine Ablösung, keine Stufen oder Ränder sichtbar",
+          "error": null
+        },
+        {
+          "image_file": "layer_shift_2.png",
+          "category": "layer_shift",
+          "latency_ms": 2470.0,
+          "input_tokens": 2712,
+          "output_tokens": 136,
+          "est_cost_usd": 0.000488,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Drei pinkfarbene Teile mit glatten Oberflächen und klaren Konturen. Keine sichtbaren Defekte an den Strukturen.",
+          "confidence": 1.0,
+          "reasoning": "Alle Teile stehen fest auf dem Druckbett, keine Fäden, keine Ablösung, keine Stufen oder Ränder sichtbar.",
+          "error": null
+        },
+        {
+          "image_file": "layer_shift_3.jpg",
+          "category": "layer_shift",
+          "latency_ms": 1367.0,
+          "input_tokens": 2344,
+          "output_tokens": 141,
+          "est_cost_usd": 0.000436,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 75,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Zwei zylindrische Teile mit klaren, seitlich versetzten Schichtlinien. Keine Ablösung vom Bett oder Fäden erkennbar.",
+          "confidence": 0.95,
+          "reasoning": "Deutliche horizontale Stufen/Terrassen an den Schichten sichtbar → Layer Shift",
+          "error": null
+        },
+        {
+          "image_file": "layer_shift_4.jpg",
+          "category": "clean",
+          "latency_ms": 1457.0,
+          "input_tokens": 2301,
+          "output_tokens": 151,
+          "est_cost_usd": 0.000436,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Einzelnes, intaktes 3D-gedrucktes Objekt (vermutlich ein Behälter) steht mittig auf dem Druckbett. Oberfläche wirkt gleichmäßig, keine Ablösungen oder Defekte sichtbar.",
+          "confidence": 1.0,
+          "reasoning": "Teil steht fest auf dem Bett, keine sichtbaren Fäden, Ränder oder Stufen erkennbar.",
+          "error": null
+        },
+        {
+          "image_file": "clean_1.jpg",
+          "category": "clean",
+          "latency_ms": 1294.0,
+          "input_tokens": 2548,
+          "output_tokens": 127,
+          "est_cost_usd": 0.000458,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "32 3D-Benchy-Boote in zwei Reihen auf dem Druckbett, gleichmäßige Schichtlinien ohne Defekte.",
+          "confidence": 1.0,
+          "reasoning": "Alle Teile stehen fest auf dem Druckbett, keine Fäden, keine Ablösung, keine Stufen oder Ränder sichtbar.",
+          "error": null
+        },
+        {
+          "image_file": "clean_2.webp",
+          "category": "clean",
+          "latency_ms": 1680.0,
+          "input_tokens": 3235,
+          "output_tokens": 145,
+          "est_cost_usd": 0.000572,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Mehrere zylindrische und kubische Teile in verschiedenen Farben und Höhen sind gleichmäßig auf dem Druckbett verteilt. Die Schichten sind sauber und ohne sichtbare Defekte.",
+          "confidence": 1.0,
+          "reasoning": "Alle Teile stehen fest auf dem Bett, keine Fäden, keine Ablösung, keine Stufen oder Warping sichtbar.",
+          "error": null
+        },
+        {
+          "image_file": "clean_3.jpg",
+          "category": "clean",
+          "latency_ms": 1678.0,
+          "input_tokens": 2749,
+          "output_tokens": 135,
+          "est_cost_usd": 0.000493,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Drei intakte Druckteile (Schlüsselanhänger) haften stabil auf dem Bett. Keine sichtbaren Defekte an den Strukturen.",
+          "confidence": 1.0,
+          "reasoning": "Alle Teile stehen fest auf dem Druckbett, keine Fäden, keine Ablösung oder Stufen sichtbar.",
+          "error": null
+        },
+        {
+          "image_file": "clean_4.jpg",
+          "category": "clean",
+          "latency_ms": 1601.0,
+          "input_tokens": 3318,
+          "output_tokens": 139,
+          "est_cost_usd": 0.000581,
+          "scores": {
+            "stringing_score": 0,
+            "spaghetti_score": 0,
+            "warping_score": 0,
+            "layer_shift_score": 0,
+            "bed_adhesion_failure": false
+          },
+          "observations": "Rotes 3D-gedrucktes Teil mit der Zahl '90' steht stabil auf dem Druckbett. Oberfläche wirkt gleichmäßig und sauber.",
+          "confidence": 1.0,
+          "reasoning": "Teil steht fest auf dem Bett, keine Fäden, keine Ablösung, keine Stufen oder Warping sichtbar.",
           "error": null
         }
       ]

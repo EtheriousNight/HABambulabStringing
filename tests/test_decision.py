@@ -46,6 +46,8 @@ def engine(clock):
             stringing_cooldown_sec=900,
             warping_threshold=60,
             layer_shift_threshold=70,
+            # Smoothing deaktiviert für bestehende Tests (core logic testen)
+            smoothing_enabled=False,
         ),
         time_fn=clock,
     )
@@ -280,3 +282,244 @@ def test_start_print_clears_mute_and_state(engine):
     engine.start_print()
     assert not engine.muted
     assert not engine.stringing_detected
+
+
+# -- v3.0: confidence filtering ----------------------------------------------------
+
+
+def test_low_confidence_frame_discarded(clock):
+    """Frames with confidence < min_confidence are discarded."""
+    engine = DecisionEngine(
+        EngineConfig(
+            stringing_threshold=55,
+            stringing_streak=3,
+            spaghetti_threshold=70,
+            stringing_cooldown_sec=900,
+            warping_threshold=60,
+            layer_shift_threshold=70,
+            min_confidence=0.6,
+        ),
+        time_fn=clock,
+    )
+    low_conf = AnalysisResult(
+        stringing_score=80,
+        spaghetti_score=0,
+        bed_adhesion_failure=False,
+        observations="Unsicher",
+        confidence=0.3,  # Below threshold
+    )
+    d = engine.process(low_conf)
+    assert d.discarded is True
+    assert engine.stats.low_confidence_frames == 1
+    assert engine.stats.discarded_frames == 1
+    # Streak should not advance
+    assert engine._streak_above == 0
+
+
+def test_high_confidence_frame_processed(clock):
+    """Frames with confidence >= min_confidence are processed normally."""
+    engine = DecisionEngine(
+        EngineConfig(
+            stringing_threshold=55,
+            stringing_streak=3,
+            spaghetti_threshold=70,
+            stringing_cooldown_sec=900,
+            warping_threshold=60,
+            layer_shift_threshold=70,
+            min_confidence=0.6,
+        ),
+        time_fn=clock,
+    )
+    high_conf = AnalysisResult(
+        stringing_score=80,
+        spaghetti_score=0,
+        bed_adhesion_failure=False,
+        observations="Deutliches Stringing",
+        confidence=0.9,
+    )
+    d = engine.process(high_conf)
+    assert d.discarded is False
+    assert engine._streak_above == 1
+
+
+def test_default_confidence_is_1(clock):
+    """AnalysisResult without explicit confidence defaults to 1.0 (always processed)."""
+    engine = DecisionEngine(
+        EngineConfig(
+            stringing_threshold=55,
+            stringing_streak=3,
+            spaghetti_threshold=70,
+            stringing_cooldown_sec=900,
+            warping_threshold=60,
+            layer_shift_threshold=70,
+            min_confidence=0.6,
+        ),
+        time_fn=clock,
+    )
+    # No confidence field → defaults to 1.0
+    default_conf = AnalysisResult(
+        stringing_score=80,
+        spaghetti_score=0,
+        bed_adhesion_failure=False,
+        observations="Test",
+    )
+    d = engine.process(default_conf)
+    assert d.discarded is False
+
+
+# -- v3.0: EMA smoothing -----------------------------------------------------------
+
+
+def test_ema_smoothing_enabled(clock):
+    """EMA smoothing reduces score volatility."""
+    engine = DecisionEngine(
+        EngineConfig(
+            stringing_threshold=55,
+            stringing_streak=3,
+            spaghetti_threshold=70,
+            stringing_cooldown_sec=900,
+            warping_threshold=60,
+            layer_shift_threshold=70,
+            min_confidence=0.6,
+            smoothing_enabled=True,
+            smoothing_alpha=0.3,
+        ),
+        time_fn=clock,
+    )
+    # Feed frames with increasing scores
+    scores = [60, 65, 70, 75, 80]
+    smoothed_values = []
+    for score in scores:
+        r = AnalysisResult(
+            stringing_score=score,
+            spaghetti_score=0,
+            bed_adhesion_failure=False,
+            observations="Test",
+            confidence=0.9,
+        )
+        engine.process(r)
+        if engine._last_smoothed:
+            smoothed_values.append(engine._last_smoothed.stringing_score)
+
+    # First frame: smoothed = raw
+    assert smoothed_values[0] == 60
+    # Subsequent frames: smoothed should lag behind raw
+    assert smoothed_values[1] < 65  # EMA: 60*0.7 + 65*0.3 = 61.5 → 62
+    assert smoothed_values[-1] < 80  # Last smoothed < last raw
+
+
+def test_ema_smoothing_disabled(clock):
+    """When smoothing is disabled, raw scores are used directly."""
+    engine = DecisionEngine(
+        EngineConfig(
+            stringing_threshold=55,
+            stringing_streak=3,
+            spaghetti_threshold=70,
+            stringing_cooldown_sec=900,
+            warping_threshold=60,
+            layer_shift_threshold=70,
+            min_confidence=0.6,
+            smoothing_enabled=False,
+        ),
+        time_fn=clock,
+    )
+    r = AnalysisResult(
+        stringing_score=70,
+        spaghetti_score=0,
+        bed_adhesion_failure=False,
+        observations="Test",
+        confidence=0.9,
+    )
+    engine.process(r)
+    # No smoothing state should be set
+    assert engine._last_smoothed is None
+
+
+def test_ema_reset_clears_state(clock):
+    """reset() clears the EMA smoothing state."""
+    engine = DecisionEngine(
+        EngineConfig(
+            stringing_threshold=55,
+            stringing_streak=3,
+            spaghetti_threshold=70,
+            stringing_cooldown_sec=900,
+            warping_threshold=60,
+            layer_shift_threshold=70,
+            min_confidence=0.6,
+            smoothing_enabled=True,
+            smoothing_alpha=0.3,
+        ),
+        time_fn=clock,
+    )
+    # Process some frames to build up EMA state
+    for _ in range(3):
+        engine.process(AnalysisResult(
+            stringing_score=70,
+            spaghetti_score=0,
+            bed_adhesion_failure=False,
+            observations="Test",
+            confidence=0.9,
+        ))
+    assert engine._last_smoothed is not None
+    assert engine._frame_count == 3
+
+    # Reset
+    engine.reset()
+    assert engine._last_smoothed is None
+    assert engine._frame_count == 0
+
+
+def test_smoothing_alpha_higher_reacts_faster(clock):
+    """Higher alpha means faster reaction to changes."""
+    engine_low = DecisionEngine(
+        EngineConfig(
+            stringing_threshold=55,
+            stringing_streak=3,
+            spaghetti_threshold=70,
+            stringing_cooldown_sec=900,
+            warping_threshold=60,
+            layer_shift_threshold=70,
+            min_confidence=0.6,
+            smoothing_enabled=True,
+            smoothing_alpha=0.1,  # Slow
+        ),
+        time_fn=clock,
+    )
+    engine_high = DecisionEngine(
+        EngineConfig(
+            stringing_threshold=55,
+            stringing_streak=3,
+            spaghetti_threshold=70,
+            stringing_cooldown_sec=900,
+            warping_threshold=60,
+            layer_shift_threshold=70,
+            min_confidence=0.6,
+            smoothing_enabled=True,
+            smoothing_alpha=0.9,  # Fast
+        ),
+        time_fn=clock,
+    )
+
+    # Both start with score 50
+    for engine in [engine_low, engine_high]:
+        engine.process(AnalysisResult(
+            stringing_score=50,
+            spaghetti_score=0,
+            bed_adhesion_failure=False,
+            observations="Test",
+            confidence=0.9,
+        ))
+
+    # Then jump to 90
+    r = AnalysisResult(
+        stringing_score=90,
+        spaghetti_score=0,
+        bed_adhesion_failure=False,
+        observations="Test",
+        confidence=0.9,
+    )
+    engine_low.process(r)
+    engine_high.process(r)
+
+    # High alpha should react faster (closer to 90)
+    assert engine_high._last_smoothed.stringing_score > engine_low._last_smoothed.stringing_score

@@ -8,6 +8,6 @@
   "documentation": "https://github.com/rmrosk/HABambulabStringing",
   "iot_class": "cloud_polling",
   "issue_tracker": "https://github.com/rmrosk/HABambulabStringing/issues",
-  "requirements": [],
-  "version": "0.6.0"
+  "requirements": ["pillow>=10.0.0"],
+  "version": "0.8.0"
 }

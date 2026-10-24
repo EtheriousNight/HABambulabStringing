@@ -34,13 +34,13 @@ CONF_PAUSE_SERVICE: Final = "pause_service"
 CONF_RESUME_SERVICE: Final = "resume_service"
 CONF_STOP_SERVICE: Final = "stop_service"
 
-DEFAULT_MODEL: Final = "mistral-medium-latest"
+DEFAULT_MODEL: Final = "zai-glm-5-3-flash"
 DEFAULT_CHECK_INTERVAL: Final = 45
-DEFAULT_STRINGING_THRESHOLD: Final = 55
+DEFAULT_STRINGING_THRESHOLD: Final = 45
 DEFAULT_STRINGING_STREAK: Final = 3
-DEFAULT_SPAGHETTI_THRESHOLD: Final = 70
-DEFAULT_WARPING_THRESHOLD: Final = 60
-DEFAULT_LAYER_SHIFT_THRESHOLD: Final = 70
+DEFAULT_SPAGHETTI_THRESHOLD: Final = 87
+DEFAULT_WARPING_THRESHOLD: Final = 75
+DEFAULT_LAYER_SHIFT_THRESHOLD: Final = 40
 DEFAULT_COOLDOWN_MIN: Final = 15
 DEFAULT_AUTO_PAUSE: Final = False
 DEFAULT_RETENTION_DAYS: Final = 14
@@ -62,7 +62,7 @@ MIN_SPAGHETTI_THRESHOLD: Final = 50
 MAX_SPAGHETTI_THRESHOLD: Final = 90
 MIN_WARPING_THRESHOLD: Final = 40
 MAX_WARPING_THRESHOLD: Final = 80
-MIN_LAYER_SHIFT_THRESHOLD: Final = 50
+MIN_LAYER_SHIFT_THRESHOLD: Final = 30
 MAX_LAYER_SHIFT_THRESHOLD: Final = 90
 MIN_COOLDOWN_MIN: Final = 5
 MAX_COOLDOWN_MIN: Final = 60
@@ -93,6 +93,9 @@ ATTR_LAST_CHECK: Final = "last_check"
 ATTR_PRINT_RUNNING: Final = "print_running"
 ATTR_PRINT_ID: Final = "print_id"
 ATTR_LAST_ERROR: Final = "last_error"
+ATTR_CONFIDENCE: Final = "confidence"
+ATTR_REASONING: Final = "reasoning"
+ATTR_LOW_CONFIDENCE_FRAMES: Final = "low_confidence_frames"
 
 # Services
 SERVICE_CHECK_NOW: Final = "check_now"
@@ -103,3 +106,78 @@ SERVICE_RESET_DETECTION: Final = "reset_detection"
 ACTION_PREFIX: Final = "bambu_stringing_"
 ACTION_SUFFIX_PAUSE: Final = "pause"
 ACTION_SUFFIX_IGNORE: Final = "ignore"
+
+# Benchmark data (Model comparison from benchmark/run_benchmark.py)
+BENCHMARK_DATA_FILE: Final = "benchmark_data.json"
+ATTR_BENCHMARK_RECOMMENDED: Final = "benchmark_recommended_model"
+ATTR_BENCHMARK_MODELS: Final = "benchmark_models"
+ATTR_BENCHMARK_THRESHOLDS: Final = "benchmark_recommended_thresholds"
+ATTR_BENCHMARK_TIMESTAMP: Final = "benchmark_timestamp"
+ATTR_MODEL_ACCURACY: Final = "model_accuracy_pct"
+ATTR_MODEL_LATENCY: Final = "model_avg_latency_ms"
+ATTR_MODEL_COST_PER_SCAN: Final = "model_cost_per_scan_cents"
+ATTR_MODEL_VALUE_SCORE: Final = "model_value_score"
+
+# Kontext-Features (für erweiterte Prompt-Informationen, Prompt v3.0)
+CONF_FILAMENT_TYPE: Final = "filament_type"
+CONF_NOZZLE_TEMP: Final = "nozzle_temp"
+CONF_BED_TEMP: Final = "bed_temp"
+CONF_LAYER_HEIGHT: Final = "layer_height"
+CONF_PRINT_SPEED: Final = "print_speed"
+
+DEFAULT_FILAMENT_TYPE: Final = ""  # leer = nicht gesetzt
+DEFAULT_NOZZLE_TEMP: Final = 0     # 0 = unbekannt
+DEFAULT_BED_TEMP: Final = 0
+DEFAULT_LAYER_HEIGHT: Final = 0.0
+DEFAULT_PRINT_SPEED: Final = 0
+
+# Preprocessing
+CONF_PREPROCESS_ENABLED: Final = "preprocess_enabled"
+DEFAULT_PREPROCESS_ENABLED: Final = True
+
+# Decision Engine v3.0
+CONF_MIN_CONFIDENCE: Final = "min_confidence"
+CONF_SMOOTHING_ENABLED: Final = "smoothing_enabled"
+CONF_SMOOTHING_ALPHA: Final = "smoothing_alpha"
+
+DEFAULT_MIN_CONFIDENCE: Final = 0.8
+DEFAULT_SMOOTHING_ENABLED: Final = True
+DEFAULT_SMOOTHING_ALPHA: Final = 0.3
+
+# Plausibility Rules (v3.2) — können Accuracy verschlechtern, daher AUS per default
+CONF_PLAUSIBILITY_RULES_ENABLED: Final = "plausibility_rules_enabled"
+DEFAULT_PLAUSIBILITY_RULES_ENABLED: Final = False
+
+MIN_CONFIDENCE: Final = 0.0
+MAX_CONFIDENCE: Final = 1.0
+MIN_SMOOTHING_ALPHA: Final = 0.1
+MAX_SMOOTHING_ALPHA: Final = 0.9
+
+# Ensemble method (zweistufige Analyse)
+CONF_ENSEMBLE_ENABLED: Final = "ensemble_enabled"
+DEFAULT_ENSEMBLE_ENABLED: Final = False
+CONF_ENSEMBLE_QUICK_MODEL: Final = "ensemble_quick_model"
+CONF_ENSEMBLE_DETAILED_MODEL: Final = "ensemble_detailed_model"
+DEFAULT_ENSEMBLE_QUICK_MODEL: Final = "mistral-small-latest"
+DEFAULT_ENSEMBLE_DETAILED_MODEL: Final = "mistral-medium-latest"
+
+# Critical Ensemble (Benchmark-optimiert, v3.1)
+CONF_CRITICAL_ENSEMBLE_ENABLED: Final = "critical_ensemble_enabled"
+DEFAULT_CRITICAL_ENSEMBLE_ENABLED: Final = False
+CONF_CRITICAL_ENSEMBLE_QUICK_MODEL: Final = "critical_ensemble_quick_model"
+CONF_CRITICAL_ENSEMBLE_DETAILED_MODEL: Final = "critical_ensemble_detailed_model"
+DEFAULT_CRITICAL_ENSEMBLE_QUICK_MODEL: Final = "zai-glm-5-3-flash"
+DEFAULT_CRITICAL_ENSEMBLE_DETAILED_MODEL: Final = "mistral-medium-latest"
+
+# Filament types für Dropdown
+FILAMENT_TYPES: Final = [
+    "",           # Nicht gesetzt
+    "PLA",
+    "PETG",
+    "ABS",
+    "ASA",
+    "TPU",
+    "PC",
+    "PA-CF",
+    "Other",
+]

@@ -25,6 +25,11 @@ from .const import (
     ATTR_API_CALLS,
     ATTR_API_FAILURES,
     ATTR_BED_ADHESION_FAILURE,
+    ATTR_BENCHMARK_MODELS,
+    ATTR_BENCHMARK_RECOMMENDED,
+    ATTR_BENCHMARK_THRESHOLDS,
+    ATTR_BENCHMARK_TIMESTAMP,
+    ATTR_CONFIDENCE,
     ATTR_DISCARDED,
     ATTR_EVENTS,
     ATTR_GRAB_FAILURES,
@@ -32,12 +37,18 @@ from .const import (
     ATTR_LAST_ERROR,
     ATTR_LAYER_SHIFT_DETECTED,
     ATTR_LAYER_SHIFT_SCORE,
+    ATTR_LOW_CONFIDENCE_FRAMES,
+    ATTR_MODEL_ACCURACY,
+    ATTR_MODEL_COST_PER_SCAN,
+    ATTR_MODEL_LATENCY,
+    ATTR_MODEL_VALUE_SCORE,
     ATTR_MUTED,
     ATTR_OBSERVATIONS,
     ATTR_OTHER_DEFECTS,
     ATTR_PRINT_FAILURE,
     ATTR_PRINT_ID,
     ATTR_PRINT_RUNNING,
+    ATTR_REASONING,
     ATTR_SPAGHETTI_SCORE,
     ATTR_STRINGING_DETECTED,
     ATTR_STRINGING_SCORE,
@@ -46,36 +57,61 @@ from .const import (
     CONF_API_KEY,
     CONF_AUTO_PAUSE,
     CONF_BAMBU_DEVICE_ID,
+    CONF_BED_TEMP,
     CONF_CAMERA_ENTITY,
     CONF_CHECK_INTERVAL,
     CONF_COOLDOWN_MIN,
+    CONF_CRITICAL_ENSEMBLE_DETAILED_MODEL,
+    CONF_CRITICAL_ENSEMBLE_ENABLED,
+    CONF_CRITICAL_ENSEMBLE_QUICK_MODEL,
     CONF_DEEP_LINK,
+    CONF_ENSEMBLE_ENABLED,
+    CONF_FILAMENT_TYPE,
     CONF_LAYER_SHIFT_THRESHOLD,
     CONF_MANUAL_CONTEXT,
+    CONF_MIN_CONFIDENCE,
     CONF_MJPEG_URL,
     CONF_MODEL,
     CONF_NAME,
+    CONF_NOZZLE_TEMP,
     CONF_NOTIFY_SERVICES,
     CONF_PAUSE_SERVICE,
+    CONF_PLAUSIBILITY_RULES_ENABLED,
+    CONF_PREPROCESS_ENABLED,
     CONF_PRINT_STATE_ENTITY,
     CONF_RESUME_SERVICE,
     CONF_RETENTION_DAYS,
     CONF_RUNNING_STATES,
+    CONF_SMOOTHING_ALPHA,
+    CONF_SMOOTHING_ENABLED,
     CONF_SPAGHETTI_THRESHOLD,
     CONF_STOP_SERVICE,
     CONF_STRINGING_STREAK,
     CONF_STRINGING_THRESHOLD,
     CONF_WARPING_THRESHOLD,
+    DEFAULT_AUTO_PAUSE,
+    DEFAULT_BED_TEMP,
     DEFAULT_CHECK_INTERVAL,
     DEFAULT_COOLDOWN_MIN,
+    DEFAULT_CRITICAL_ENSEMBLE_DETAILED_MODEL,
+    DEFAULT_CRITICAL_ENSEMBLE_ENABLED,
+    DEFAULT_CRITICAL_ENSEMBLE_QUICK_MODEL,
     DEFAULT_DEEP_LINK_TEMPLATE,
+    DEFAULT_ENSEMBLE_ENABLED,
+    DEFAULT_FILAMENT_TYPE,
     DEFAULT_LAYER_SHIFT_THRESHOLD,
+    DEFAULT_MIN_CONFIDENCE,
     DEFAULT_MODEL,
     DEFAULT_NOTIFY_SERVICES,
+    DEFAULT_NOZZLE_TEMP,
     DEFAULT_PAUSE_SERVICE,
+    DEFAULT_PLAUSIBILITY_RULES_ENABLED,
+    DEFAULT_PREPROCESS_ENABLED,
     DEFAULT_RESUME_SERVICE,
     DEFAULT_RETENTION_DAYS,
     DEFAULT_RUNNING_STATES,
+    DEFAULT_SMOOTHING_ALPHA,
+    DEFAULT_SMOOTHING_ENABLED,
     DEFAULT_SPAGHETTI_THRESHOLD,
     DEFAULT_STOP_SERVICE,
     DEFAULT_STRINGING_STREAK,
@@ -84,9 +120,25 @@ from .const import (
     DOMAIN,
     GATE_POLL_SECONDS,
     LOGGER,
+    MAX_CONFIDENCE,
+    MAX_LAYER_SHIFT_THRESHOLD,
+    MAX_SMOOTHING_ALPHA,
+    MAX_SPAGHETTI_THRESHOLD,
+    MAX_STRINGING_STREAK,
+    MAX_STRINGING_THRESHOLD,
+    MAX_WARPING_THRESHOLD,
+    MIN_CONFIDENCE,
+    MIN_LAYER_SHIFT_THRESHOLD,
+    MIN_SMOOTHING_ALPHA,
+    MIN_SPAGHETTI_THRESHOLD,
+    MIN_STRINGING_STREAK,
+    MIN_STRINGING_THRESHOLD,
+    MIN_WARPING_THRESHOLD,
 )
 from .core import archive as archive_mod
+from .core import image as image_mod
 from .core import mistral as mistral_mod
+from .core import prompt as prompt_mod
 from .core.decision import Decision, DecisionEngine, EngineConfig
 from .core.mistral import AnalysisResult
 from .core.mjpeg import MJPEGGrabError, grab_jpeg
@@ -101,6 +153,141 @@ def get_value(entry: ConfigEntry, key: str, default: Any) -> Any:
     if key in entry.data:
         return entry.data[key]
     return default
+
+
+def load_benchmark_data() -> dict[str, Any]:
+    """Lädt die Benchmark-Ergebnisse für Modell-Vergleich.
+    
+    Liest benchmark_data.json aus dem Integration-Verzeichnis.
+    Wurde durch benchmark/run_benchmark.py generiert und enthält pro Modell
+    Metadaten sowie dessen individuelle Schwellwert-Empfehlungen.
+    """
+    import json
+    from pathlib import Path
+    
+    # Pfad relativ zum Integration-Verzeichnis
+    benchmark_file = Path(__file__).parent / "benchmark_data.json"
+    
+    empty: dict[str, Any] = {
+        "recommended_model": None,
+        "recommended_reason": None,
+        "recommended_thresholds": {},
+        "timestamp": None,
+        "models": [],
+    }
+    
+    if not benchmark_file.exists():
+        return dict(empty)
+    
+    try:
+        data = json.loads(benchmark_file.read_text())
+        return {
+            "recommended_model": data.get("recommended_model"),
+            "recommended_reason": data.get("recommended_reason"),
+            "recommended_thresholds": data.get("recommended_thresholds", {}),
+            "timestamp": data.get("timestamp"),
+            "models": data.get("models", []),
+        }
+    except (json.JSONDecodeError, OSError) as err:
+        LOGGER.warning("Benchmark-Daten konnten nicht geladen werden: %s", err)
+        return dict(empty)
+
+
+# Benchmark-Schlüssel -> zulässige Grenzen (aus const.py, für Clamping)
+_BENCHMARK_THRESHOLD_BOUNDS: dict[str, tuple[int, int]] = {
+    "stringing_threshold": (MIN_STRINGING_THRESHOLD, MAX_STRINGING_THRESHOLD),
+    "spaghetti_threshold": (MIN_SPAGHETTI_THRESHOLD, MAX_SPAGHETTI_THRESHOLD),
+    "warping_threshold": (MIN_WARPING_THRESHOLD, MAX_WARPING_THRESHOLD),
+    "layer_shift_threshold": (MIN_LAYER_SHIFT_THRESHOLD, MAX_LAYER_SHIFT_THRESHOLD),
+}
+
+
+def _valid_benchmark_thresholds(thr: Any) -> bool:
+    """Nur vollständige, plausible Schwellwert-Sätze übernehmen.
+
+    Ein Satz gilt als verwertbar, wenn alle vier Thresholds als positive
+    Zahlen vorliegen. Ein einzelner ungültiger Wert verwirft den ganzen
+    Satz (die Benchmark-Analyse schreibt sie immer als Satz).
+    """
+    if not isinstance(thr, dict):
+        return False
+    for key in _BENCHMARK_THRESHOLD_BOUNDS:
+        value = thr.get(key)
+        if not isinstance(value, (int, float)) or isinstance(value, bool):
+            return False
+        if value <= 0:
+            return False
+    conf = thr.get("min_confidence")
+    if conf is not None and not (isinstance(conf, (int, float)) and 0 < conf <= 1):
+        return False
+    return True
+
+
+def model_thresholds(model: str | None) -> dict[str, Any]:
+    """Benchmark-Schwellwerte für ein konkretes Modell.
+
+    Schlägt das Modell in benchmark_data.json nach und fällt zurück auf die
+    globalen recommended_thresholds (des empfohlenen Modells). Ungültige
+    Daten führen zu einem leeren Dict -> Aufrufer nutzt die DEFAULT_*-Werte.
+    """
+    data = load_benchmark_data()
+    for entry in data.get("models", []):
+        if isinstance(entry, dict) and entry.get("model") == model:
+            thr = entry.get("recommended_thresholds")
+            if _valid_benchmark_thresholds(thr):
+                return thr
+            break
+    thr = data.get("recommended_thresholds")
+    return thr if _valid_benchmark_thresholds(thr) else {}
+
+
+def benchmark_defaults(model: str | None) -> dict[str, Any]:
+    """Schwellwert-Defaults für ein Modell: Benchmark-Werte vor DEFAULT_*.
+
+    Wird als Fallback-Kette genutzt (Options-Dialog-Vorauswahl); explizit
+    gesetzte Optionen gewinnen immer. Werte werden auf die MIN/MAX-Grenzen
+    aus const.py geklemmt.
+    """
+    thr = model_thresholds(model)
+
+    def _clamped(key: str, default: int) -> int:
+        lo, hi = _BENCHMARK_THRESHOLD_BOUNDS[key]
+        try:
+            value = int(thr.get(key, default))
+        except (TypeError, ValueError):
+            return default
+        return max(lo, min(hi, value))
+
+    def _streak() -> int:
+        try:
+            value = int(thr.get("stringing_streak", DEFAULT_STRINGING_STREAK))
+        except (TypeError, ValueError):
+            return DEFAULT_STRINGING_STREAK
+        return max(MIN_STRINGING_STREAK, min(MAX_STRINGING_STREAK, value))
+
+    def _confidence() -> float:
+        try:
+            value = float(thr.get("min_confidence", DEFAULT_MIN_CONFIDENCE))
+        except (TypeError, ValueError):
+            return DEFAULT_MIN_CONFIDENCE
+        return max(MIN_CONFIDENCE, min(MAX_CONFIDENCE, value))
+
+    def _alpha() -> float:
+        try:
+            value = float(thr.get("smoothing_alpha", DEFAULT_SMOOTHING_ALPHA))
+        except (TypeError, ValueError):
+            return DEFAULT_SMOOTHING_ALPHA
+        return max(MIN_SMOOTHING_ALPHA, min(MAX_SMOOTHING_ALPHA, value))
+
+    return {
+        CONF_STRINGING_THRESHOLD: _clamped("stringing_threshold", DEFAULT_STRINGING_THRESHOLD),
+        CONF_STRINGING_STREAK: _streak(),
+        CONF_SPAGHETTI_THRESHOLD: _clamped("spaghetti_threshold", DEFAULT_SPAGHETTI_THRESHOLD),
+        CONF_WARPING_THRESHOLD: _clamped("warping_threshold", DEFAULT_WARPING_THRESHOLD),
+        CONF_LAYER_SHIFT_THRESHOLD: _clamped("layer_shift_threshold", DEFAULT_LAYER_SHIFT_THRESHOLD),
+        CONF_MIN_CONFIDENCE: _confidence(),
+        CONF_SMOOTHING_ALPHA: _alpha(),
+    }
 
 
 class PipelineCoordinator(DataUpdateCoordinator[dict[str, Any]]):
@@ -121,6 +308,7 @@ class PipelineCoordinator(DataUpdateCoordinator[dict[str, Any]]):
 
 
 def empty_pipeline_data() -> dict[str, Any]:
+    benchmark = load_benchmark_data()
     return {
         ATTR_STRINGING_SCORE: None,
         ATTR_SPAGHETTI_SCORE: None,
@@ -129,6 +317,8 @@ def empty_pipeline_data() -> dict[str, Any]:
         ATTR_OTHER_DEFECTS: (),
         ATTR_BED_ADHESION_FAILURE: None,
         ATTR_OBSERVATIONS: None,
+        ATTR_CONFIDENCE: None,
+        ATTR_REASONING: None,
         ATTR_STRINGING_DETECTED: False,
         ATTR_WARPING_DETECTED: False,
         ATTR_LAYER_SHIFT_DETECTED: False,
@@ -138,11 +328,17 @@ def empty_pipeline_data() -> dict[str, Any]:
         ATTR_API_FAILURES: 0,
         ATTR_DISCARDED: 0,
         ATTR_GRAB_FAILURES: 0,
+        ATTR_LOW_CONFIDENCE_FRAMES: 0,
         ATTR_EVENTS: 0,
         ATTR_LAST_CHECK: None,
         ATTR_PRINT_RUNNING: False,
         ATTR_PRINT_ID: None,
         ATTR_LAST_ERROR: None,
+        # Benchmark-Daten
+        ATTR_BENCHMARK_RECOMMENDED: benchmark["recommended_model"],
+        ATTR_BENCHMARK_THRESHOLDS: benchmark["recommended_thresholds"],
+        ATTR_BENCHMARK_TIMESTAMP: benchmark["timestamp"],
+        ATTR_BENCHMARK_MODELS: benchmark["models"],
     }
 
 
@@ -205,6 +401,16 @@ class PrinterRuntime:
                 get_value(self.entry, CONF_COOLDOWN_MIN, DEFAULT_COOLDOWN_MIN)
             )
             * 60,
+            # v3.0: Confidence & Smoothing
+            min_confidence=float(
+                get_value(self.entry, CONF_MIN_CONFIDENCE, DEFAULT_MIN_CONFIDENCE)
+            ),
+            smoothing_enabled=bool(
+                get_value(self.entry, CONF_SMOOTHING_ENABLED, DEFAULT_SMOOTHING_ENABLED)
+            ),
+            smoothing_alpha=float(
+                get_value(self.entry, CONF_SMOOTHING_ALPHA, DEFAULT_SMOOTHING_ALPHA)
+            ),
         )
 
     @property
@@ -406,20 +612,54 @@ class PrinterRuntime:
         return is_running
 
     def _build_context(self) -> str:
-        parts: list[str] = []
+        """Build context string for the vision model (Prompt v3.0).
+
+        Combines manual context, configured options, and live printer state
+        attributes (layer, temperatures, filament).
+        """
         manual = str(self.opt(CONF_MANUAL_CONTEXT, "") or "").strip()
-        if manual:
-            parts.append(manual)
+
+        # Configured values from options
+        filament_type = str(self.opt(CONF_FILAMENT_TYPE, DEFAULT_FILAMENT_TYPE) or "")
+        nozzle_temp = int(self.opt(CONF_NOZZLE_TEMP, DEFAULT_NOZZLE_TEMP) or 0)
+        bed_temp = int(self.opt(CONF_BED_TEMP, DEFAULT_BED_TEMP) or 0)
+
+        # Live state from printer entity
+        layer_height = 0.0
+        current_layer = 0
+        total_layers = 0
+        print_speed = 0
+        state_filament = ""
+
         entity_id = self.opt(CONF_PRINT_STATE_ENTITY, "")
         if entity_id and (state := self.hass.states.get(entity_id)) is not None:
-            for attr, label in (
-                ("filament_type", "Filament"),
-                ("layer_height", "Schichthöhe"),
-            ):
-                value = state.attributes.get(attr)
-                if value not in (None, "", "unknown", "unavailable"):
-                    parts.append(f"{label}: {value}")
-        return "; ".join(parts)
+            attrs = state.attributes
+            layer_height = float(attrs.get("layer_height") or 0.0)
+            current_layer = int(attrs.get("current_layer") or 0)
+            total_layers = int(attrs.get("total_layers") or 0)
+            print_speed = int(attrs.get("print_speed") or 0)
+            state_filament = str(attrs.get("filament_type") or "")
+
+        # Prefer live state over configured values
+        if state_filament:
+            filament_type = state_filament
+
+        # Build context using the prompt module helper
+        context = prompt_mod.build_context_string(
+            filament_type=filament_type,
+            nozzle_temp=nozzle_temp,
+            bed_temp=bed_temp,
+            layer_height=layer_height,
+            print_speed=print_speed,
+            current_layer=current_layer,
+            total_layers=total_layers,
+        )
+
+        # Prepend manual context if provided
+        if manual:
+            context = f"{manual}; {context}" if context else manual
+
+        return context
 
     # -- main loop ---------------------------------------------------------------
 
@@ -488,19 +728,88 @@ class PrinterRuntime:
             self._push()
             return
 
+        # v3.0: Bild-Preprocessing (optional)
+        preprocess_enabled = bool(
+            self.opt(CONF_PREPROCESS_ENABLED, DEFAULT_PREPROCESS_ENABLED)
+        )
+        if preprocess_enabled:
+            frame = await asyncio.to_thread(image_mod.preprocess_frame, frame)
+
         await asyncio.to_thread(self.archive.save_frame, frame)
         context = self._build_context()
         api_key = str(self.opt(CONF_API_KEY, "") or self.entry.data.get(CONF_API_KEY, ""))
         model = str(self.opt(CONF_MODEL, DEFAULT_MODEL))
         self.api_calls += 1
-        try:
-            result = await mistral_mod.analyze_frame(
-                self._post_json,
-                api_key=api_key,
-                model=model,
-                frame=frame,
-                context=context,
+
+        # v3.0/v3.1: Ensemble methods (optional, zweistufige Analyse)
+        ensemble_enabled = bool(
+            self.opt(CONF_ENSEMBLE_ENABLED, DEFAULT_ENSEMBLE_ENABLED)
+        )
+        critical_ensemble_enabled = bool(
+            self.opt(CONF_CRITICAL_ENSEMBLE_ENABLED, DEFAULT_CRITICAL_ENSEMBLE_ENABLED)
+        )
+        # v3.2: Plausibility Rules (AUS per default — können Accuracy verschlechtern!)
+        plausibility_rules_enabled = bool(
+            self.opt(CONF_PLAUSIBILITY_RULES_ENABLED, DEFAULT_PLAUSIBILITY_RULES_ENABLED)
+        )
+        if plausibility_rules_enabled:
+            LOGGER.debug(
+                "'%s': Plausibility Rules aktiviert (kann Accuracy beeinflussen)",
+                self.printer_name,
             )
+
+        try:
+            if critical_ensemble_enabled:
+                # v3.1: Critical Ensemble (Benchmark-optimiert)
+                quick_model = str(
+                    self.opt(CONF_CRITICAL_ENSEMBLE_QUICK_MODEL, DEFAULT_CRITICAL_ENSEMBLE_QUICK_MODEL)
+                )
+                detailed_model = str(
+                    self.opt(CONF_CRITICAL_ENSEMBLE_DETAILED_MODEL, DEFAULT_CRITICAL_ENSEMBLE_DETAILED_MODEL)
+                )
+                LOGGER.debug(
+                    "'%s': Critical Ensemble aktiv (quick=%s, detailed=%s)",
+                    self.printer_name, quick_model, detailed_model,
+                )
+                result = await mistral_mod.analyze_with_critical_ensemble(
+                    self._post_json,
+                    api_key=api_key,
+                    frame=frame,
+                    context=context,
+                    quick_model=quick_model,
+                    detailed_model=detailed_model,
+                    plausibility_rules_enabled=plausibility_rules_enabled,
+                )
+            elif ensemble_enabled:
+                # v3.0: Standard Ensemble
+                quick_model = str(
+                    self.opt(CONF_ENSEMBLE_QUICK_MODEL, DEFAULT_ENSEMBLE_QUICK_MODEL)
+                )
+                detailed_model = str(
+                    self.opt(CONF_ENSEMBLE_DETAILED_MODEL, DEFAULT_ENSEMBLE_DETAILED_MODEL)
+                )
+                LOGGER.debug(
+                    "'%s': Ensemble-Modus aktiv (quick=%s, detailed=%s)",
+                    self.printer_name, quick_model, detailed_model,
+                )
+                result = await mistral_mod.analyze_with_ensemble(
+                    self._post_json,
+                    api_key=api_key,
+                    frame=frame,
+                    context=context,
+                    quick_model=quick_model,
+                    detailed_model=detailed_model,
+                    plausibility_rules_enabled=plausibility_rules_enabled,
+                )
+            else:
+                result = await mistral_mod.analyze_frame(
+                    self._post_json,
+                    api_key=api_key,
+                    model=model,
+                    frame=frame,
+                    context=context,
+                    plausibility_rules_enabled=plausibility_rules_enabled,
+                )
         except mistral_mod.AnalysisError as err:
             self._last_error = f"[{err.kind}] {err}"
             if err.kind == mistral_mod.KIND_API:
@@ -526,6 +835,8 @@ class PrinterRuntime:
                 "bed_adhesion_failure": result.bed_adhesion_failure,
                 "observations": result.observations,
                 "other_defects": list(result.other_defects),
+                "confidence": result.confidence,
+                "reasoning": result.reasoning,
             },
         )
         self._push(decision)
@@ -749,6 +1060,9 @@ class PrinterRuntime:
             result.bed_adhesion_failure if result else None
         )
         data[ATTR_OBSERVATIONS] = result.observations if result else None
+        # v3.0: Confidence & Reasoning
+        data[ATTR_CONFIDENCE] = result.confidence if result else None
+        data[ATTR_REASONING] = result.reasoning if result else None
         data[ATTR_STRINGING_DETECTED] = (
             decision.stringing_detected
             if decision
@@ -772,6 +1086,7 @@ class PrinterRuntime:
         data[ATTR_API_FAILURES] = self.api_failures
         data[ATTR_DISCARDED] = self.discarded
         data[ATTR_GRAB_FAILURES] = self.grab_failures
+        data[ATTR_LOW_CONFIDENCE_FRAMES] = self.engine.stats.low_confidence_frames
         data[ATTR_EVENTS] = (
             self.engine.stats.stringing_events
             + self.engine.stats.spaghetti_events
@@ -784,6 +1099,13 @@ class PrinterRuntime:
         data[ATTR_PRINT_RUNNING] = self._print_id is not None
         data[ATTR_PRINT_ID] = self._print_id
         data[ATTR_LAST_ERROR] = self._last_error
+        # Benchmark-Daten (statisch, nur bei Init gesetzt, hier sicherstellen)
+        if ATTR_BENCHMARK_RECOMMENDED not in data or data[ATTR_BENCHMARK_RECOMMENDED] is None:
+            benchmark = load_benchmark_data()
+            data[ATTR_BENCHMARK_RECOMMENDED] = benchmark["recommended_model"]
+            data[ATTR_BENCHMARK_THRESHOLDS] = benchmark["recommended_thresholds"]
+            data[ATTR_BENCHMARK_TIMESTAMP] = benchmark["timestamp"]
+            data[ATTR_BENCHMARK_MODELS] = benchmark["models"]
         self.coordinator.async_set_updated_data(data)
 
 

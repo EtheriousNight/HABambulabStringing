@@ -15,20 +15,30 @@ from .const import (
     CONF_API_KEY,
     CONF_AUTO_PAUSE,
     CONF_BAMBU_DEVICE_ID,
+    CONF_BED_TEMP,
     CONF_CAMERA_ENTITY,
     CONF_CHECK_INTERVAL,
     CONF_COOLDOWN_MIN,
+    CONF_CRITICAL_ENSEMBLE_ENABLED,
     CONF_DEEP_LINK,
+    CONF_ENSEMBLE_ENABLED,
+    CONF_FILAMENT_TYPE,
     CONF_LAYER_SHIFT_THRESHOLD,
     CONF_MANUAL_CONTEXT,
     CONF_MJPEG_URL,
+    CONF_MIN_CONFIDENCE,
     CONF_MODEL,
     CONF_NOTIFY_SERVICES,
+    CONF_NOZZLE_TEMP,
     CONF_PAUSE_SERVICE,
+    CONF_PLAUSIBILITY_RULES_ENABLED,
+    CONF_PREPROCESS_ENABLED,
     CONF_PRINT_STATE_ENTITY,
     CONF_RESUME_SERVICE,
     CONF_RETENTION_DAYS,
     CONF_RUNNING_STATES,
+    CONF_SMOOTHING_ALPHA,
+    CONF_SMOOTHING_ENABLED,
     CONF_SPAGHETTI_THRESHOLD,
     CONF_STOP_SERVICE,
     CONF_STRINGING_STREAK,
@@ -36,40 +46,48 @@ from .const import (
     CONF_WARPING_THRESHOLD,
     NOTIFY_TARGET_AUTO,
     DEFAULT_AUTO_PAUSE,
+    DEFAULT_BED_TEMP,
     DEFAULT_CHECK_INTERVAL,
     DEFAULT_COOLDOWN_MIN,
+    DEFAULT_CRITICAL_ENSEMBLE_ENABLED,
     DEFAULT_DEEP_LINK_TEMPLATE,
-    DEFAULT_LAYER_SHIFT_THRESHOLD,
+    DEFAULT_ENSEMBLE_ENABLED,
+    DEFAULT_FILAMENT_TYPE,
     DEFAULT_MODEL,
     DEFAULT_NOTIFY_SERVICES,
+    DEFAULT_NOZZLE_TEMP,
     DEFAULT_PAUSE_SERVICE,
+    DEFAULT_PLAUSIBILITY_RULES_ENABLED,
+    DEFAULT_PREPROCESS_ENABLED,
     DEFAULT_RESUME_SERVICE,
     DEFAULT_RETENTION_DAYS,
     DEFAULT_RUNNING_STATES,
-    DEFAULT_SPAGHETTI_THRESHOLD,
+    DEFAULT_SMOOTHING_ENABLED,
     DEFAULT_STOP_SERVICE,
-    DEFAULT_STRINGING_STREAK,
-    DEFAULT_STRINGING_THRESHOLD,
-    DEFAULT_WARPING_THRESHOLD,
     DOMAIN,
+    FILAMENT_TYPES,
     MAX_CHECK_INTERVAL,
+    MAX_CONFIDENCE,
     MAX_COOLDOWN_MIN,
     MAX_LAYER_SHIFT_THRESHOLD,
     MAX_RETENTION_DAYS,
+    MAX_SMOOTHING_ALPHA,
     MAX_SPAGHETTI_THRESHOLD,
     MAX_STRINGING_STREAK,
     MAX_STRINGING_THRESHOLD,
     MAX_WARPING_THRESHOLD,
     MIN_CHECK_INTERVAL,
+    MIN_CONFIDENCE,
     MIN_COOLDOWN_MIN,
     MIN_LAYER_SHIFT_THRESHOLD,
     MIN_RETENTION_DAYS,
+    MIN_SMOOTHING_ALPHA,
     MIN_SPAGHETTI_THRESHOLD,
     MIN_STRINGING_STREAK,
     MIN_STRINGING_THRESHOLD,
     MIN_WARPING_THRESHOLD,
 )
-from .runtime import get_value
+from .runtime import benchmark_defaults, get_value
 
 
 def _int_range(low: int, high: int) -> vol.All:
@@ -178,6 +196,10 @@ class BambuStringingOptionsFlow(OptionsFlow):
     async def async_step_init(self, user_input: dict[str, Any] | None = None):
         entry = self.config_entry
         slug = slugify(entry.data.get(CONF_NAME, entry.entry_id))
+        # Benchmark-Schwellenwerte des konfigurierten Modells als Fallback —
+        # explizit gesetzte Optionen gewinnen weiterhin (get_value prüft
+        # options vor data vor Fallback).
+        bench = benchmark_defaults(str(get_value(entry, CONF_MODEL, DEFAULT_MODEL)))
         if user_input is not None:
             # Leerer API-Key bedeutet "bestehenden Key behalten" – nicht als
             # leeren Options-Wert speichern, damit get_value auf entry.data
@@ -201,7 +223,7 @@ class BambuStringingOptionsFlow(OptionsFlow):
                     )(
                         get_value(
                             entry, CONF_STRINGING_THRESHOLD,
-                            DEFAULT_STRINGING_THRESHOLD,
+                            bench[CONF_STRINGING_THRESHOLD],
                         )
                     ),
                 ): _int_range(
@@ -211,7 +233,7 @@ class BambuStringingOptionsFlow(OptionsFlow):
                     CONF_STRINGING_STREAK,
                     default=_int_range(MIN_STRINGING_STREAK, MAX_STRINGING_STREAK)(
                         get_value(
-                            entry, CONF_STRINGING_STREAK, DEFAULT_STRINGING_STREAK
+                            entry, CONF_STRINGING_STREAK, bench[CONF_STRINGING_STREAK]
                         )
                     ),
                 ): _int_range(MIN_STRINGING_STREAK, MAX_STRINGING_STREAK),
@@ -222,7 +244,7 @@ class BambuStringingOptionsFlow(OptionsFlow):
                     )(
                         get_value(
                             entry, CONF_SPAGHETTI_THRESHOLD,
-                            DEFAULT_SPAGHETTI_THRESHOLD,
+                            bench[CONF_SPAGHETTI_THRESHOLD],
                         )
                     ),
                 ): _int_range(
@@ -236,7 +258,7 @@ class BambuStringingOptionsFlow(OptionsFlow):
                         get_value(
                             entry,
                             CONF_WARPING_THRESHOLD,
-                            DEFAULT_WARPING_THRESHOLD,
+                            bench[CONF_WARPING_THRESHOLD],
                         )
                     ),
                 ): _int_range(MIN_WARPING_THRESHOLD, MAX_WARPING_THRESHOLD),
@@ -248,7 +270,7 @@ class BambuStringingOptionsFlow(OptionsFlow):
                         get_value(
                             entry,
                             CONF_LAYER_SHIFT_THRESHOLD,
-                            DEFAULT_LAYER_SHIFT_THRESHOLD,
+                            bench[CONF_LAYER_SHIFT_THRESHOLD],
                         )
                     ),
                 ): _int_range(
@@ -330,6 +352,77 @@ class BambuStringingOptionsFlow(OptionsFlow):
                     CONF_MANUAL_CONTEXT,
                     default=str(get_value(entry, CONF_MANUAL_CONTEXT, "")),
                 ): str,
+                # Prompt v3.0: Preprocessing & Kontext-Features
+                vol.Required(
+                    CONF_PREPROCESS_ENABLED,
+                    default=bool(
+                        get_value(entry, CONF_PREPROCESS_ENABLED, DEFAULT_PREPROCESS_ENABLED)
+                    ),
+                ): bool,
+                vol.Optional(
+                    CONF_FILAMENT_TYPE,
+                    default=str(
+                        get_value(entry, CONF_FILAMENT_TYPE, DEFAULT_FILAMENT_TYPE)
+                    ),
+                ): selector.SelectSelector(
+                    selector.SelectSelectorConfig(
+                        options=FILAMENT_TYPES,
+                        mode="dropdown",
+                    )
+                ),
+                vol.Optional(
+                    CONF_NOZZLE_TEMP,
+                    default=int(
+                        get_value(entry, CONF_NOZZLE_TEMP, DEFAULT_NOZZLE_TEMP)
+                    ),
+                ): vol.All(vol.Coerce(int), vol.Range(min=0, max=350)),
+                vol.Optional(
+                    CONF_BED_TEMP,
+                    default=int(
+                        get_value(entry, CONF_BED_TEMP, DEFAULT_BED_TEMP)
+                    ),
+                ): vol.All(vol.Coerce(int), vol.Range(min=0, max=120)),
+                # Decision Engine v3.0: Confidence & Smoothing
+                vol.Required(
+                    CONF_MIN_CONFIDENCE,
+                    default=float(
+                        get_value(entry, CONF_MIN_CONFIDENCE, bench[CONF_MIN_CONFIDENCE])
+                    ),
+                ): vol.All(vol.Coerce(float), vol.Range(min=MIN_CONFIDENCE, max=MAX_CONFIDENCE)),
+                vol.Required(
+                    CONF_SMOOTHING_ENABLED,
+                    default=bool(
+                        get_value(entry, CONF_SMOOTHING_ENABLED, DEFAULT_SMOOTHING_ENABLED)
+                    ),
+                ): bool,
+                vol.Required(
+                    CONF_SMOOTHING_ALPHA,
+                    default=float(
+                        get_value(entry, CONF_SMOOTHING_ALPHA, bench[CONF_SMOOTHING_ALPHA])
+                    ),
+                ): vol.All(vol.Coerce(float), vol.Range(min=MIN_SMOOTHING_ALPHA, max=MAX_SMOOTHING_ALPHA)),
+                # Ensemble method (zweistufige Analyse)
+                vol.Required(
+                    CONF_ENSEMBLE_ENABLED,
+                    default=bool(
+                        get_value(entry, CONF_ENSEMBLE_ENABLED, DEFAULT_ENSEMBLE_ENABLED)
+                    ),
+                ): bool,
+                # Critical Ensemble (Benchmark-optimiert, v3.1)
+                vol.Required(
+                    CONF_CRITICAL_ENSEMBLE_ENABLED,
+                    default=bool(
+                        get_value(entry, CONF_CRITICAL_ENSEMBLE_ENABLED, DEFAULT_CRITICAL_ENSEMBLE_ENABLED)
+                    ),
+                ): bool,
+                # Plausibility Rules (v3.2) — AUS per default, da sie Accuracy
+                # verschlechtern können (Benchmark: glm 77.9% → 64.3%)
+                vol.Required(
+                    CONF_PLAUSIBILITY_RULES_ENABLED,
+                    default=bool(
+                        get_value(entry, CONF_PLAUSIBILITY_RULES_ENABLED, DEFAULT_PLAUSIBILITY_RULES_ENABLED)
+                    ),
+                ): bool,
             }
         )
         return self.async_show_form(step_id="init", data_schema=schema)

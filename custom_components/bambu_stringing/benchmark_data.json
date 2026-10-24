@@ -1,0 +1,301 @@
+{
+  "timestamp": "2026-10-24 09:48:05",
+  "recommended_model": "zai-glm-5-3-flash",
+  "recommended_reason": "Bestes Production Score (81.2): 77.9% Accuracy, 7332ms Latenz, 0.10¢/Scan",
+  "recommended_thresholds": {
+    "stringing_threshold": 45,
+    "spaghetti_threshold": 87,
+    "warping_threshold": 75,
+    "layer_shift_threshold": 40,
+    "min_confidence": 0.8,
+    "smoothing_alpha": 0.3,
+    "stringing_streak": 3
+  },
+  "models": [
+    {
+      "model": "mistral-large-4",
+      "accuracy_pct": 79.3,
+      "avg_latency_ms": 21658.0,
+      "cost_per_scan_cents": 1.232,
+      "value_score": 68.4,
+      "production_score": 62.6,
+      "category_accuracy": {
+        "stringing": 100.0,
+        "spaghetti": 75.0,
+        "clean": 88.9,
+        "warping": 100.0,
+        "layer_shift": 50.0
+      },
+      "recommended_thresholds": {
+        "stringing_threshold": 50,
+        "spaghetti_threshold": 30,
+        "warping_threshold": 75,
+        "layer_shift_threshold": 30,
+        "min_confidence": 0.6,
+        "smoothing_alpha": 0.3,
+        "stringing_streak": 3
+      }
+    },
+    {
+      "model": "zai-glm-5-3-flash",
+      "accuracy_pct": 77.9,
+      "avg_latency_ms": 7332.0,
+      "cost_per_scan_cents": 0.098,
+      "value_score": 79.4,
+      "production_score": 81.2,
+      "category_accuracy": {
+        "stringing": 100.0,
+        "spaghetti": 100.0,
+        "clean": 88.9,
+        "warping": 100.0,
+        "layer_shift": 50.0
+      },
+      "recommended_thresholds": {
+        "stringing_threshold": 45,
+        "spaghetti_threshold": 87,
+        "warping_threshold": 75,
+        "layer_shift_threshold": 40,
+        "min_confidence": 0.8,
+        "smoothing_alpha": 0.3,
+        "stringing_streak": 3
+      }
+    },
+    {
+      "model": "mistral-large-latest",
+      "accuracy_pct": 74.8,
+      "avg_latency_ms": 3322.0,
+      "cost_per_scan_cents": 0.157,
+      "value_score": 79.8,
+      "production_score": 83.4,
+      "category_accuracy": {
+        "stringing": 33.3,
+        "spaghetti": 100.0,
+        "clean": 100.0,
+        "warping": 100.0,
+        "layer_shift": 50.0
+      },
+      "recommended_thresholds": {
+        "stringing_threshold": 30,
+        "spaghetti_threshold": 90,
+        "warping_threshold": 70,
+        "layer_shift_threshold": 75,
+        "min_confidence": 0.6,
+        "smoothing_alpha": 0.3,
+        "stringing_streak": 3
+      }
+    },
+    {
+      "model": "mistral-medium-latest",
+      "accuracy_pct": 86.4,
+      "avg_latency_ms": 1735.0,
+      "cost_per_scan_cents": 0.482,
+      "value_score": 88.2,
+      "production_score": 89.3,
+      "category_accuracy": {
+        "stringing": 66.7,
+        "spaghetti": 100.0,
+        "clean": 100.0,
+        "warping": 100.0,
+        "layer_shift": 50.0
+      },
+      "recommended_thresholds": {
+        "stringing_threshold": 30,
+        "spaghetti_threshold": 90,
+        "warping_threshold": 65,
+        "layer_shift_threshold": 30,
+        "min_confidence": 0.6,
+        "smoothing_alpha": 0.3,
+        "stringing_streak": 3
+      }
+    },
+    {
+      "model": "mistral-small-latest",
+      "accuracy_pct": 58.4,
+      "avg_latency_ms": 1617.0,
+      "cost_per_scan_cents": 0.048,
+      "value_score": 69.7,
+      "production_score": 77.4,
+      "category_accuracy": {
+        "stringing": 33.3,
+        "spaghetti": 50.0,
+        "clean": 77.8,
+        "warping": 100.0,
+        "layer_shift": 50.0
+      },
+      "recommended_thresholds": {
+        "stringing_threshold": 90,
+        "spaghetti_threshold": 30,
+        "warping_threshold": 70,
+        "layer_shift_threshold": 30,
+        "min_confidence": 0.6,
+        "smoothing_alpha": 0.3,
+        "stringing_streak": 3
+      }
+    }
+  ],
+  "recommendations": {
+    "best_accuracy": {
+      "model": "mistral-medium-latest",
+      "accuracy_pct": 86.4,
+      "accuracy_corrected_pct": 86.4,
+      "value_score": 88.2,
+      "production_score": 89.3,
+      "reliability_score": 77.6,
+      "critical_defect_score": 80.0,
+      "critical_bonus": 0.0,
+      "composite_score": 88.8,
+      "avg_latency_ms": 1735.0,
+      "total_cost_usd": 0.1061,
+      "cost_per_scan_cents": 0.482,
+      "accuracy_per_dollar": 813.6,
+      "total_scans": 22,
+      "category_accuracy": {
+        "stringing": 66.7,
+        "spaghetti": 100.0,
+        "clean": 100.0,
+        "warping": 100.0,
+        "layer_shift": 50.0
+      },
+      "category_accuracy_corrected": {
+        "stringing": 66.7,
+        "spaghetti": 100.0,
+        "clean": 100.0,
+        "warping": 100.0,
+        "layer_shift": 50.0
+      }
+    },
+    "best_accuracy_corrected": {
+      "model": "mistral-medium-latest",
+      "accuracy_pct": 86.4,
+      "accuracy_corrected_pct": 86.4,
+      "value_score": 88.2,
+      "production_score": 89.3,
+      "reliability_score": 77.6,
+      "critical_defect_score": 80.0,
+      "critical_bonus": 0.0,
+      "composite_score": 88.8,
+      "avg_latency_ms": 1735.0,
+      "total_cost_usd": 0.1061,
+      "cost_per_scan_cents": 0.482,
+      "accuracy_per_dollar": 813.6,
+      "total_scans": 22,
+      "category_accuracy": {
+        "stringing": 66.7,
+        "spaghetti": 100.0,
+        "clean": 100.0,
+        "warping": 100.0,
+        "layer_shift": 50.0
+      },
+      "category_accuracy_corrected": {
+        "stringing": 66.7,
+        "spaghetti": 100.0,
+        "clean": 100.0,
+        "warping": 100.0,
+        "layer_shift": 50.0
+      }
+    },
+    "best_reliability": {
+      "model": "mistral-medium-latest",
+      "accuracy_pct": 86.4,
+      "accuracy_corrected_pct": 86.4,
+      "value_score": 88.2,
+      "production_score": 89.3,
+      "reliability_score": 77.6,
+      "critical_defect_score": 80.0,
+      "critical_bonus": 0.0,
+      "composite_score": 88.8,
+      "avg_latency_ms": 1735.0,
+      "total_cost_usd": 0.1061,
+      "cost_per_scan_cents": 0.482,
+      "accuracy_per_dollar": 813.6,
+      "total_scans": 22,
+      "category_accuracy": {
+        "stringing": 66.7,
+        "spaghetti": 100.0,
+        "clean": 100.0,
+        "warping": 100.0,
+        "layer_shift": 50.0
+      },
+      "category_accuracy_corrected": {
+        "stringing": 66.7,
+        "spaghetti": 100.0,
+        "clean": 100.0,
+        "warping": 100.0,
+        "layer_shift": 50.0
+      }
+    },
+    "best_value": {
+      "model": "mistral-medium-latest",
+      "accuracy_pct": 86.4,
+      "accuracy_corrected_pct": 86.4,
+      "value_score": 88.2,
+      "production_score": 89.3,
+      "reliability_score": 77.6,
+      "critical_defect_score": 80.0,
+      "critical_bonus": 0.0,
+      "composite_score": 88.8,
+      "avg_latency_ms": 1735.0,
+      "total_cost_usd": 0.1061,
+      "cost_per_scan_cents": 0.482,
+      "accuracy_per_dollar": 813.6,
+      "total_scans": 22,
+      "category_accuracy": {
+        "stringing": 66.7,
+        "spaghetti": 100.0,
+        "clean": 100.0,
+        "warping": 100.0,
+        "layer_shift": 50.0
+      },
+      "category_accuracy_corrected": {
+        "stringing": 66.7,
+        "spaghetti": 100.0,
+        "clean": 100.0,
+        "warping": 100.0,
+        "layer_shift": 50.0
+      }
+    },
+    "best_production": {
+      "model": "mistral-medium-latest",
+      "accuracy_pct": 86.4,
+      "accuracy_corrected_pct": 86.4,
+      "value_score": 88.2,
+      "production_score": 89.3,
+      "reliability_score": 77.6,
+      "critical_defect_score": 80.0,
+      "critical_bonus": 0.0,
+      "composite_score": 88.8,
+      "avg_latency_ms": 1735.0,
+      "total_cost_usd": 0.1061,
+      "cost_per_scan_cents": 0.482,
+      "accuracy_per_dollar": 813.6,
+      "total_scans": 22,
+      "category_accuracy": {
+        "stringing": 66.7,
+        "spaghetti": 100.0,
+        "clean": 100.0,
+        "warping": 100.0,
+        "layer_shift": 50.0
+      },
+      "category_accuracy_corrected": {
+        "stringing": 66.7,
+        "spaghetti": 100.0,
+        "clean": 100.0,
+        "warping": 100.0,
+        "layer_shift": 50.0
+      }
+    },
+    "best_speed": {
+      "model": "mistral-small-latest",
+      "avg_latency_ms": 1617.0
+    },
+    "cheapest": {
+      "model": "mistral-small-latest",
+      "total_cost_usd": 0.0105,
+      "cost_per_scan_cents": 0.048
+    },
+    "best_accuracy_per_dollar": {
+      "model": "mistral-small-latest",
+      "accuracy_per_dollar": 5566.9
+    }
+  }
+}

@@ -429,17 +429,191 @@ def runtime(hass, entry, tmp_path):
 
 
 def test_runtime_constructs_with_defaults(runtime):
+    from custom_components.bambu_stringing.const import (
+        DEFAULT_LAYER_SHIFT_THRESHOLD,
+        DEFAULT_SPAGHETTI_THRESHOLD,
+        DEFAULT_STRINGING_STREAK,
+        DEFAULT_STRINGING_THRESHOLD,
+        DEFAULT_WARPING_THRESHOLD,
+    )
+
     assert runtime.printer_name == "P1S Werkstatt"
     assert runtime.slug == "p1s_werkstatt"
     cfg = runtime._engine_config()
-    assert cfg.stringing_threshold == 55
-    assert cfg.stringing_streak == 3
-    assert cfg.spaghetti_threshold == 70
+    # Gegen die Konstanten testen (nicht gegen fixe Werte): der Benchmark
+    # (--apply-default) darf die DEFAULT_*-Werte in const.py überschreiben.
+    assert cfg.stringing_threshold == DEFAULT_STRINGING_THRESHOLD
+    assert cfg.stringing_streak == DEFAULT_STRINGING_STREAK
+    assert cfg.spaghetti_threshold == DEFAULT_SPAGHETTI_THRESHOLD
+    assert cfg.warping_threshold == DEFAULT_WARPING_THRESHOLD
+    assert cfg.layer_shift_threshold == DEFAULT_LAYER_SHIFT_THRESHOLD
     assert cfg.stringing_cooldown_sec == 15 * 60
     assert runtime.deep_link == (
         "homeassistant://more-info/binary_sensor.p1s_werkstatt_print_failure"
     )
     assert runtime.image_path == "/local/snapshots/p1s_werkstatt/latest.jpg"
+
+
+def test_benchmark_defaults_per_model(monkeypatch):
+    """Benchmark-Schwellenwerte werden pro Modell als Fallback genutzt."""
+    from custom_components.bambu_stringing import runtime
+    from custom_components.bambu_stringing.const import (
+        CONF_LAYER_SHIFT_THRESHOLD,
+        CONF_MIN_CONFIDENCE,
+        CONF_SMOOTHING_ALPHA,
+        CONF_SPAGHETTI_THRESHOLD,
+        CONF_STRINGING_STREAK,
+        CONF_STRINGING_THRESHOLD,
+        CONF_WARPING_THRESHOLD,
+        DEFAULT_LAYER_SHIFT_THRESHOLD,
+        DEFAULT_MIN_CONFIDENCE,
+        DEFAULT_SMOOTHING_ALPHA,
+        DEFAULT_SPAGHETTI_THRESHOLD,
+        DEFAULT_STRINGING_STREAK,
+        DEFAULT_STRINGING_THRESHOLD,
+        DEFAULT_WARPING_THRESHOLD,
+        MAX_STRINGING_THRESHOLD,
+        MIN_STRINGING_THRESHOLD,
+    )
+
+    data = {
+        "recommended_model": "model-a",
+        "recommended_thresholds": {
+            "stringing_threshold": 50,
+            "spaghetti_threshold": 60,
+            "warping_threshold": 55,
+            "layer_shift_threshold": 65,
+            "min_confidence": 0.7,
+            "smoothing_alpha": 0.4,
+            "stringing_streak": 2,
+        },
+        "models": [
+            {
+                "model": "model-a",
+                "recommended_thresholds": {
+                    "stringing_threshold": 10,  # unter MIN -> clamp
+                    "spaghetti_threshold": 75,
+                    "warping_threshold": 55,
+                    "layer_shift_threshold": 65,
+                    "min_confidence": 0.7,
+                    "smoothing_alpha": 0.4,
+                    "stringing_streak": 2,
+                },
+            },
+            {
+                "model": "model-b",
+                "recommended_thresholds": {
+                    "stringing_threshold": 0,  # unplausibel -> verwerfen
+                },
+            },
+        ],
+    }
+    monkeypatch.setattr(runtime, "load_benchmark_data", lambda: data)
+
+    # Modell mit gültigen Werten: übernommen, auf MIN/MAX geklemmt
+    bdef = runtime.benchmark_defaults("model-a")
+    assert bdef[CONF_STRINGING_THRESHOLD] == MIN_STRINGING_THRESHOLD
+    assert bdef[CONF_SPAGHETTI_THRESHOLD] == 75
+    assert bdef[CONF_WARPING_THRESHOLD] == 55
+    assert bdef[CONF_LAYER_SHIFT_THRESHOLD] == 65
+    assert bdef[CONF_MIN_CONFIDENCE] == 0.7
+    assert bdef[CONF_SMOOTHING_ALPHA] == 0.4
+    assert bdef[CONF_STRINGING_STREAK] == 2
+    assert MIN_STRINGING_THRESHOLD <= bdef[CONF_STRINGING_THRESHOLD] <= MAX_STRINGING_THRESHOLD
+
+    # Modell mit ungültigen Werten: fällt auf die globalen Empfehlungen zurück
+    bdef_b = runtime.benchmark_defaults("model-b")
+    assert bdef_b[CONF_STRINGING_THRESHOLD] == 50
+    assert bdef_b[CONF_SPAGHETTI_THRESHOLD] == 60
+
+    # Unbekanntes Modell: fällt auf die globalen Empfehlungen zurück
+    bdef_u = runtime.benchmark_defaults("unbekannt-modell")
+    assert bdef_u[CONF_STRINGING_THRESHOLD] == 50
+    assert bdef_u[CONF_MIN_CONFIDENCE] == 0.7
+
+    # Ganz ohne Benchmark-Daten: DEFAULT_*-Konstanten
+    monkeypatch.setattr(runtime, "load_benchmark_data", lambda: {})
+    bdef_empty = runtime.benchmark_defaults("model-a")
+    assert bdef_empty[CONF_STRINGING_THRESHOLD] == DEFAULT_STRINGING_THRESHOLD
+    assert bdef_empty[CONF_SPAGHETTI_THRESHOLD] == DEFAULT_SPAGHETTI_THRESHOLD
+    assert bdef_empty[CONF_WARPING_THRESHOLD] == DEFAULT_WARPING_THRESHOLD
+    assert bdef_empty[CONF_LAYER_SHIFT_THRESHOLD] == DEFAULT_LAYER_SHIFT_THRESHOLD
+    assert bdef_empty[CONF_MIN_CONFIDENCE] == DEFAULT_MIN_CONFIDENCE
+    assert bdef_empty[CONF_SMOOTHING_ALPHA] == DEFAULT_SMOOTHING_ALPHA
+    assert bdef_empty[CONF_STRINGING_STREAK] == DEFAULT_STRINGING_STREAK
+
+
+def test_benchmark_data_invalidate_garbage(monkeypatch):
+    """Unvollständige/plausible-widrige Schwellwert-Sätze werden verworfen."""
+    from custom_components.bambu_stringing import runtime
+
+    # Kaputte Daten (wie sie die alte Analyse erzeugte): Thresholds mit 0
+    data = {
+        "recommended_model": "model-a",
+        "recommended_thresholds": {
+            "stringing_threshold": 0,
+            "spaghetti_threshold": 0,
+            "warping_threshold": 10,
+            "layer_shift_threshold": 0,
+            "min_confidence": 0.9,
+        },
+        "models": [],
+    }
+    monkeypatch.setattr(runtime, "load_benchmark_data", lambda: data)
+    assert runtime.model_thresholds("model-a") == {}
+    assert runtime.model_thresholds(None) == {}
+
+
+def test_benchmark_sensor_exposes_per_model_thresholds(hass, entry, monkeypatch):
+    """Benchmark-Sensor listet die Schwellenwerte pro Modell auf."""
+    from custom_components.bambu_stringing import runtime as rt_mod
+    from custom_components.bambu_stringing.const import ATTR_BENCHMARK_MODELS
+    from custom_components.bambu_stringing.runtime import PrinterRuntime
+    from custom_components.bambu_stringing.sensor import BenchmarkModelSensor
+
+    data = {
+        "recommended_model": "model-a",
+        "recommended_reason": "Test",
+        "recommended_thresholds": {
+            "stringing_threshold": 50,
+            "spaghetti_threshold": 60,
+            "warping_threshold": 55,
+            "layer_shift_threshold": 65,
+            "min_confidence": 0.7,
+            "smoothing_alpha": 0.4,
+            "stringing_streak": 2,
+        },
+        "timestamp": "2026-10-24 10:00:00",
+        "models": [
+            {
+                "model": "model-a",
+                "accuracy_pct": 80.0,
+                "avg_latency_ms": 1000.0,
+                "cost_per_scan_cents": 0.1,
+                "value_score": 80.0,
+                "category_accuracy": {"clean": 100.0},
+                "recommended_thresholds": {
+                    "stringing_threshold": 45,
+                    "spaghetti_threshold": 60,
+                    "warping_threshold": 55,
+                    "layer_shift_threshold": 65,
+                    "min_confidence": 0.7,
+                    "smoothing_alpha": 0.4,
+                    "stringing_streak": 2,
+                },
+            },
+        ],
+    }
+    monkeypatch.setattr(rt_mod, "load_benchmark_data", lambda: data)
+
+    hass.data["bambu_stringing"] = {"runtimes": {}}
+    rt = PrinterRuntime(hass, entry)
+    sensor = BenchmarkModelSensor(rt)
+
+    attrs = sensor.extra_state_attributes
+    assert attrs["recommended_thresholds"]["stringing_threshold"] == 50
+    assert attrs["models"][0]["recommended_thresholds"]["stringing_threshold"] == 45
+    assert attrs["models"][0]["recommended_thresholds"]["min_confidence"] == 0.7
 
 
 def test_gate_reads_gcode_state_attribute(runtime, hass):

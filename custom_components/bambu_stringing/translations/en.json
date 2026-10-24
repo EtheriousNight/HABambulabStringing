@@ -53,7 +53,17 @@
           "pause_service": "Pause service",
           "resume_service": "Resume service",
           "stop_service": "Stop service",
-          "manual_context": "Manual print context"
+          "manual_context": "Manual print context",
+          "preprocess_enabled": "Enable image preprocessing",
+          "filament_type": "Filament type",
+          "nozzle_temp": "Nozzle temperature (°C)",
+          "bed_temp": "Bed temperature (°C)",
+          "min_confidence": "Minimum confidence (0.0–1.0)",
+          "smoothing_enabled": "Enable score smoothing (EMA)",
+          "smoothing_alpha": "Smoothing factor (0.1–0.9)",
+          "ensemble_enabled": "Enable ensemble mode (two-stage analysis)",
+          "critical_ensemble_enabled": "Critical Ensemble (benchmark-optimized, v3.1)",
+          "plausibility_rules_enabled": "Enable Plausibility Rules (v3.2)"
         },
         "data_description": {
           "check_interval_sec": "20-300 s. Stringing develops slowly; 30-60 s is enough.",
@@ -69,7 +79,17 @@
           "running_states": "Default: RUNNING,PAUSE. Compared against the gcode_state attribute or the state (case-insensitive). PAUSE is included so paused prints keep being monitored.",
           "pause_service": "Service path, e.g. bambu_lab.pause_print. Target device is the configured ha-bambulab printer.",
           "deep_link": "e.g. homeassistant://navigate/lovelace/0 or homeassistant://more-info/<entity_id>.",
-          "notify_services": "\"Automatically\" notifies all detected companion apps; alternatively select a specific service."
+          "notify_services": "\"Automatically\" notifies all detected companion apps; alternatively select a specific service.",
+          "preprocess_enabled": "Enhances images before analysis: crop to print bed, increase contrast & sharpness. Makes fine strings more visible.",
+          "filament_type": "Helps the model calibrate (PETG tends to string, ABS to warp). Empty = unknown.",
+          "nozzle_temp": "Current nozzle temperature. Too hot → more stringing, too cold → adhesion issues. 0 = unknown.",
+          "bed_temp": "Current bed temperature. 0 = unknown.",
+          "min_confidence": "Frames with lower confidence are discarded (not counted). Reduces false positives at 0.6–0.8.",
+          "smoothing_enabled": "Smooths scores over multiple frames (Exponential Moving Average). Reduces short-term fluctuations.",
+          "smoothing_alpha": "Higher = faster reaction to changes (0.3 = good default). Lower = more smoothing.",
+          "ensemble_enabled": "First a fast/cheap model, then a more accurate model on uncertainty. Saves cost on clear cases, improves accuracy on borderline cases.",
+          "critical_ensemble_enabled": "Benchmark-optimized: glm-5-3-flash (cheap) + mistral-medium-latest (fast). Critical defects (spaghetti, layer-shift) are ALWAYS checked by both models — maximum safety, no false negatives on critical errors! Costs ~0.46¢/scan.",
+          "plausibility_rules_enabled": "OFF by default. Can correct obvious misclassifications (e.g. spaghetti on standing towers → stringing), but can also destroy correct answers. Benchmark: glm 77.9% → 64.3% accuracy. Only enable if false positives are a problem."
         }
       }
     }
@@ -110,6 +130,9 @@
       },
       "last_check": {
         "name": "Last check"
+      },
+      "benchmark_model": {
+        "name": "Recommended model (benchmark)"
       }
     },
     "button": {

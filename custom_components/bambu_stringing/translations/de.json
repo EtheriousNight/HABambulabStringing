@@ -53,7 +53,17 @@
           "pause_service": "Pause-Service",
           "resume_service": "Resume-Service",
           "stop_service": "Stop-Service",
-          "manual_context": "Manueller Druckkontext"
+          "manual_context": "Manueller Druckkontext",
+          "preprocess_enabled": "Bildvorverarbeitung aktivieren",
+          "filament_type": "Filament-Typ",
+          "nozzle_temp": "Düsentemperatur (°C)",
+          "bed_temp": "Betttemperatur (°C)",
+          "min_confidence": "Minimale Konfidenz (0.0–1.0)",
+          "smoothing_enabled": "Score-Glättung (EMA) aktivieren",
+          "smoothing_alpha": "Glättungsfaktor (0.1–0.9)",
+          "ensemble_enabled": "Ensemble-Modus (zweistufige Analyse)",
+          "critical_ensemble_enabled": "Critical Ensemble (Benchmark-optimiert, v3.1)",
+          "plausibility_rules_enabled": "Plausibility Rules aktivieren (v3.2)"
         },
         "data_description": {
           "check_interval_sec": "20–300 s. Stringing entwickelt sich langsam; 30–60 s reichen.",
@@ -69,7 +79,17 @@
           "running_states": "Standard: RUNNING,PAUSE. Die Werte werden mit dem gcode_state-Attribut bzw. State verglichen (Groß-/Kleinschreibung egal). PAUSE ist enthalten, damit pausierte Drucke weiter überwacht werden.",
           "pause_service": "Service-Pfad, z. B. bambu_lab.pause_print. Ziel-Gerät ist der oben konfigurierte ha-bambulab-Drucker.",
           "deep_link": "z. B. homeassistant://navigate/lovelace/0 oder homeassistant://more-info/<entity_id>.",
-          "notify_services": "„Automatisch“ benachrichtigt alle erkannten Companion-Apps; alternativ einen Dienst auswählen."
+          "notify_services": "„Automatisch“ benachrichtigt alle erkannten Companion-Apps; alternativ einen Dienst auswählen.",
+          "preprocess_enabled": "Verbessert Bilder vor der Analyse: Zuschneiden auf Druckbett, Kontrast & Schärfe erhöhen. Macht feine Fäden besser sichtbar.",
+          "filament_type": "Hilft dem Modell bei der Kalibrierung (PETG neigt zu Stringing, ABS zu Warping). Leer = unbekannt.",
+          "nozzle_temp": "Aktuelle Düsentemperatur. Zu heiß → mehr Stringing, zu kalt → Haftungsprobleme. 0 = unbekannt.",
+          "bed_temp": "Aktuelle Betttemperatur. 0 = unbekannt.",
+          "min_confidence": "Frames mit niedrigerer Konfidenz werden verworfen (nicht gezählt). Reduziert False Positives bei 0.6–0.8.",
+          "smoothing_enabled": "Glättet Scores über mehrere Frames (Exponential Moving Average). Reduziert kurzfristige Schwankungen.",
+          "smoothing_alpha": "Höher = schnellere Reaktion auf Änderungen (0.3 = guter Standard). Niedriger = mehr Glättung.",
+          "ensemble_enabled": "Zuerst schnelles/günstiges Modell, bei Unsicherheit genaueres Modell. Spart Kosten bei eindeutigen Fällen, erhöht Genauigkeit bei grenzwertigen.",
+          "critical_ensemble_enabled": "Benchmark-optimiert: glm-5-3-flash (günstig) + mistral-medium-latest (schnell). Kritische Defekte (Spaghetti, Layer-Shift) werden IMMER von beiden Modellen geprüft — maximale Sicherheit, keine False Negatives bei kritischen Fehlern! Kostet ~0.46¢/Scan.",
+          "plausibility_rules_enabled": "Standard AUS. Kann offensichtliche Fehlklassifikationen korrigieren (z.B. Spaghetti bei stehenden Türmen → Stringing), aber auch korrekte Antworten zerstören. Benchmark: glm 77.9% → 64.3% Accuracy. Nur aktivieren wenn False Positives ein Problem sind."
         }
       }
     }
@@ -110,6 +130,9 @@
       },
       "last_check": {
         "name": "Letzte Prüfung"
+      },
+      "benchmark_model": {
+        "name": "Empfohlenes Modell (Benchmark)"
       }
     },
     "button": {
