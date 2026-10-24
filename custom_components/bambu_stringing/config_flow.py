@@ -87,7 +87,7 @@ from .const import (
     MIN_STRINGING_THRESHOLD,
     MIN_WARPING_THRESHOLD,
 )
-from .runtime import benchmark_defaults, get_value
+from .runtime import benchmark_defaults, benchmark_models, get_value
 
 
 def _int_range(low: int, high: int) -> vol.All:
@@ -163,7 +163,15 @@ class BambuStringingConfigFlow(ConfigFlow, domain=DOMAIN):
                 vol.Required(CONF_API_KEY): selector.TextSelector(
                     selector.TextSelectorConfig(type=selector.TextSelectorType.PASSWORD)
                 ),
-                vol.Required(CONF_MODEL, default=DEFAULT_MODEL): str,
+                vol.Required(
+                    CONF_MODEL,
+                    default=DEFAULT_MODEL,
+                ): selector.SelectSelector(
+                    selector.SelectSelectorConfig(
+                        options=benchmark_models(),
+                        mode="dropdown",
+                    )
+                ),
                 vol.Optional(CONF_CAMERA_ENTITY): selector.EntitySelector(
                     selector.EntitySelectorConfig(domain="camera")
                 ),
@@ -200,6 +208,12 @@ class BambuStringingOptionsFlow(OptionsFlow):
         # explizit gesetzte Optionen gewinnen weiterhin (get_value prüft
         # options vor data vor Fallback).
         bench = benchmark_defaults(str(get_value(entry, CONF_MODEL, DEFAULT_MODEL)))
+        # Legacy-Werte (Freitext-Modell aus alten Versionen), die nicht im
+        # Benchmark stehen, würden die Dropdown-Validierung brechen — auf
+        # DEFAULT_MODEL zurückfallen.
+        model_default = str(get_value(entry, CONF_MODEL, DEFAULT_MODEL))
+        if model_default not in benchmark_models():
+            model_default = DEFAULT_MODEL
         if user_input is not None:
             # Leerer API-Key bedeutet "bestehenden Key behalten" – nicht als
             # leeren Options-Wert speichern, damit get_value auf entry.data
@@ -298,8 +312,13 @@ class BambuStringingOptionsFlow(OptionsFlow):
                 ),
                 vol.Required(
                     CONF_MODEL,
-                    default=str(get_value(entry, CONF_MODEL, DEFAULT_MODEL)),
-                ): str,
+                    default=model_default,
+                ): selector.SelectSelector(
+                    selector.SelectSelectorConfig(
+                        options=benchmark_models(),
+                        mode="dropdown",
+                    )
+                ),
                 vol.Required(
                     CONF_RETENTION_DAYS,
                     default=_int_range(MIN_RETENTION_DAYS, MAX_RETENTION_DAYS)(

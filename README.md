@@ -4,8 +4,8 @@ Home Assistant Custom Integration zur KI-gestützten Erkennung von Druckfehlern
 (Stringing, Spaghetti, Warping, Layer-Shift) bei Bambu Lab 3D-Druckern
 per Mistral Vision API.
 
-[![Version](https://img.shields.io/badge/version-0.6.0-blue)](custom_components/bambu_stringing/manifest.json)
-[![Tests](https://img.shields.io/badge/tests-86%20passed-brightgreen)](tests/)
+[![Version](https://img.shields.io/badge/version-0.8.1-blue)](custom_components/bambu_stringing/manifest.json)
+[![Tests](https://img.shields.io/badge/tests-140%20passed-brightgreen)](tests/)
 [![HACS](https://img.shields.io/badge/HACS-Custom-orange)](https://hacs.xyz/)
 [![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2026.3%2B-blue)](https://www.home-assistant.io/)
 

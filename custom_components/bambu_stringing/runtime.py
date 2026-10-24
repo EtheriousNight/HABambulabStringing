@@ -223,6 +223,15 @@ def _valid_benchmark_thresholds(thr: Any) -> bool:
     return True
 
 
+def benchmark_models() -> list[str]:
+    """Namen aller im Benchmark getesteten Modelle (Reihenfolge wie gemessen)."""
+    return [
+        entry["model"]
+        for entry in load_benchmark_data().get("models", [])
+        if isinstance(entry, dict) and entry.get("model")
+    ]
+
+
 def model_thresholds(model: str | None) -> dict[str, Any]:
     """Benchmark-Schwellwerte für ein konkretes Modell.
 
